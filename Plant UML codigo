@@ -1,0 +1,36 @@
+@startuml
+:Admin:
+:Super admin: 
+:Lector: 
+usecase consultahistorial as "consultar historial de cambios y 
+facturas y acceso a copias de seguridad"
+usecase CasosGenerales as "Casos Generales
+--
+Acciones que pueden hacer todos los usuarios"
+CasosGenerales -->(Iniciar Sesion)
+CasosGenerales ->(Crear Facturas Adicionales)
+CasosGenerales ->(Filtrar Facturas)
+
+:Admin:-->(Registrar y eliminar clientes )
+:Admin:-->(Editar acceso del lector)
+:Admin:->CasosGenerales
+usecase ParametrosClientes as " Editar Parametros 
+--
+ Importe , 
+Frecuencia de recordatorios "
+:Admin: -up->ParametrosClientes
+:Admin:-->(Acceder a informacion por una API)
+:Admin:-left->(Importar datos mediante un archivo csv)
+(Registrar y eliminar clientes ) <-(producir facturas mensuales)
+
+
+:Super admin: <..ParametrosClientes : dependencia
+:Super admin: -->(modificar el sistema) 
+:Super admin:-->CasosGenerales
+:Super admin: -left-> consultahistorial
+
+
+:Lector:-up->CasosGenerales
+:Lector: -->(Consultar y descargar facturas)
+(Consultar y descargar facturas)<..(Editar acceso del lector):dependencia
+@enduml
