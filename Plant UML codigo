@@ -1,17 +1,17 @@
 @startuml
 :Admin:
 :Super admin: 
-:Lector: 
+:Responsable: 
 usecase consultahistorial as "consultar historial de cambios y 
 facturas y acceso a copias de seguridad"
 usecase CasosGenerales as "Casos Generales
 --
 Acciones que pueden hacer todos los usuarios"
-CasosGenerales -->(Iniciar Sesion)
+CasosGenerales -->(Iniciar Sesión)
 CasosGenerales ->(Crear Facturas Adicionales)
 CasosGenerales ->(Filtrar Facturas)
 
-:Admin:-->(Registrar y eliminar clientes )
+:Admin:-->(Registrar y eliminar clientes)
 :Admin:-->(Editar acceso del lector)
 :Admin:->CasosGenerales
 usecase ParametrosClientes as " Editar Parametros 
@@ -19,9 +19,13 @@ usecase ParametrosClientes as " Editar Parametros
  Importe , 
 Frecuencia de recordatorios "
 :Admin: -up->ParametrosClientes
-:Admin:-->(Acceder a informacion por una API)
-:Admin:-left->(Importar datos mediante un archivo csv)
-(Registrar y eliminar clientes ) <-(producir facturas mensuales)
+:Admin:-->(Acceder a información por una API)
+:Admin:-left->(Importar datos mediante un archivo .csv)
+(Registrar y eliminar clientes) <- (producir facturas mensuales)
+(producir facturas mensuales) <-down- (flujo de recordatorios de impago) 
+(producir facturas mensuales) <- (seguimiento del estado de pagos)
+(producir facturas mensuales) <-down- (confirmación del pago)
+(seguimiento del estado de pagos) <-down- (envia a los roles seguimiento mensual/trimestral/anual)
 
 
 :Super admin: <..ParametrosClientes : dependencia
@@ -30,7 +34,6 @@ Frecuencia de recordatorios "
 :Super admin: -left-> consultahistorial
 
 
-:Lector:-up->CasosGenerales
-:Lector: -->(Consultar y descargar facturas)
+:Responsable:-up->CasosGenerales
+:Responsable: -->(Consultar y descargar facturas)
 (Consultar y descargar facturas)<..(Editar acceso del lector):dependencia
-@enduml
