@@ -11,11 +11,11 @@ Los usuarios (empleados de la empresa) deberán poder acceder a las facturas rel
 ## Requisitos del sistema 
 
 ### Requisitos Funcionales 
-- FR1. El rol admin debe poder registrar nuevos clientes y asignarlos a empleados del rol lector.
+- FR1. El rol admin debe poder registrar nuevas empresas clientes con sus respectivas personas de contacto, nombre comercial, razón social, NIF o identificador fiscal, domicilio fiscal, país y moneda de trabajo.
 - FR2. El rol lector debe poder consultar las facturas de los clientes a los que esté asignado, así como descargarlas.
-- FR3. El rol admin debe poder editar a qué clientes tiene acceso un empleado lector.
+- FR3. El rol admin debe poder añadir y editar a qué clientes tiene acceso un empleado lector.
 - FR4. El rol admin debe poder eliminar un cliente.
-- FR5. El rol superadmin debe poder editar varios parámetros para cada clientes: importe recurrente, importes adicionales, frecuencia de recordatorios de pago.
+- FR5. El rol admin debe poder editar varios parámetros para cada clientes: importe recurrente, importes adicionales, frecuencia de recordatorios de pago. Ciertos cambios de gran tamaño deben pasar por el superadmin.
 - FR6. Los usuarios deben poder iniciar sesión con su email @turbineh.com y su contraseña, entrando con los privilegios correspondientes a su rol.
 - FR7. Los usuarios deben poder crear facturas adicionales a las mensuales.
 - FR8. El rol superadmin debe poder consultar el historial de cambios y facturas y tener acceso a las copias de seguridad.
@@ -25,6 +25,8 @@ Los usuarios (empleados de la empresa) deberán poder acceder a las facturas rel
 
 ### Requisitos No-Funcionales 
 - NFR1. El sistema debe producir facturas mensuales a cada cliente el primer día del mes, así como las facturas adicionales.
+- NFRX. Cuando el sistema envía una factura, debe quedar registrado a qué destinatario se envío en ese momento.
+- NFRX. Anualmente el sistema debe hacer una revisión de los rangos en los que se encuentra cada empresa y reajustar sus precios recurrentes, con validación humana.
 - NFR2. El sistema debe ser responsive, una aplicación web que funcione en dispositivos móviles correctamente.
 - NFR3. El proceso de facturar debe poder realizarse en menos de un minuto.
 - NFR4. EL sistema debe enviar un flujo automático de recordatorios de pago, en un principio 3 días y 5 días después de la factura, y luego cada 2 días.
