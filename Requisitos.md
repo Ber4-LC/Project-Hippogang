@@ -82,7 +82,11 @@ serán necesarios para proporcionarle ese servicio.
 
 | ID | Actor | Requisito | Fuente |
 |---|---|---|---|
-| UR-01 | ... | ... | ... |
+| UR-01 | El usuario debe poder ver y modificar la información operativa de los clientes. | ... | ... |
+| UR-01 | El usuario debe poder consultar facturas y descargarlas. | ... | ... |
+| UR-01 | El usuario debe poder crear facturas si su nivel de permiso lo permite. | ... | ... |
+| UR-01 | El rol "responsable" debe poder ver y modificar la información operativa de los clientes. | ... | ... |
+| UR-01 | El rol "responsable" debe poder ver y modificar la información operativa de los clientes. | ... | ... |
 
 
 
@@ -117,7 +121,7 @@ Eso corresponde al diseño, no a los requisitos.
 | ID | Requisito | Relacionado con |
 |---|---|---|
 | FR-01 | El rol admin debe poder registrar nuevas empresas clientes con sus respectivas personas de contacto, nombre comercial, razón social, NIF o identificador fiscal, domicilio fiscal, país y moneda de trabajo.  | ... |
-| FR-02 | El rol lector debe poder consultar las facturas de los clientes a los que esté asignado, así como descargarlas. | ... |
+| FR-02 | El rol responsable debe poder consultar las facturas de los clientes a los que esté asignado, así como descargarlas. | ... |
 | FR-03 | El rol admin debe poder añadir y editar a qué clientes tiene acceso un empleado lector. | ... |
 | FR-04 | El rol admin debe poder eliminar un cliente. | ... |
 | FR-05 | El rol admin debe poder editar varios parámetros para cada clientes: importe recurrente, importes adicionales, frecuencia de recordatorios de pago. Ciertos cambios de gran tamaño deben pasar por el superadmin. | ... |
@@ -126,7 +130,7 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-08 | El rol superadmin debe poder consultar el historial de cambios y facturas y tener acceso a las copias de seguridad. | ... |
 | FR-09 | Los usuarios deben poder filtrar las facturas (pagadas/impagadas, por fecha, recurrente/adicional) | ... |
 | FR-10 | Se debe poder acceder a la información del sistema a través de una API. | ... |
-| FR-11 | El rol admin debe poder importar datos mediante archivos csv. (Baja prioridad) | ... |
+| FR-11 | El rol admin debe poder importar datos de clientes nuevos mediante CSV, lo cual debe mostrar una vista previa en la cual el admin pueda decidir que datos mantener en caso de haber datos corruptos u otros errores de formato. | ... |
 | FR-12 | El sistema debe producir facturas mensuales a cada cliente el primer día del mes, así como las facturas adicionales. | ... |
 | FR-13 | EL sistema debe enviar un flujo automático de recordatorios de pago, en un principio 3 días y 5 días después de la factura, y luego cada 2 días. | ... |
 | FR-14 | EL sistema debe hacer un seguimiento del estado de pagos de todas las facturas automáticamente mediante conexión con Stripe. | ... |
@@ -134,6 +138,22 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-16 | El sistema debe enviar a los roles admin un seguimiento mensual/trimestral/anual de las finanzas de la empresa. | ... |
 | FR-17 | Cuando el sistema envía una factura, debe quedar registrado a qué destinatario se envío en ese momento | ... |
 | FR-18 | Anualmente el sistema debe hacer una revisión de los rangos en los que se encuentra cada empresa y reajustar sus precios recurrentes, con validación humana. | ... |
+| FR-19 | El rol superadmin debe poder cancelar una deuda, cambiando una factura de "impagada" a "pagada". | ... |
+| FR-20 | El rol usuario debe poder marcar una factura en periodo de impago como "en pausa" para detener los recordatorios periodicos. | ... |
+| FR-21 | Los usuarios deben poder editar las personas de contacto de una empresa. | ... |
+| FR-22 | El sistema debe enviar una notificación de eventos relevantes a los encargados de cada empresa. | 23 |
+| FR-23 | El usuario debe poder marcar las notificaciones como leídas o resueltas. | 22 |
+| FR-24 | El sistema debe mostrar facturas que vencen pronto, facturas vencidas, pagos que necesitan conciliación, clientes con problemas de entrega y aprobaciones pendientes. | ... |
+| FR-25 | El superadmin debe poder editar la tabla con los rangos para los precios recurrentes. | ... |
+| FR-26 | El usuario debe poder dar descuentos o pruebas gratuitas a empresas. | 5 |
+| FR-27 | El rol admin debe poder filtrar los informes por periodo, cliente, responsable interno, país, sector, estado de factura y tipo (recurrente/adicional) | 16 |
+| FR-XX | ... | ... |
+| FR-XX | ... | ... |
+| FR-XX | ... | ... |
+| FR-XX | ... | ... |
+| FR-XX | ... | ... |
+| FR-XX | ... | ... |
+
 
 
 ### 4.2. Requisitos no funcionales
