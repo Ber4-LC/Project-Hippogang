@@ -82,22 +82,8 @@ serán necesarios para proporcionarle ese servicio.
 
 | ID | Actor | Requisito | Fuente |
 |---|---|---|---|
-| UR-01 | El rol admin debe poder registrar nuevas empresas clientes con sus respectivas personas de contacto, nombre comercial, razón social, NIF o identificador fiscal, domicilio fiscal, país y moneda de trabajo.  | ... |
-| UR-02 | El rol lector debe poder consultar las facturas de los clientes a los que esté asignado, así como descargarlas. | ... |
-| UR-02 | El rol admin debe poder añadir y editar a qué clientes tiene acceso un empleado lector. | ... |
-| UR-02 | El rol admin debe poder eliminar un cliente. | ... |
-| UR-02 | El rol admin debe poder editar varios parámetros para cada clientes: importe recurrente, importes adicionales, frecuencia de recordatorios de pago. Ciertos cambios de gran tamaño deben pasar por el superadmin. | ... |
-| UR-02 | Los usuarios deben poder iniciar sesión con su email @turbineh.com y su contraseña, entrando con los privilegios correspondientes a su rol. | ... |
-| UR-02 | Los usuarios deben poder crear facturas adicionales a las mensuales. | ... |
-| UR-02 | El rol superadmin debe poder consultar el historial de cambios y facturas y tener acceso a las copias de seguridad. | ... |
-| UR-02 |Los usuarios deben poder filtrar las facturas (pagadas/impagadas, por fecha, recurrente/adicional) | ... |
-| UR-02 | Se debe poder acceder a la información del sistema a través de una API. | ... |
-| UR-02 | El rol admin debe poder importar datos mediante archivos csv. (Baja prioridad) | ... |
-| UR-02 | El sistema debe producir facturas mensuales a cada cliente el primer día del mes, así como las facturas adicionales. | ... |
-| UR-02 | EL sistema debe enviar un flujo automático de recordatorios de pago, en un principio 3 días y 5 días después de la factura, y luego cada 2 días. | ... |
-| UR-02 | EL sistema debe hacer un seguimiento del estado de pagos de todas las facturas automáticamente mediante conexión con Stripe. | ... |
-| UR-02 |  El sistema enviará una confirmación automática al cliente cuando las facturas sean pagadas con éxito. | ... |
-| UR-02 | El sistema debe enviar a los roles admin un seguimiento mensual/trimestral/anual de las finanzas de la empresa. | ... |
+| UR-01 | ... | ... | ... |
+
 
 
 
@@ -130,24 +116,24 @@ Eso corresponde al diseño, no a los requisitos.
 
 | ID | Requisito | Relacionado con |
 |---|---|---|
-| UR-01 | El rol admin debe poder registrar nuevas empresas clientes con sus respectivas personas de contacto, nombre comercial, razón social, NIF o identificador fiscal, domicilio fiscal, país y moneda de trabajo.  | ... |
-| UR-02 | El rol lector debe poder consultar las facturas de los clientes a los que esté asignado, así como descargarlas. | ... |
-| UR-02 | El rol admin debe poder añadir y editar a qué clientes tiene acceso un empleado lector. | ... |
-| UR-02 | El rol admin debe poder eliminar un cliente. | ... |
-| UR-02 | El rol admin debe poder editar varios parámetros para cada clientes: importe recurrente, importes adicionales, frecuencia de recordatorios de pago. Ciertos cambios de gran tamaño deben pasar por el superadmin. | ... |
-| UR-02 | Los usuarios deben poder iniciar sesión con su email @turbineh.com y su contraseña, entrando con los privilegios correspondientes a su rol. | ... |
-| UR-02 | Los usuarios deben poder crear facturas adicionales a las mensuales. | ... |
-| UR-02 | El rol superadmin debe poder consultar el historial de cambios y facturas y tener acceso a las copias de seguridad. | ... |
-| UR-02 |Los usuarios deben poder filtrar las facturas (pagadas/impagadas, por fecha, recurrente/adicional) | ... |
-| UR-02 | Se debe poder acceder a la información del sistema a través de una API. | ... |
-| UR-02 | El rol admin debe poder importar datos mediante archivos csv. (Baja prioridad) | ... |
-| UR-02 | El sistema debe producir facturas mensuales a cada cliente el primer día del mes, así como las facturas adicionales. | ... |
-| UR-02 | EL sistema debe enviar un flujo automático de recordatorios de pago, en un principio 3 días y 5 días después de la factura, y luego cada 2 días. | ... |
-| UR-02 | EL sistema debe hacer un seguimiento del estado de pagos de todas las facturas automáticamente mediante conexión con Stripe. | ... |
-| UR-02 | El sistema enviará una confirmación automática al cliente cuando las facturas sean pagadas con éxito. | ... |
-| UR-02 | El sistema debe enviar a los roles admin un seguimiento mensual/trimestral/anual de las finanzas de la empresa. | ... |
-| UR-02 | Cuando el sistema envía una factura, debe quedar registrado a qué destinatario se envío en ese momento | ... |
-| UR-02 | Anualmente el sistema debe hacer una revisión de los rangos en los que se encuentra cada empresa y reajustar sus precios recurrentes, con validación humana. | ... |
+| FR-01 | El rol admin debe poder registrar nuevas empresas clientes con sus respectivas personas de contacto, nombre comercial, razón social, NIF o identificador fiscal, domicilio fiscal, país y moneda de trabajo.  | ... |
+| FR-02 | El rol lector debe poder consultar las facturas de los clientes a los que esté asignado, así como descargarlas. | ... |
+| FR-03 | El rol admin debe poder añadir y editar a qué clientes tiene acceso un empleado lector. | ... |
+| FR-04 | El rol admin debe poder eliminar un cliente. | ... |
+| FR-05 | El rol admin debe poder editar varios parámetros para cada clientes: importe recurrente, importes adicionales, frecuencia de recordatorios de pago. Ciertos cambios de gran tamaño deben pasar por el superadmin. | ... |
+| FR-06 | Los usuarios deben poder iniciar sesión con su email @turbineh.com y su contraseña, entrando con los privilegios correspondientes a su rol. | ... |
+| FR-07 | Los usuarios deben poder crear facturas adicionales a las mensuales. | ... |
+| FR-08 | El rol superadmin debe poder consultar el historial de cambios y facturas y tener acceso a las copias de seguridad. | ... |
+| FR-09 | Los usuarios deben poder filtrar las facturas (pagadas/impagadas, por fecha, recurrente/adicional) | ... |
+| FR-10 | Se debe poder acceder a la información del sistema a través de una API. | ... |
+| FR-11 | El rol admin debe poder importar datos mediante archivos csv. (Baja prioridad) | ... |
+| FR-12 | El sistema debe producir facturas mensuales a cada cliente el primer día del mes, así como las facturas adicionales. | ... |
+| FR-13 | EL sistema debe enviar un flujo automático de recordatorios de pago, en un principio 3 días y 5 días después de la factura, y luego cada 2 días. | ... |
+| FR-14 | EL sistema debe hacer un seguimiento del estado de pagos de todas las facturas automáticamente mediante conexión con Stripe. | ... |
+| FR-15 | El sistema enviará una confirmación automática al cliente cuando las facturas sean pagadas con éxito. | ... |
+| FR-16 | El sistema debe enviar a los roles admin un seguimiento mensual/trimestral/anual de las finanzas de la empresa. | ... |
+| FR-17 | Cuando el sistema envía una factura, debe quedar registrado a qué destinatario se envío en ese momento | ... |
+| FR-18 | Anualmente el sistema debe hacer una revisión de los rangos en los que se encuentra cada empresa y reajustar sus precios recurrentes, con validación humana. | ... |
 
 
 ### 4.2. Requisitos no funcionales
@@ -177,9 +163,9 @@ interpretación realizada.
 |---|---|---|---|
 | NFR-01 | ... | El sistema debe ser responsive, una aplicación web que funcione en dispositivos móviles correctamente | ... |
 | NFR-02 | ... | El sistema debe comprobar cuando un usuario se loguee que el correa sea @turbineh.com | ... |
-| NFR-02 | ... | Cuando un cliente sea eliminado por un admin, sus datos deben permanecer en la base de datos tanto tiempo como la ley permita. | ... |
-| NFR-02 | ... | Las facturas deben ser estándar y válidas fiscalmente. | ... |
-| NFR-02 | ... | Los datos de las facturas están bien cifrados para no tener problemas legales. | ... |
+| NFR-03 | ... | Cuando un cliente sea eliminado por un admin, sus datos deben permanecer en la base de datos tanto tiempo como la ley permita. | ... |
+| NFR-04 | ... | Las facturas deben ser estándar y válidas fiscalmente. | ... |
+| NFR-05 | ... | Los datos de las facturas están bien cifrados para no tener problemas legales. | ... |
 
 
 ## 5. Reglas de negocio
