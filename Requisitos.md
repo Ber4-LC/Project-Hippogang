@@ -128,6 +128,7 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-06 | Los usuarios deben poder iniciar sesión con su email @turbineh.com y su contraseña, entrando con los privilegios correspondientes a su rol. | ... |
 | FR-07 | Los usuarios deben poder crear facturas adicionales a las mensuales. | ... |
 | FR-08 | El rol superadmin debe poder consultar el historial de cambios y facturas y tener acceso a las copias de seguridad. | ... |
+| FR-XX | El rol superadmin debe poder consultar el historial de todos los procesos automáticos para poder var cuáles ocurrieron. | ... |
 | FR-09 | Los usuarios deben poder filtrar las facturas (pagadas/impagadas, por fecha, recurrente/adicional) | ... |
 | FR-10 | Se debe poder acceder a la información del sistema a través de una API. | ... |
 | FR-11 | El rol admin debe poder importar datos de clientes nuevos mediante CSV, lo cual debe mostrar una vista previa en la cual el admin pueda decidir que datos mantener en caso de haber datos corruptos u otros errores de formato. | ... |
@@ -147,7 +148,7 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-25 | El superadmin debe poder editar la tabla con los rangos para los precios recurrentes. | ... |
 | FR-26 | El usuario debe poder dar descuentos o pruebas gratuitas a empresas. | 5 |
 | FR-27 | El rol admin debe poder filtrar los informes por periodo, cliente, responsable interno, país, sector, estado de factura y tipo (recurrente/adicional) | 16 |
-| FR-XX | ... | ... |
+| FR-XX | Los usuarios pueden establecer la plantilla de los emails de factura a sus clientes, y debe quedar registrado la plantilla usada. | ... |
 | FR-XX | ... | ... |
 | FR-XX | ... | ... |
 | FR-XX | ... | ... |
@@ -185,7 +186,14 @@ interpretación realizada.
 | NFR-02 | ... | El sistema debe comprobar cuando un usuario se loguee que el correa sea @turbineh.com | ... |
 | NFR-03 | ... | Cuando un cliente sea eliminado por un admin, sus datos deben permanecer en la base de datos tanto tiempo como la ley permita. | ... |
 | NFR-04 | ... | Las facturas deben ser estándar y válidas fiscalmente. | ... |
-| NFR-05 | ... | Los datos de las facturas están bien cifrados para no tener problemas legales. | ... |
+| NFR-05 | ... | Los datos de las facturas están bien cifrados para no tener problemas legales. Datos fiscales no deben estar en URLs públicas y las comunicaciones deben estar cifrados.| ... |
+| NFR-XX | ... | No debe haber conflictos si varias personas editan una factura a la vez. | ... |
+| NFR-XX | Escalabilidad | El sistema debe poder soportar centenas de usuarios internos. | ... |
+| NFR-XX | Disponibilidad | Puede haber caídas breves del sistema, pero no deben causar la pérdida ni duplicación de ninguna factura. | ... |
+| NFR-XX | ... | El sistema debe disponer de un entorno de prueba para poder testear los cambios de configuración antes de aplicarlos. | ... |
+| NFR-XX | ... | El sistema interno puede estar en español, pero las comunicaciones al cliente deben poder elegir inglés. | ... |
+| NFR-XX | ... | Asegurar que no haya conflictos con las zonas horarias, las fechas de facturas deben usar la zona horaria del receptor. | ... |
+| NFR-XX | ... | ... | ... |
 
 
 ## 5. Reglas de negocio
