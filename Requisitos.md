@@ -2,9 +2,21 @@
 
 ## 1. Contexto y alcance
 
-### 1.1. Objetivo del sistema
+### 1.1. Objetivo del sistema 
 
-Breve descripción del problema que se pretende resolver y del objetivo general del sistema.
+Turbine es una empresa que ofrece servicios de su inteligencia artificial "Brain" mediante suscripciones. Esta se enfrenta a un problema relacionado con la gestión económica y el aumento del número de clientes. Este crecimiento dificulta la administración de facturas y cobros, puesto que, a medida que aumenta el número de clientes, también aumenta la cantidad de datos, movimientos, facturas y suscripciones que es necesario gestionar.
+
+Por lo tanto, el objetivo del sistema, para solucionar el problema presentado, sería crear una aplicación que permita:
+
+- *Gestionar clientes y suscripciones.* Poder modificar los precios de sus servicios de forma cómoda y sencilla, así como mantener un registro de los clientes y sus suscripciones.
+
+- *Generar facturas y hacer seguimiento de los cobros.* Poder generar facturas con facilidad, así como consultar los cobros de los clientes, permitiendo comprobar los importes facturados, cobrados y pendientes de pago.
+
+- *Mejorar la gestión a mayor escala.* Poder tener una mayor cantidad de clientes registrados y gestionarlos de forma cómoda, sin que el aumento de su número dificulte la administración.
+
+- *Reducir el trabajo manual.* Poder automatizar procesos y mejorar la organización de los datos, facilitando así el trabajo a los empleados de Turbine.
+
+*Es importante considerar que esta es una aplicación diseñada únicamente para el uso interno de Turbine. La aplicación no se encarga de proporcionar los servicios ofrecidos por la empresa, sino de gestionar los aspectos administrativos y económicos relacionados con su facturación y cobro.*
 
 ### 1.2. Alcance
 
