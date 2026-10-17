@@ -1,7 +1,8 @@
 # Especificación de los casos de uso
 ## Especificación del diagrama 1 (Autenticación y permisos de los roles de la base de datos):
 
-### CU-01: Iniciar sesión.  
+### CU-01: Iniciar sesión.
+```
 • Nombre del caso de uso: Iniciar sesión.  
 • Identificador: CU-01.  
 • Objetivo: Autenticar a un empleado interno de Turbine y habilitarle las funcionalidades correspondientes a su rol.  
@@ -21,10 +22,12 @@
                     2a. Correo que no pertenece al dominio @turbineh.com.  
                     2b. Fallo en inicio de sesión a consecuencia de credenciales incorrectas.  
 • Postcondiciones:  
-                    1. El usuario queda autenticados con sus vistas y privilegios dependiendo de su rol.  
+                    1. El usuario queda autenticados con sus vistas y privilegios dependiendo de su rol.
+```
   
   
 ### CU-02: Gestionar permisos de empleados.  
+```
 • Nombre del caso de uso: Gestionar permisos de empleados.  
 • Identificador: CU-02.  
 • Objetivo: Asignar o modificar la lista de empresas clientes que un empleado con rol lector puede visualizar.  
@@ -43,10 +46,12 @@
 • Flujos de excepción:  
                     4. El sistema notifica que no se pudieron actualizar los permisos y revierte el cambio.  
 • Postcondiciones:  
-                    1. El empleado seleccionado únicamente puede consultar la información y facturas de la nueva lista de clientes asignados.  
+                    1. El empleado seleccionado únicamente puede consultar la información y facturas de la nueva lista de clientes asignados.
+```
   
   
 ### CU-03: Consultar información mediante la API.  
+```
 • Nombre del caso de uso: Consultar información mediante la API.  
 • Identificador: CU-03.  
 • Objetivo: Acceso a la API por parte de los empleados con el fin de consultar información.  
@@ -62,4 +67,5 @@
 • Flujos de excepción, cuando corresponda:  
                     2. El sistema deniega la consulta debido a la inexistencia de los permisos por parte del empleado.  
 • Postcondiciones:  
-                    1. El empleado solicitante de la información recibe dichos datos.     
+                    1. El empleado solicitante de la información recibe dichos datos.
+```
