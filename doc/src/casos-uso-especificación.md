@@ -33,9 +33,8 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Nombre del caso de uso: Gestionar permisos de empleados.  
 • Identificador: CU-02.  
 • Objetivo: Asignar o modificar la lista de empresas clientes que un empleado con rol lector puede visualizar.  
-• Actor o actores participantes:  
-                    1. Empleado sobre el que se hace la asignación/modificación.  
-                    2. Administrador o superadministrador que se encarga de gestionar los permisos de dicho empleado.  
+• Actor o actores participantes:   
+                    1. Administrador que se encarga de gestionar los permisos del empleado.  
 • Precondiciones:  
                     1. El administrador ha iniciado sesión en el sistema (CU-01) y existen tanto el empleado como las empresas clientes registradas.  
 • Flujo principal:  
