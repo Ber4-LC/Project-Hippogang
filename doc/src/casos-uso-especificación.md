@@ -223,4 +223,133 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Flujos de excepción, cuando corresponda: (ninguno en este caso)       
 • Postcondiciones:  
                     1. El cliente deja de estar activo para nuevas facturaciones automáticas, aunque sus datos de facturas siguen almacenados en la base de datos.    
-```     
+```
+
+
+## Especificación del diagrama 3 (Gestión de facturas e impagos):
+
+### CU-11: Consultar y descargar facturas.
+```
+• Nombre del caso de uso: Consultar y descargar facturas.  
+• Identificador: CU-11.  
+• Objetivo: Visualizar el listado de las facturas de los clientes asignados y poder descargarlas.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El usuario ha iniciado sesión y tiene acceso asignado al menos a un cliente
+• Flujo principal:  
+                    1. El usuario accede a la sección de facturación.  
+                    2. El sistema muestra las facturas correspondientes a los clientes a los que el usuario tiene acceso.  
+                    3. El usuario selecciona una factura para ver su detalle y pulsa la opción de descarga.
+                    4. El sistema genera y descarga el documento de la factura y notifica a la base de datos.  
+• Flujos alternativos. (No existen en este caso)  
+• Flujos de excepción:    
+                    4. Error al generar el archivo de descarga. 
+• Postcondiciones:  
+                      1. El usuario visualiza y descarga el archivo.  
+```
+
+
+### CU-12: Filtrar facturas.
+```
+• Nombre del caso de uso: Filtrar facturas.  
+• Identificador: CU-12.  
+• Objetivo: Acotar el listado de facturas según su estado de cobro o rango de fechas.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El usuario ha iniciado sesión y tiene acceso asignado al menos a un cliente
+• Flujo principal:  
+                    1. El usuario selecciona uno o más criterios de filtrado.  
+                    2. El sistema muestra las facturas correspondientes a los criterios seleccionados.  
+• Flujos alternativos.   
+                    2. No existen facturas para los criterios seleccionados.
+• Flujos de excepción (no hay).
+• Postcondiciones:  
+                      1. Se muestra el listado de facturas en pantalla.  
+```    
+
+
+### CU-13: Crear factura adicional.
+```
+• Nombre del caso de uso: Crear factura adicional.  
+• Identificador: CU-13.  
+• Objetivo: Emitir una factura puntual para un cliente al margen de su facturación mensual recurrente.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El usuario ha iniciado sesión y tiene acceso asignado al menos a un cliente activo.  
+• Flujo principal:  
+                    1. El usuario selecciona un cliente y crea una factura adicional.  
+                    2. El usuario introduce los conceptos e importes adicionales.  
+                    3. El sistema verifica que la factura adicional no tiene errores.  
+                    4. El sistema genera y envía la factura al cliente y la añade a la base de datos como pendiente de pago.  
+• Flujos alternativos.:
+                    4. El sistema guarda la factura para que se emita junto a la del mes próximo.  
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. La nueva factura queda creada y almacenada.
+```
+
+
+### CU-14: Pausar recordatorios de factura impagada.
+```
+• Nombre del caso de uso: Pausar recordatorios de factura impagada.  
+• Identificador: CU-14.  
+• Objetivo: Detener temporalmente el envío de correos automáticos de reclamación de pago para una factura pendiente.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El usuario ha iniciado sesión existe una factura sin pagar.
+• Flujo principal:  
+                    1. El usuario selecciona una factura sin pagar y la pone en estado de "pausa".  
+                    2. El sistema cambia el estado a "pausa".    
+                    3. El sistema deja de enviar recordatorios de impago.    
+• Flujos alternativos.:
+                    1. El usuario selecciona una factura en "pausa" y la reanuda. 
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. La factura para a estar marcada como "en pausa".
+```
+
+
+### CU-15: Cancelar deuda de factura.
+```
+• Nombre del caso de uso: Cancelar deuda de factura.  
+• Identificador: CU-15.  
+• Objetivo: Dar por saldada manualmente una deuda cambiando el estado de una factura de "impagada" a "pagada".  
+• Actor o actores participantes:  
+                    1. Superadministrador.  
+• Precondiciones:  
+                    1. El Superadministrador ha iniciado sesión existe una factura sin pagar.
+• Flujo principal:  
+                    1. El Superadministrador selecciona una factura sin pagar y la pone en estado "saldada".  
+                    2. El sistema solicita confirmación de seguridad y justificación.     
+                    3. El Superadministrador confirma la operación.
+                    4. El sistema actualiza la factura al estado "pagada" y detiene los recordatorios, modificando la base de datos así.
+• Flujos alternativos.:
+                    3. Operación cancelada por el superadministrador por lo que la factura mantiene su estado de impago. 
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. La deuda pasa a estar saldada y la factura a pagada.
+```
+
+
+### CU-16: Configurar plantilla de email de facturación.
+```
+• Nombre del caso de uso: Configurar plantilla de email de facturación.  
+• Identificador: CU-16.  
+• Objetivo: Definir y personalizar la plantilla de correo electrónico (incluyendo idioma español o inglés) que se utilizará al enviar facturas a los clientes.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El Usuario responsable ha iniciado sesión y tiene permisos sobre el cliente.
+• Flujo principal:  
+                    1. El usuario accede a la configuración de comunicaciones del cliente.  
+                    2. El usuario selecciona o edita la plantilla de correo de facturación y define el idioma (español o inglés).    
+                    3. El sistema actualiza la base de datos cambiando la configuración del cliente.
+• Flujos alternativos (no hay).
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. La nueva plantilla queda activa para los siguientes envíos.  
+```
