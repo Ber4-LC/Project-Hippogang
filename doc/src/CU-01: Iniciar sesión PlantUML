@@ -1,0 +1,26 @@
+@startuml 
+:Empleado:
+:Empleado (lector):
+:Administrador:
+:SuperAdministrador:
+left to right direction
+
+rectangle SistemaTurbine{
+ usecase (Iniciar Sesion) as UC1
+ UC1 ..>(Acceso a vistas y \nprivilegios dependiendo de su rol) : Include
+ UC1 ..>(Validar Credenciales) :  Include
+ UC1 ..>(Validar Dominio\n@turbineh.com) :  Include
+ (Validar Credenciales)..>(Rechazar acceso: \n Credenciales no validas):Extend
+ (Validar Dominio\n@turbineh.com) ..>(Rechazar acceso: \n Dominio no valido) :Extend
+
+ 
+}
+
+:Empleado:--UC1
+:Empleado (lector):--UC1
+:Administrador:--UC1
+:SuperAdministrador:--UC1
+
+
+
+@enduml
