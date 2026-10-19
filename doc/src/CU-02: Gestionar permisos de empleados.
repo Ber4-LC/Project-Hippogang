@@ -1,0 +1,20 @@
+@startuml 
+left to right direction
+
+:     Administrador\nSuperAdministrador: as ADM
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (gestión permisos\n de empleados) as UC1
+ UC1 ..>(mostrar empresas/clientes\n asignados a cada empleado) : include
+ UC1 ..>(Otorgar o revocar permisos \ny registrar en el historial) : include
+ (Otorgar o revocar permisos \ny registrar en el historial)<.(Al Cancelar se conservan\n las asignaciones previas): extend
+ (Otorgar o revocar permisos \ny registrar en el historial)<.down.(Encaso de excepcion \nnotificar Error y revertir cambio): extend
+ UC1 ..>(Añadir o retirar Empresas clientes) : include
+ 
+}
+note bottom of SistemaTurbine: Debe estar Iniciado Sesion.
+
+ADM--UC1
+
+
+@enduml
