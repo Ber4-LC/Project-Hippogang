@@ -161,10 +161,30 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-26 | El usuario debe poder dar descuentos o pruebas gratuitas a empresas. | 5 |
 | FR-27 | El rol admin debe poder filtrar los informes por periodo, cliente, responsable interno, país, sector, estado de factura y tipo (recurrente/adicional) | 16 |
 | FR-XX | Los usuarios pueden establecer la plantilla de los emails de factura a sus clientes, y debe quedar registrado la plantilla usada. | ... |
-| FR-XX | ... | ... |
-| FR-XX | ... | ... |
-| FR-XX | ... | ... |
-| FR-XX | ... | ... |
+| FR-28 | El sistema debe mostrar con detalle los fallos que ocurran al administrador y mostrar al usuario solo un código de incidencia. | ... |
+| FR-29 | El sistema debe buscar posibles clientes duplicados antes de crearlos, permitiendo que los campos no necesarios para la emisión de facturas no tengan datos. | 11 |
+| FR-30 | El sistema debe registrar el historial de cada usuario y permitir al administrador acceder a ellos. | ... |
+| FR-31 | El sistema debe permitir marcar a usuarios como favoritos y acceder a ellos, así como a los usuarios recientemente consultados. | ... |
+| FR-32 | El sistema debe invalidar las sesiones de un usuario cuando un administrador desactiva a este usuario. | ... |
+| FR-33 | Los datos fiscales del usuario deben poder configurarse. | 5 |
+| FR-34 | El sistema debe permitir configurar un objetivo mensual o anual de cobros y poder ver su progreso por parte del administrador; si se cambia de objetivo, debe guardarse el anterior objetivo establecido. | ... |
+| FR-35 | El sistema debe calcular correctamente los importes, reflejando exactamente lo que se guarda. | ... |
+| FR-36 | El sistema debe permitir gestionar el estado de un usuario mediante diferentes etiquetas, pudiendo estar prospecto importado, pendiente de activación, activo, inactivo, etc. | ... |
+| FR-37 | El sistema debe bloquear y explicar en caso de que se intente activar la recurrencia de un usuario sin tener los datos fiscales suficientes para poder activarla. | ... |
+| FR-38 | El sistema debe tener una bandeja de aprobaciones que permita a los usuarios ver el estado de sus solicitudes y comentarios de los administradores asociados a ellas. | ... |
+| FR-39 | El sistema debe impedir que el usuario apruebe sus propias solicitudes. | ... |
+| FR-40 | El sistema debe permitir configurar los umbrales económicos y las operaciones que requieren separación de funciones para importes sensibles. | ... |
+| FR-41 | El sistema debe impedir que el usuario genere varias facturas iguales si este lo solicita en varias ocasiones. Para estos casos se mostrara un mensaje informando que está en proceso. | ... |
+| FR-42 | El sistema debe permitir que los administradores cierren periodos económicos mensuales o trimestrales. Una vez cerrado el periodo, no se permitirán modificaciones económicas ordinarias sobre los registros incluidos en él. | ... |
+| FR-43 | El sistema debe permitir que los administradores realicen modificaciones excepcionales en los periodos económicos cerrados mediante un procedimiento controlado y auditado. | 42 |
+| FR-44 | El sistema debe poder exportar un paquete mensual o trimestral para la gestoría en un formato configurable por el administrador, así como generar cuándo se generó y el período que cubría. | ... |
+| FR-45 | El administrador debe poder ver el estado de los mensajes, mostrando si están en cola, enviados, entregados, fallidos o reintentados. | ... |
+| FR-46 | El sistema debe permitir registrar y consultar si el canal de contacto de usuario admite comunicaciones administrativas. | ... |
+| FR-47 | El sistema debe registrar las exportaciones realizadas con fecha/hora, usuario que lo realizó, filtros aplicados y volumen de datos exportados. Las exportaciones masivas de datos deben quedar registradas. | ... |
+| FR-48 | El sistema debe poder conservar los documentos un tiempo configurable por el administrador, así como regenerarlos si se permiten. Se debe diferenciar entre un archivo temporal de un documento contable a conservar. | ... |
+| FR-49 | El sistema debe trasladar las alertas programadas para los findes de semana o festivos al próximo día laborable y debe ser configurable por el administrador. | ... |
+| FR-50 | El sistema deberá mostrar cada factura en la moneda de emisión y permitir la conversión de importes a otras monedas para la elaboración de informes, diferenciando los importes originales de los convertidos. | ... |
+| FR-51 | El sistema permite realizar comentarios por parte de los usuarios y los administradores, diferenciando los comentarios de los usuarios como comentarios normales y los comentarios de los administradores como notas restringidas administrativas. | ... |
 | FR-XX | ... | ... |
 
 
@@ -205,6 +225,17 @@ interpretación realizada.
 | NFR-XX | ... | El sistema debe disponer de un entorno de prueba para poder testear los cambios de configuración antes de aplicarlos. | ... |
 | NFR-XX | ... | El sistema interno puede estar en español, pero las comunicaciones al cliente deben poder elegir inglés. | ... |
 | NFR-XX | ... | Asegurar que no haya conflictos con las zonas horarias, las fechas de facturas deben usar la zona horaria del receptor. | ... |
+| NFR-12 | Seguridad | El sistema debe cerrar la sesión activa del usuario tras un tiempo de inactividad para evitar el riesgo de acceso no autorizado. | ... |
+| NFR-13 | Seguridad | El sistema debe tener una medida de protección ante varios intentos fallidos de inicio de sesión. | ... |
+| NFR-14 | Mantenibilidad | El sistema debe disponer de pruebas automatizadas para verificar el funcionamiento de las reglas económicas importantes. | ... |
+| NFR-15 | Verificabilidad | El sistema debe tener escenarios de aceptación claros para los administradores | ... |
+| NFR-16 | Mantenibilidad | Debe haber una documentación de usuario corta y útil, instrucciones de despliegue y mantenimiento, modelo de datos y API, decisiones importantes y explicación de reglas de negocio. | ... |
+| NFR-17 | Compatibilidad | Se debe usar software libre o accesibles para una aplicación web responsive que sea compatible para cualquier navegador y dispositivo. | ... |
+| NFR-18 | Mantenibilidad | Debe tener un entorno de desarrollo y pruebas. | ... |
+| NFR-19 | Seguridad | Se debe separar la configuración y secretos del código. | ... |
+| NFR-20 | Mantenibilidad | Se debe evitar duplicar los datos del usuario en el código. | ... |
+| NFR-21 | Fiabilidad | Se debe utilizar precisión decimal. | ... |
+| NFR-22 | Fiabilidad | El sistema debe ser tolerante con tareas en segundo plano. | ... |
 | NFR-XX | ... | ... | ... |
 
 
