@@ -7,7 +7,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
 • Nombre del caso de uso: Iniciar sesión.  
 • Identificador: CU-01.  
-• Objetivo: Autenticar a un empleado interno de Turbine y habilitarle las funcionalidades correspondientes a su rol.  
+• Objetivo: Autenticar a un empleado interno de Turbineh y habilitarle las funcionalidades correspondientes a su rol.  
 • Actor o actores participantes:  
                     1. Empleado.  
                     2. Empleado (lector).  
@@ -236,7 +236,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Actor o actores participantes:  
                     1. Usuario responsable.  
 • Precondiciones:  
-                    1. El usuario ha iniciado sesión y tiene acceso asignado al menos a un cliente
+                    1. El usuario ha iniciado sesión y tiene acceso asignado al menos a un cliente.
 • Flujo principal:  
                     1. El usuario accede a la sección de facturación.  
                     2. El sistema muestra las facturas correspondientes a los clientes a los que el usuario tiene acceso.  
@@ -353,3 +353,111 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Postcondiciones:  
                       1. La nueva plantilla queda activa para los siguientes envíos.  
 ```
+  
+  
+## Especificación del diagrama 4 (Panel de control, informes y alertas):
+
+### CU-17: Consultar panel de control.
+```
+• Nombre del caso de uso: Consultar panel de control.  
+• Identificador: CU-17.  
+• Objetivo: Mostrar en un panel las incidencias pendientes de atender.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El usuario ha iniciado sesión.  
+• Flujo principal:  
+                    1. El usuario accede al panel de seguimiento.  
+                    2. El sistema muestra las incidencias pendientes de atender.  
+                    3. El usuario pulsa sobre cualquiera de las incidencias y se le muestra dicha incidencia para revisarla.    
+• Flujos alternativos:
+                    2. El sistema no tiene ninguna incidencia que mostrar.  
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. El usuario visualiza las incidencias.  
+```
+
+
+### CU-18: Gestionar notificaciones internas.
+```
+• Nombre del caso de uso: Gestionar notificaciones internas.  
+• Identificador: CU-18.  
+• Objetivo: Consultar los avisos que puedan surgir y resolverlos.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El usuario ha iniciado sesión y tiene notificaciones pendientes.  
+• Flujo principal:  
+                    1. El usuario abre la bandeja de notificaciones y las revisa.  
+                    2. El usuario marca la notificación como resuelta.  
+                    3. El sistema actualiza el estado de la notificación y modifica la base de datos, eliminándola de la lista de pendientes.    
+• Flujos alternativos (no hay).  
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. El estado de la notificación pasa a leída o resuelta.  
+```
+  
+
+### CU-19: Consultar y filtrar informes financieros.
+```
+• Nombre del caso de uso: Consultar y filtrar informes financieros.  
+• Identificador: CU-19.  
+• Objetivo: Obtener y filtrar reportes del estado financiero de Turbineh.  
+• Actor o actores participantes:  
+                    1. Administrador.  
+• Precondiciones:  
+                    1. El administrador ha iniciado sesión.  
+• Flujo principal:  
+                    1. El administrador accede a la pestaña de informes financieros.  
+                    2. El sistema muestra los informes financieros mensuales, trimestrales y anuales.  
+                    3. El administrador filtra por cliente/periodo/usuario responsable/país/estado de factura (pagada o no)/tipo de factura (recurrente o adicional).
+                    4. El sistema muestra los informes con los filtros aplicados.      
+• Flujos alternativos (no hay).  
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. El administrador obtiene el informe según los filtros aplicados.  
+```
+  
+  
+### CU-20: Revisión de historiales y copias de seguridad.
+```
+• Nombre del caso de uso: Revisión de historiales y copias de seguridad.  
+• Identificador: CU-20.  
+• Objetivo: Supervisar los cambios manuales y el estado de las copias de seguridad.  
+• Actor o actores participantes:  
+                    1. Superadministrador.  
+• Precondiciones:  
+                    1. El superadministrador ha iniciado sesión.  
+• Flujo principal:  
+                    1. El superadministrador accede a la pestaña de revisión y copias de seguridad. 
+                    2. El superadministrador filtra la vista a revisar.  
+                    3. El sistema muestra los registros detallados con fecha y hora, usuario que lo modificó, destinatario y resultado de la operación.
+                    4. El superadministrador puede generar una copia de seguridad o descargar los archivos.      
+• Flujos alternativos (no hay).  
+• Flujos de excepción:
+                    2. Los filtros del superadministrador son erróneos.  
+• Postcondiciones:  
+                    1. El administrador verifica los informes y genera copia de seguridad.  
+```
+  
+
+### CU-21: Edición de la tabla de precios recurrentes.
+```
+• Nombre del caso de uso: Edición de la tabla de precios recurrentes.  
+• Identificador: CU-21.  
+• Objetivo: Actualizar las tarifas preestablecidas y reajustar precios.  
+• Actor o actores participantes:  
+                    1. Superadministrador.  
+• Precondiciones:  
+                    1. El superadministrador ha iniciado sesión.  
+• Flujo principal:  
+                    1. El superadministrador accede a la configuración de rangos de precios. 
+                    2. El superadministrador modifica los rangos de precios.  
+                    3. El sistema valida que no haya incoherencias (errores de formato o solapamientos entre rangos de precios).
+                    4. El superadministrador confirma los cambios y el sistema actualiza la base de datos, cambiando la tabla de referencia.      
+• Flujos alternativos (no hay).  
+• Flujos de excepción:
+                    3. Se produce un solapamiento entre los rangos de los precios o hay error de formato.
+• Postcondiciones:  
+                    1. La tabla de rangos de los precios queda actualizada y se envía una notificación a la empresas clientes.  
+```  
