@@ -1,0 +1,19 @@
+@startuml 
+left to right direction
+
+:Empleado: as Emp
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Consultar Informcion a\n traves de la API) as CU1
+ CU1 ..>(Registrar consulta) :Include
+ CU1 ..>(Enviar datos\nde la petición): Include
+ CU1 ..>(Validar permisos\ndel empleado) : Include
+ (Validar permisos\ndel empleado)<..(Denegar consulta \nsi faltan permisos): Extend 
+
+}
+note bottom of SistemaTurbine: El empleado tiene permiso \nsobre la empresa que va a \nhacer consulta
+Emp-->CU1
+
+
+
+@enduml
