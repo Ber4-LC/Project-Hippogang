@@ -461,3 +461,113 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Postcondiciones:  
                     1. La tabla de rangos de los precios queda actualizada y se envía una notificación a la empresas clientes.  
 ```  
+
+
+## Especificación del diagrama 5 (Facturación mensual y recordatorios):
+
+### CU-22: Generar y enviar facturas automáticamente.
+```
+• Nombre del caso de uso: Generar y enviar facturas automáticamente.  
+• Identificador: CU-22.  
+• Objetivo: Emitir y enviar las facturas mensuales automáticas.  
+• Actor o actores participantes:  
+                    1. El Sistema automático.  
+• Precondiciones:  
+                    1. Día 1 del mes y existen clientes con suscrición activa.  
+• Flujo principal:  
+                    1. El primer día del mes se activa el proceso de facturación.  
+                    2. El sistema calcula el importe de la factura para cada cliente.  
+                    3. El sistema genera la factura.
+                    4. El sistema envía la factura a la empresa cliente a su correo con su idioma de preferencia.    
+• Flujos alternativos (no hay)  
+• Flujos de excepción:
+                    4. Fallo en la entrega del correo electrónico. 
+• Postcondiciones:  
+                      1. Todas las facturas quedan emitidas, enviadas y registradas.
+```
+
+
+### CU-23: Registrar datos del envío de las facturas.
+```
+• Nombre del caso de uso: Registrar datos del envío de las facturas.  
+• Identificador: CU-23.  
+• Objetivo: Almacenar los datos del envío de las facturas.  
+• Actor o actores participantes:  
+                    1. El Sistema automático.  
+• Precondiciones:  
+                    1. Existe un correo de factura pendiente de registro.  
+• Flujo principal:  
+                    1. El sistema guarda los datos del envío y de la factura en sí.  
+                    2. El sistema guarda el registro de los datos asociados a la factura para posibles consultas en el futuro.  
+• Flujos alternativos (no hay)  
+• Flujos de excepción (no hay) 
+• Postcondiciones:  
+                      1. Todas las facturas quedan almacenadas y registrados sus datos.
+```
+
+
+### CU-24: Sincronizar estado de pagos con Stripe y confirmar cobro.
+```
+• Nombre del caso de uso: Sincronizar estado de pagos con Stripe y confirmar cobro.  
+• Identificador: CU-24.  
+• Objetivo: Registrar los pagos con Stripe y enviar una confirmación de pago al cliente.  
+• Actor o actores participantes:  
+                    1. El Sistema automático.  
+• Precondiciones:  
+                    1. Existen facturas emitidas pendientes y existe una conexión registrada con Stripe.  
+• Flujo principal:  
+                    1. El sistema consulta o recibe eventos de pago desde Stripe para almacenarlos en la base de datos.  
+                    2. El sistema recibe la confirmación de pago de Stripe y cambia el estado de la factura a "pagada".  
+                    3. El sistema envía una confirmación de pago al cliente.
+                    4. El sistema registra la operación en el historial de procesos.    
+• Flujos alternativos (no hay)  
+• Flujos de excepción:
+                    1. La conexión con Stripe se cae. 
+• Postcondiciones:  
+                      1. Todas las facturas abonadas pasan al estado "pagada" y la empresa cliente recibe su justificante de pago.
+```
+  
+
+### CU-25: Enviar recordatorios automáticos de impago.
+```
+• Nombre del caso de uso: Enviar recordatorios automáticos de impago.  
+• Identificador: CU-25.  
+• Objetivo: Recordar al cliente que aún tiene facturas pendientes de ser abonadas.  
+• Actor o actores participantes:  
+                    1. El Sistema automático.  
+• Precondiciones:  
+                    1. Existen facturas emitidas pendientes de pago.  
+• Flujo principal:  
+                    1. El sistema evalúa la antigüedad de las facturas sin pagar.  
+                    2. El sistema envía un recordatorio a los 3 y 5 días de la emisión y a partir de ahí, cada 2 días por defecto (si no tienen una frecuencia personalizada).  
+                    3. El sistema envía el recordatorio por correo electrónico a la persona de contacto del cliente y registra el envío en el historial de procesos automáticos.    
+• Flujos alternativos:
+                    1. La factura está en el estado "en pausa".
+• Flujos de excepción:
+                    3. El sistema no puede enviar el recordatorio por correo y notifica al usuario empleado encargado de la empresa.
+• Postcondiciones:  
+                      1. Los clientes con facturas pendientes de pagar reciben el aviso de impago.
+```
+
+
+### CU-26: Revisar anualmente rangos de clientes y reajustar el precio.
+```
+• Nombre del caso de uso: Revisar anualmente rangos de clientes y reajustar el precio.  
+• Identificador: CU-26.  
+• Objetivo: Revisar anualmente la facturación de la empresa para tomar la decisión de cambiar o no el precio.  
+• Actor o actores participantes:  
+                    1. El Sistema automático.  
+• Precondiciones:  
+                    1. Se cumple un año de la contratación del servicio por parte de la empresa.
+• Flujo principal:  
+                    1. El sistema evalúa la facturación de la empresa cliente.
+                    2. El sistema comprueba si tras la facturación hay que modificar el precio del servicio.  
+                    3. El sistema toma la decisión de reajustar el precio del servicio.
+                    4. El sistema notifica al cliente del reajuste de precio y cambian las facturas.      
+• Flujos alternativos:
+                    3. El sistema finalmente decide no reajustar el precio dado que no se dan las condiciones necesarias.
+                    4. El sistema notifica al cliente que no se ha realizado un reajuste de precio. 
+• Flujos de excepción (no hay).
+• Postcondiciones:  
+                      1. Los clientes reciben una notificación indicando si se les ha reajustado el precio o no.
+```  
