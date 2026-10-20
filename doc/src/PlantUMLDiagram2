@@ -1,4 +1,5 @@
 @startuml 
+title Gestión de empresas cliente
 left to right direction
 :Administrador: as ADM
 :Superadministrador: as SADM
