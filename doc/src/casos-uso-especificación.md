@@ -7,7 +7,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
 • Nombre del caso de uso: Iniciar sesión.  
 • Identificador: CU-01.  
-• Objetivo: Autenticar a un empleado interno de Turbine y habilitarle las funcionalidades correspondientes a su rol.  
+• Objetivo: Autenticar a un empleado interno de Turbineh y habilitarle las funcionalidades correspondientes a su rol.  
 • Actor o actores participantes:  
                     1. Empleado.  
                     2. Empleado (lector).  
@@ -223,4 +223,351 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Flujos de excepción, cuando corresponda: (ninguno en este caso)       
 • Postcondiciones:  
                     1. El cliente deja de estar activo para nuevas facturaciones automáticas, aunque sus datos de facturas siguen almacenados en la base de datos.    
-```     
+```
+
+
+## Especificación del diagrama 3 (Gestión de facturas e impagos):
+
+### CU-11: Consultar y descargar facturas.
+```
+• Nombre del caso de uso: Consultar y descargar facturas.  
+• Identificador: CU-11.  
+• Objetivo: Visualizar el listado de las facturas de los clientes asignados y poder descargarlas.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El usuario ha iniciado sesión y tiene acceso asignado al menos a un cliente.
+• Flujo principal:  
+                    1. El usuario accede a la sección de facturación.  
+                    2. El sistema muestra las facturas correspondientes a los clientes a los que el usuario tiene acceso.  
+                    3. El usuario selecciona una factura para ver su detalle y pulsa la opción de descarga.
+                    4. El sistema genera y descarga el documento de la factura y notifica a la base de datos.  
+• Flujos alternativos. (No existen en este caso)  
+• Flujos de excepción:    
+                    4. Error al generar el archivo de descarga. 
+• Postcondiciones:  
+                      1. El usuario visualiza y descarga el archivo.  
+```
+
+
+### CU-12: Filtrar facturas.
+```
+• Nombre del caso de uso: Filtrar facturas.  
+• Identificador: CU-12.  
+• Objetivo: Acotar el listado de facturas según su estado de cobro o rango de fechas.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El usuario ha iniciado sesión y tiene acceso asignado al menos a un cliente
+• Flujo principal:  
+                    1. El usuario selecciona uno o más criterios de filtrado.  
+                    2. El sistema muestra las facturas correspondientes a los criterios seleccionados.  
+• Flujos alternativos.   
+                    2. No existen facturas para los criterios seleccionados.
+• Flujos de excepción (no hay).
+• Postcondiciones:  
+                      1. Se muestra el listado de facturas en pantalla.  
+```    
+
+
+### CU-13: Crear factura adicional.
+```
+• Nombre del caso de uso: Crear factura adicional.  
+• Identificador: CU-13.  
+• Objetivo: Emitir una factura puntual para un cliente al margen de su facturación mensual recurrente.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El usuario ha iniciado sesión y tiene acceso asignado al menos a un cliente activo.  
+• Flujo principal:  
+                    1. El usuario selecciona un cliente y crea una factura adicional.  
+                    2. El usuario introduce los conceptos e importes adicionales.  
+                    3. El sistema verifica que la factura adicional no tiene errores.  
+                    4. El sistema genera y envía la factura al cliente y la añade a la base de datos como pendiente de pago.  
+• Flujos alternativos.:
+                    4. El sistema guarda la factura para que se emita junto a la del mes próximo.  
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. La nueva factura queda creada y almacenada.
+```
+
+
+### CU-14: Pausar recordatorios de factura impagada.
+```
+• Nombre del caso de uso: Pausar recordatorios de factura impagada.  
+• Identificador: CU-14.  
+• Objetivo: Detener temporalmente el envío de correos automáticos de reclamación de pago para una factura pendiente.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El usuario ha iniciado sesión existe una factura sin pagar.
+• Flujo principal:  
+                    1. El usuario selecciona una factura sin pagar y la pone en estado de "pausa".  
+                    2. El sistema cambia el estado a "pausa".    
+                    3. El sistema deja de enviar recordatorios de impago.    
+• Flujos alternativos.:
+                    1. El usuario selecciona una factura en "pausa" y la reanuda. 
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. La factura para a estar marcada como "en pausa".
+```
+
+
+### CU-15: Cancelar deuda de factura.
+```
+• Nombre del caso de uso: Cancelar deuda de factura.  
+• Identificador: CU-15.  
+• Objetivo: Dar por saldada manualmente una deuda cambiando el estado de una factura de "impagada" a "pagada".  
+• Actor o actores participantes:  
+                    1. Superadministrador.  
+• Precondiciones:  
+                    1. El Superadministrador ha iniciado sesión existe una factura sin pagar.
+• Flujo principal:  
+                    1. El Superadministrador selecciona una factura sin pagar y la pone en estado "saldada".  
+                    2. El sistema solicita confirmación de seguridad y justificación.     
+                    3. El Superadministrador confirma la operación.
+                    4. El sistema actualiza la factura al estado "pagada" y detiene los recordatorios, modificando la base de datos así.
+• Flujos alternativos.:
+                    3. Operación cancelada por el superadministrador por lo que la factura mantiene su estado de impago. 
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. La deuda pasa a estar saldada y la factura a pagada.
+```
+
+
+### CU-16: Configurar plantilla de email de facturación.
+```
+• Nombre del caso de uso: Configurar plantilla de email de facturación.  
+• Identificador: CU-16.  
+• Objetivo: Definir y personalizar la plantilla de correo electrónico (incluyendo idioma español o inglés) que se utilizará al enviar facturas a los clientes.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El Usuario responsable ha iniciado sesión y tiene permisos sobre el cliente.
+• Flujo principal:  
+                    1. El usuario accede a la configuración de comunicaciones del cliente.  
+                    2. El usuario selecciona o edita la plantilla de correo de facturación y define el idioma (español o inglés).    
+                    3. El sistema actualiza la base de datos cambiando la configuración del cliente.
+• Flujos alternativos (no hay).
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. La nueva plantilla queda activa para los siguientes envíos.  
+```
+  
+  
+## Especificación del diagrama 4 (Panel de control, informes y alertas):
+
+### CU-17: Consultar panel de control.
+```
+• Nombre del caso de uso: Consultar panel de control.  
+• Identificador: CU-17.  
+• Objetivo: Mostrar en un panel las incidencias pendientes de atender.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El usuario ha iniciado sesión.  
+• Flujo principal:  
+                    1. El usuario accede al panel de seguimiento.  
+                    2. El sistema muestra las incidencias pendientes de atender.  
+                    3. El usuario pulsa sobre cualquiera de las incidencias y se le muestra dicha incidencia para revisarla.    
+• Flujos alternativos:
+                    2. El sistema no tiene ninguna incidencia que mostrar.  
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. El usuario visualiza las incidencias.  
+```
+
+
+### CU-18: Gestionar notificaciones internas.
+```
+• Nombre del caso de uso: Gestionar notificaciones internas.  
+• Identificador: CU-18.  
+• Objetivo: Consultar los avisos que puedan surgir y resolverlos.  
+• Actor o actores participantes:  
+                    1. Usuario responsable.  
+• Precondiciones:  
+                    1. El usuario ha iniciado sesión y tiene notificaciones pendientes.  
+• Flujo principal:  
+                    1. El usuario abre la bandeja de notificaciones y las revisa.  
+                    2. El usuario marca la notificación como resuelta.  
+                    3. El sistema actualiza el estado de la notificación y modifica la base de datos, eliminándola de la lista de pendientes.    
+• Flujos alternativos (no hay).  
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. El estado de la notificación pasa a leída o resuelta.  
+```
+  
+
+### CU-19: Consultar y filtrar informes financieros.
+```
+• Nombre del caso de uso: Consultar y filtrar informes financieros.  
+• Identificador: CU-19.  
+• Objetivo: Obtener y filtrar reportes del estado financiero de Turbineh.  
+• Actor o actores participantes:  
+                    1. Administrador.  
+• Precondiciones:  
+                    1. El administrador ha iniciado sesión.  
+• Flujo principal:  
+                    1. El administrador accede a la pestaña de informes financieros.  
+                    2. El sistema muestra los informes financieros mensuales, trimestrales y anuales.  
+                    3. El administrador filtra por cliente/periodo/usuario responsable/país/estado de factura (pagada o no)/tipo de factura (recurrente o adicional).
+                    4. El sistema muestra los informes con los filtros aplicados.      
+• Flujos alternativos (no hay).  
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. El administrador obtiene el informe según los filtros aplicados.  
+```
+  
+  
+### CU-20: Revisión de historiales y copias de seguridad.
+```
+• Nombre del caso de uso: Revisión de historiales y copias de seguridad.  
+• Identificador: CU-20.  
+• Objetivo: Supervisar los cambios manuales y el estado de las copias de seguridad.  
+• Actor o actores participantes:  
+                    1. Superadministrador.  
+• Precondiciones:  
+                    1. El superadministrador ha iniciado sesión.  
+• Flujo principal:  
+                    1. El superadministrador accede a la pestaña de revisión y copias de seguridad. 
+                    2. El superadministrador filtra la vista a revisar.  
+                    3. El sistema muestra los registros detallados con fecha y hora, usuario que lo modificó, destinatario y resultado de la operación.
+                    4. El superadministrador puede generar una copia de seguridad o descargar los archivos.      
+• Flujos alternativos (no hay).  
+• Flujos de excepción:
+                    2. Los filtros del superadministrador son erróneos.  
+• Postcondiciones:  
+                    1. El administrador verifica los informes y genera copia de seguridad.  
+```
+  
+
+### CU-21: Edición de la tabla de precios recurrentes.
+```
+• Nombre del caso de uso: Edición de la tabla de precios recurrentes.  
+• Identificador: CU-21.  
+• Objetivo: Actualizar las tarifas preestablecidas y reajustar precios.  
+• Actor o actores participantes:  
+                    1. Superadministrador.  
+• Precondiciones:  
+                    1. El superadministrador ha iniciado sesión.  
+• Flujo principal:  
+                    1. El superadministrador accede a la configuración de rangos de precios. 
+                    2. El superadministrador modifica los rangos de precios.  
+                    3. El sistema valida que no haya incoherencias (errores de formato o solapamientos entre rangos de precios).
+                    4. El superadministrador confirma los cambios y el sistema actualiza la base de datos, cambiando la tabla de referencia.      
+• Flujos alternativos (no hay).  
+• Flujos de excepción:
+                    3. Se produce un solapamiento entre los rangos de los precios o hay error de formato.
+• Postcondiciones:  
+                    1. La tabla de rangos de los precios queda actualizada y se envía una notificación a la empresas clientes.  
+```  
+
+
+## Especificación del diagrama 5 (Facturación mensual y recordatorios):
+
+### CU-22: Generar y enviar facturas automáticamente.
+```
+• Nombre del caso de uso: Generar y enviar facturas automáticamente.  
+• Identificador: CU-22.  
+• Objetivo: Emitir y enviar las facturas mensuales automáticas.  
+• Actor o actores participantes:  
+                    1. El Sistema automático.  
+• Precondiciones:  
+                    1. Día 1 del mes y existen clientes con suscrición activa.  
+• Flujo principal:  
+                    1. El primer día del mes se activa el proceso de facturación.  
+                    2. El sistema calcula el importe de la factura para cada cliente.  
+                    3. El sistema genera la factura.
+                    4. El sistema envía la factura a la empresa cliente a su correo con su idioma de preferencia.    
+• Flujos alternativos (no hay)  
+• Flujos de excepción:
+                    4. Fallo en la entrega del correo electrónico. 
+• Postcondiciones:  
+                      1. Todas las facturas quedan emitidas, enviadas y registradas.
+```
+
+
+### CU-23: Registrar datos del envío de las facturas.
+```
+• Nombre del caso de uso: Registrar datos del envío de las facturas.  
+• Identificador: CU-23.  
+• Objetivo: Almacenar los datos del envío de las facturas.  
+• Actor o actores participantes:  
+                    1. El Sistema automático.  
+• Precondiciones:  
+                    1. Existe un correo de factura pendiente de registro.  
+• Flujo principal:  
+                    1. El sistema guarda los datos del envío y de la factura en sí.  
+                    2. El sistema guarda el registro de los datos asociados a la factura para posibles consultas en el futuro.  
+• Flujos alternativos (no hay)  
+• Flujos de excepción (no hay) 
+• Postcondiciones:  
+                      1. Todas las facturas quedan almacenadas y registrados sus datos.
+```
+
+
+### CU-24: Sincronizar estado de pagos con Stripe y confirmar cobro.
+```
+• Nombre del caso de uso: Sincronizar estado de pagos con Stripe y confirmar cobro.  
+• Identificador: CU-24.  
+• Objetivo: Registrar los pagos con Stripe y enviar una confirmación de pago al cliente.  
+• Actor o actores participantes:  
+                    1. El Sistema automático.  
+• Precondiciones:  
+                    1. Existen facturas emitidas pendientes y existe una conexión registrada con Stripe.  
+• Flujo principal:  
+                    1. El sistema consulta o recibe eventos de pago desde Stripe para almacenarlos en la base de datos.  
+                    2. El sistema recibe la confirmación de pago de Stripe y cambia el estado de la factura a "pagada".  
+                    3. El sistema envía una confirmación de pago al cliente.
+                    4. El sistema registra la operación en el historial de procesos.    
+• Flujos alternativos (no hay)  
+• Flujos de excepción:
+                    1. La conexión con Stripe se cae. 
+• Postcondiciones:  
+                      1. Todas las facturas abonadas pasan al estado "pagada" y la empresa cliente recibe su justificante de pago.
+```
+  
+
+### CU-25: Enviar recordatorios automáticos de impago.
+```
+• Nombre del caso de uso: Enviar recordatorios automáticos de impago.  
+• Identificador: CU-25.  
+• Objetivo: Recordar al cliente que aún tiene facturas pendientes de ser abonadas.  
+• Actor o actores participantes:  
+                    1. El Sistema automático.  
+• Precondiciones:  
+                    1. Existen facturas emitidas pendientes de pago.  
+• Flujo principal:  
+                    1. El sistema evalúa la antigüedad de las facturas sin pagar.  
+                    2. El sistema envía un recordatorio a los 3 y 5 días de la emisión y a partir de ahí, cada 2 días por defecto (si no tienen una frecuencia personalizada).  
+                    3. El sistema envía el recordatorio por correo electrónico a la persona de contacto del cliente y registra el envío en el historial de procesos automáticos.    
+• Flujos alternativos:
+                    1. La factura está en el estado "en pausa".
+• Flujos de excepción:
+                    3. El sistema no puede enviar el recordatorio por correo y notifica al usuario empleado encargado de la empresa.
+• Postcondiciones:  
+                      1. Los clientes con facturas pendientes de pagar reciben el aviso de impago.
+```
+
+
+### CU-26: Revisar anualmente rangos de clientes y reajustar el precio.
+```
+• Nombre del caso de uso: Revisar anualmente rangos de clientes y reajustar el precio.  
+• Identificador: CU-26.  
+• Objetivo: Revisar anualmente la facturación de la empresa para tomar la decisión de cambiar o no el precio.  
+• Actor o actores participantes:  
+                    1. El Sistema automático.  
+• Precondiciones:  
+                    1. Se cumple un año de la contratación del servicio por parte de la empresa.
+• Flujo principal:  
+                    1. El sistema evalúa la facturación de la empresa cliente.
+                    2. El sistema comprueba si tras la facturación hay que modificar el precio del servicio.  
+                    3. El sistema toma la decisión de reajustar el precio del servicio.
+                    4. El sistema notifica al cliente del reajuste de precio y cambian las facturas.      
+• Flujos alternativos:
+                    3. El sistema finalmente decide no reajustar el precio dado que no se dan las condiciones necesarias.
+                    4. El sistema notifica al cliente que no se ha realizado un reajuste de precio. 
+• Flujos de excepción (no hay).
+• Postcondiciones:  
+                      1. Los clientes reciben una notificación indicando si se les ha reajustado el precio o no.
+```  
