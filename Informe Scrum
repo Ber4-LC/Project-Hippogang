@@ -1,31 +1,66 @@
-Reunión 30/09/26
+# Informe Scrum: Entrega 1 
+ 
+## 1. Identificación del equipo 
 
-  Organización de grupo y tareas. 
-  Preselección de requisitos a expensas de revisión.
-  Asignación de roles del Grupo.
-  Obvia creación del github.
-  Selección IMPORTANTE del nombre HippoGang.
+| Mario López Cano | Scrum Master | 
+| Emilio Calvo Fernández | Miembro |
+| Benjamín Lavinge Arbarello | Miembro | 
+| Ricardo Iribarnegaray Barrenechea | Miembro | 
+| Juan Pérez Rodriíguez | Miembro | 
+ 
+## 2. Organización del trabajo 
 
-Reunión 07/10/26
 
-  Inicio de UML por dos trabajadores.
-  Esbozo inicial del mismo.
 
-  Revision de la ampliacion de los requisitos de la aplicacion. 
-  Edicion del informe de los requisitos a .md
-  Añadir al informe de requisitos varios añadidos con el nuevo template
-
-Reunión 14/10/26
-
-  Sprint Backlog:
-    - Se creó un primer esbozo del diagrama de casos de uso.
-    - Se añadieron más requisitos faltantes.
-  Reunión Scrum:
-    - Repartición de tareas para este sprint: 
-      Benjamín, Miguel y Mario se reparten las partes restantes del pdf de la ampliación de requisitos para sacar la información restante.
-      Emilio se encarga de rellenar el resto de la plantilla de Requisitos.md.
-      Juan y Ricardo comenzarán a idear y organizar todos los diagramas de casos de uso.
-  La idea es tener estas cosas listas para que la siguiente reunión todos los miembros puedan revisar el trabajo de los compañeros y redistribuirse las tareas
-  para terminar las versiones definitivas de las partes que no estén completas.
+## 3. Sprints realizados 
+ 
+### Sprint 1 
+ 
+- Fecha de inicio: 30/09/26
+- Fecha de finalización: 23/10/26
+- Objetivo del Sprint: Completar la primera entrega.
+- Tareas planificadas: 
+    Creación del trabajo Git.
+    Redactar los requisitos.
+    Redactar los casos de usos.
+    Hacer los diagramas de casos de usos.
+- Reuniones realizadas: 
+    Reunión 30/09/26
+    
+      Organización de grupo y tareas. 
+      Preselección de requisitos a expensas de revisión.
+      Asignación de roles del Grupo.
+      Obvia creación del github.
+      Selección IMPORTANTE del nombre HippoGang.
+    
+    Reunión 07/10/26
+    
+      Inicio de UML por dos trabajadores.
+      Esbozo inicial del mismo.
+    
+      Revision de la ampliacion de los requisitos de la aplicacion. 
+      Edicion del informe de los requisitos a .md
+      Añadir al informe de requisitos varios añadidos con el nuevo template
+    
+    Reunión 14/10/26
+    
+      Sprint Backlog:
+        - Se creó un primer esbozo del diagrama de casos de uso.
+        - Se añadieron más requisitos faltantes.
+      Reunión Scrum:
+        - Repartición de tareas para este sprint: 
+          Benjamín, Miguel y Mario se reparten las partes restantes del pdf de la ampliación de requisitos para sacar la información restante.
+          Emilio se encarga de rellenar el resto de la plantilla de Requisitos.md.
+          Juan y Ricardo comenzarán a idear y organizar todos los diagramas de casos de uso.
+      La idea es tener estas cosas listas para que la siguiente reunión todos los miembros puedan revisar el trabajo de los compañeros y redistribuirse las tareas
+      para terminar las versiones definitivas de las partes que no estén completas.
+ 
+## 4. Problemas y riesgos 
+ 
+Descripción de los problemas y riesgos encontrados durante la entrega. 
+ 
+## 5. Valoración final 
+ 
+Reflexión sobre el trabajo realizado y propuestas de mejora.
     
 
