@@ -53,7 +53,10 @@ adecuados a partir de la información del caso.
 
 | Actor / stakeholder | Descripción | Intereses principales |
 |---|---|---|
-| ... | ... | ... |
+| Usuario/Empleado | Empleado que utiliza la aplicación para gestionar los clientes y sus facturas, según sus permisos | Consultar y gestionar facturas, datos de clientes e incidencias de forma eficiente |
+| Administrador | Empleado con permisos para administrar clientes, accesos y determinadas configuraciones | Gestionar empresas clientes, asignar permisos y supervisar la facturación |
+| Superadministrador | Usuario con los permisos más elevados de la aplicación | Supervisar procesos, gestionar configuraciones sensibles y consultar historiales y copias de seguridad |
+| Sistema de pagos | Sistema externo simulado que proporciona información sobre el estado de los pagos | Intercambiar información de pagos con la aplicación para mantener actualizados los estados de las facturas |
 
 
 ## 2. Requisitos de negocio
