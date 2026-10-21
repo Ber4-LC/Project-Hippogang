@@ -202,6 +202,8 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-50 | El sistema deberá mostrar cada factura en la moneda de emisión y permitir la conversión de importes a otras monedas para la elaboración de informes, diferenciando los importes originales de los convertidos. | ... |
 | FR-51 | El sistema permite realizar comentarios por parte de los usuarios y los administradores, diferenciando los comentarios de los usuarios como comentarios normales y los comentarios de los administradores como notas restringidas administrativas. | ... |
 | FR-XX | ... | ... |
+| FR-XX | Se deben anonimizar los datos de los usuarios siempre y cuando los datos no invaliden facturas historicas| ... |
+| FR-XX | ... | ... |
 
 
 
