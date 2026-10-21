@@ -1,9 +1,9 @@
 @startuml
 left to right direction
 
-:Empleado: as Emp
 
-:Empleado (lector): as EmpL
+
+:Responsable: as Emp
 :Administrador: as ADM
 :SuperAdministrador: AS SADM
 
@@ -18,7 +18,7 @@ rectangle "Sistema Turbine" as SistemaTurbine {
 
 note bottom of UC1 : El usuario debe tener una cuenta\n dada de alta en el sistema\n con un correo corporativo. 
 Emp-->UC1
-EmpL-->UC1
+
 ADM-->UC1
 SADM-->UC1
 @enduml
