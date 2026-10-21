@@ -161,6 +161,14 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-26 | El usuario debe poder dar descuentos o pruebas gratuitas a empresas. | 5 |
 | FR-27 | El rol admin debe poder filtrar los informes por periodo, cliente, responsable interno, país, sector, estado de factura y tipo (recurrente/adicional) | 16 |
 | FR-XX | Los usuarios pueden establecer la plantilla de los emails de factura a sus clientes, y debe quedar registrado la plantilla usada. | ... |
+| FR-XX | El sistema debe generar copias de seguridad con una política que se pueda definir y que se pueda restaurar. | ... |
+| FR-XX | El usuario debe poder realizar acciones a varios clientes a la vez pero debe pedir confirmación y mostrar a cuántos elementos está afectando y cómo. | ... |
+| FR-XX | El usuario debe poder abrir incidencias hacia un cliente, especificando un responsable, estado, prioridad y comentarios. | ... |
+| FR-XX | El usuario debe poder dejar comentarios asociados a elementos, mencionar a otro usuario le envía una notificación | ... |
+| FR-XX | El usuario debe poder etiquetar clientes (partner, estratégico, beta, etc) | ... |
+| FR-XX | El usuario debe poder adjuntar archivos a las facturas. | ... |
+| FR-XX | El sistema debe tener una pantalla sencilla de la salud del sistema. | ... |
+| FR-XX | ... | ... |
 | FR-28 | El sistema debe mostrar con detalle los fallos que ocurran al administrador y mostrar al usuario solo un código de incidencia. | ... |
 | FR-29 | El sistema debe buscar posibles clientes duplicados antes de crearlos, permitiendo que los campos no necesarios para la emisión de facturas no tengan datos. | 11 |
 | FR-30 | El sistema debe registrar el historial de cada usuario y permitir al administrador acceder a ellos. | ... |
@@ -225,6 +233,14 @@ interpretación realizada.
 | NFR-XX | ... | El sistema debe disponer de un entorno de prueba para poder testear los cambios de configuración antes de aplicarlos. | ... |
 | NFR-XX | ... | El sistema interno puede estar en español, pero las comunicaciones al cliente deben poder elegir inglés. | ... |
 | NFR-XX | ... | Asegurar que no haya conflictos con las zonas horarias, las fechas de facturas deben usar la zona horaria del receptor. | ... |
+| NFR-XX | ... | Las tareas normales deben realizarse en menos de un minuto y de manera fluida. | ... |
+| NFR-XX | ... | Las operaciones largas o pesadas deben realizarse en segundo plano. | ... |
+| NFR-XX | ... | Debe haber buen UX (User experience) con autosugerencias y no hacer repetir formularios si falla un campo. | ... |
+| NFR-XX | ... | Al adjuntar un archivo a una factura debe haber limites de tamaño y no ejecutar archivos peligrosos. | ... |
+| NFR-XX | ... | El dashboard con los resúmenes de las finanzas debe poder explicar de dónde sale cada cifra. | ... |
+| NFR-XX | ... | La API externa debe someterse a las mismas reglas de acceso que la interfaz. | ... |
+| NFR-XX | ... | Las integraciones de servicios externos deben estar encapsuladas y deben poder cambiarse por otro servicio fácilmente. | ... |
+| NFR-XX | ... | Los errores deben estar bien distinguidos para que cuando algo no funciona el usuario sepa qué parte del sistema está fallando. | ... |
 | NFR-12 | Seguridad | El sistema debe cerrar la sesión activa del usuario tras un tiempo de inactividad para evitar el riesgo de acceso no autorizado. | ... |
 | NFR-13 | Seguridad | El sistema debe tener una medida de protección ante varios intentos fallidos de inicio de sesión. | ... |
 | NFR-14 | Mantenibilidad | El sistema debe disponer de pruebas automatizadas para verificar el funcionamiento de las reglas económicas importantes. | ... |
@@ -237,7 +253,6 @@ interpretación realizada.
 | NFR-21 | Fiabilidad | Se debe utilizar precisión decimal. | ... |
 | NFR-22 | Fiabilidad | El sistema debe ser tolerante con tareas en segundo plano. | ... |
 | NFR-XX | ... | ... | ... |
-
 
 ## 5. Reglas de negocio
 
@@ -269,7 +284,7 @@ ambiguos, incompletos, contradictorios o que requieran aclaración.
 
 | ID | Cuestión | Origen | Impacto | Estado / resolución |
 |---|---|---|---|---|
-| Q-01 | ... | Entrevista | ... | Pendiente |
+| Q-01 | El usuario debe poder enviar presupuestos al clientes y en caso de ser aceptado, debe generar una factura. Esto se propone como una idea interesante pero rompe la idea de que la apliación es interna. Se podría enviar un correo pero ¿Cómo procesar automáticamente la respuesta del cliente desde fuera del sistema? | Entrevista | Requisito funcional pendiente | Pendiente |
 | Q-02 | ... | ... | ... | Resuelta: ... |
 
 
