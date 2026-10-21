@@ -126,7 +126,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Actor o actores participantes:  
                     1. Responsable.  
 • Precondiciones:  
-                    1. El Empleado responsable ha iniciado sesión en el sistema y tiene permisos para editar la ficha de la empresa cliente.  
+                    1. El Responsable responsable ha iniciado sesión en el sistema y tiene permisos para editar la ficha de la empresa cliente.  
 • Flujo principal:  
                     1. El Responsable accede a la ficha del cliente.   
                     2. El Responsable añade un nuevo contacto, modifica los datos existentes o elimina un contacto.
@@ -167,12 +167,12 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Identificador: CU-08.  
 • Objetivo: Asignar un descuento promocional o un periodo de prueba gratuita a la suscripción de una empresa cliente.    
 • Actor o actores participantes:  
-                    1. Administrador.  
+                    1. Responsable.  
 • Precondiciones:  
-                    1. El Administrador ha iniciado sesión en el sistema y la empresa cliente está registrada.  
+                    1. El Responsable ha iniciado sesión en el sistema y la empresa cliente está registrada.  
 • Flujo principal:  
-                    1. El administrador selecciona la opción de añadir una promoción sobre la empresa cliente.   
-                    2. El administrador introduce el porcentaje de descuento y su fecha de caducidad.  
+                    1. El Responsable selecciona la opción de añadir una promoción sobre la empresa cliente.   
+                    2. El Responsable introduce el porcentaje de descuento y su fecha de caducidad.  
                     3. El sistema aplica los nuevos parámetros y registra las modificaciones.    
 • Flujos alternativos (No existen en este caso).      
 • Flujos de excepción, cuando corresponda:
@@ -218,7 +218,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
                     2. El sistema manda una advertencia.  
                     3. El Administrador confirma y elimina finalmente la empresa.
                     4. El sistema borra los datos aunque mantiene las facturas en la base de datos y registra las modificaciones.      
-• Flujos alternativos (No existen en este caso).
+• Flujos alternativos:
                     2. El sistema impide la eliminación por impagos pendientes.
                     3. El Administrador decide no realizar la modificación.    
 • Flujos de excepción, cuando corresponda: (ninguno en este caso)       
@@ -226,6 +226,26 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
                     1. El cliente deja de estar activo para nuevas facturaciones automáticas, aunque sus datos de facturas siguen almacenados en la base de datos.    
 ```
 
+### CU-XX: Gestión de empresas clientes.  
+```
+• Nombre del caso de uso: Gestión de clientes y usuarios.   
+• Identificador: CU-XX.  
+• Objetivo: Gestionar las empresas clientes.    
+• Actor o actores participantes:  
+                    1. Responsable.  
+• Precondiciones:  
+                    1. El Responsable ha iniciado sesión y tiene acceso a la empresa cliente.  
+• Flujo principal:  
+                    1. El responsable accede al menú de la empresa cliente.   
+                    2. El sistema muestra los datos.  
+                    3. El responsable activa la edición y cambia datos como los datos fiscales.
+                    4. El sistema actualiza los datos de la empresa cliente.      
+• Flujos alternativos (No existen en este caso).    
+• Flujos de excepción, cuando corresponda:
+                    4. El sistema rechaza los datos por invalidez de los mismos o error de formato.
+• Postcondiciones:  
+                    1. Los datos del cliente cambian y se modifica la base de datos.    
+```
 
 ## Especificación del diagrama 3 (Gestión de facturas e impagos):
 
