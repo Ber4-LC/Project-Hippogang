@@ -7,7 +7,7 @@ left to right direction
 :Administrador: as ADM
 :SuperAdministrador: AS SADM
 
-rectangle "Sistema Turbine" as SistemaTurbine {
+rectangle "Sistema Turbineh" as SistemaTurbineh {
   usecase (Iniciar Sesion) as UC1
  UC1 ..>(Acceso a vistas y \nprivilegios dependiendo de su rol) : Include
  UC1 ..>(Validar Credenciales) :  Include
