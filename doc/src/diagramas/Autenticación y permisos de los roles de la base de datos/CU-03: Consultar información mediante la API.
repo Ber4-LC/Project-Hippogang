@@ -5,7 +5,7 @@ left to right direction
 
 :Responsable: as Emp
 
-rectangle "Sistema Turbine" as SistemaTurbine {
+rectangle "Sistema Turbineh" as SistemaTurbineh {
  (Consultar Informcion a\n traves de la API) as UC3
  UC3 ..>(Registrar consulta) :Include
  UC3 ..>(Enviar datos\nde la petición): Include
