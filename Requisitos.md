@@ -201,6 +201,12 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-49 | El sistema debe trasladar las alertas programadas para los findes de semana o festivos al próximo día laborable y debe ser configurable por el administrador. | ... |
 | FR-50 | El sistema deberá mostrar cada factura en la moneda de emisión y permitir la conversión de importes a otras monedas para la elaboración de informes, diferenciando los importes originales de los convertidos. | ... |
 | FR-51 | El sistema permite realizar comentarios por parte de los usuarios y los administradores, diferenciando los comentarios de los usuarios como comentarios normales y los comentarios de los administradores como notas restringidas administrativas. | ... |
+| FR-XX | Se deben anonimizar los datos de los usuarios siempre y cuando los datos no invaliden facturas historicas| ... |
+| FR-XX | El sistema debe guardar métricas del tiempo empleado para realizar operaciones y clics necesarios| ... |
+| FR-XX | El sistema debe hacer guardado de borradores en caso de cierre accidental | ... |
+| FR-XX | El sistema debe permitir revertir acciones siempre y cuando sea legal revertirlas o esté permitido  | ... |
+| FR-XX | En caso de implementarse funciones inteligentes deben seguir las normas y no saltarse nada además de pedir validación humana ates de completar | ... |
+| FR-XX | ... | ... |
 | FR-XX | ... | ... |
 
 
@@ -219,6 +225,7 @@ EJEMPLO:
 | NFR-01 | Usabilidad | Las operaciones administrativas habituales deberán poder realizarse de forma rápida y sencilla | Una operación habitual como generar o consultar una factura debería poder completarse aproximadamente en menos de un minuto |
 | NFR-02 | Portabilidad / Usabilidad | La aplicación deberá poder utilizarse desde distintos tipos de dispositivo | Las principales funcionalidades deberán ser utilizables desde ordenador, tableta y teléfono móvil |
 | NFR-03 | Escalabilidad | El sistema deberá poder gestionar un crecimiento significativo del número de clientes | El diseño no deberá asumir un número pequeño o fijo de clientes y deberá permitir gestionar potencialmente miles de ellos |
+
 
 Evita expresiones difíciles de comprobar como:
 "La aplicación deberá ser moderna", "muy rápida" o "fácil de usar".
@@ -260,7 +267,11 @@ interpretación realizada.
 | NFR-20 | Mantenibilidad | Se debe evitar duplicar los datos del usuario en el código. | ... |
 | NFR-21 | Fiabilidad | Se debe utilizar precisión decimal. | ... |
 | NFR-22 | Fiabilidad | El sistema debe ser tolerante con tareas en segundo plano. | ... |
-| NFR-XX | ... | ... | ... |
+| NFR-23 | QoL | Se debe poder completar cualquier operación con pocos clics | Los clics no deben sentirse innecesarios |
+| NFR-24 | QoL | Interfaz intuitiva para nuevos usuarios y menús con poca profundidad | Deben meterse opciones claras y genéricas para hacer menús con poca profundidad|
+| NFR-25 | Usabilidad| Consistencia en la distribución de los menús y opciones| Boton de guardar siempre en la misma esquina, carga, descarga , edicion, cada cosa no debe cambiar segun el lugar o plataforma en la que estè 
+| NFR-XX | Escalabilidad | El sistema debe poder continuarse por otro equipo para ello mantener la legibilidad , escalabilidad y uso de convenciones |
+| NFR-XX | Escalabilidad | El sistema no debe impedir estructuralmente el desarrollo de otras opciones a futuro |
 
 ## 5. Reglas de negocio
 
