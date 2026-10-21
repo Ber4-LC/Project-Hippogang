@@ -40,12 +40,12 @@ rectangle "Sistema Turbine" as SistemaTurbine {
 
 }
 
-RESP -- UC11
-RESP -- UC12
-RESP -- UC13
-RESP -- UC14
-SADM -- UC15
-RESP -- UC16
+RESP --> UC11
+RESP --> UC12
+RESP --> UC13
+RESP --> UC14
+SADM --> UC15
+RESP --> UC16
 
 note left of UC11 : Precondicion El usuario ha iniciado sesión y tiene \nacceso asignado al menos a un cliente.
 note left of UC12 : Precondicion el usuario ha iniciado sesión y tiene \nacceso asignado al menos a un cliente.
