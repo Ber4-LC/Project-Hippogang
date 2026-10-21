@@ -241,36 +241,36 @@ interpretación realizada.
 | NFR-03 | ... | Cuando un cliente sea eliminado por un admin, sus datos deben permanecer en la base de datos tanto tiempo como la ley permita. | ... |
 | NFR-04 | ... | Las facturas deben ser estándar y válidas fiscalmente. | ... |
 | NFR-05 | ... | Los datos de las facturas están bien cifrados para no tener problemas legales. Datos fiscales no deben estar en URLs públicas y las comunicaciones deben estar cifrados.| ... |
-| NFR-XX | ... | No debe haber conflictos si varias personas editan una factura a la vez. | ... |
-| NFR-XX | Escalabilidad | El sistema debe poder soportar centenas de usuarios internos. | ... |
-| NFR-XX | Disponibilidad | Puede haber caídas breves del sistema, pero no deben causar la pérdida ni duplicación de ninguna factura. | ... |
-| NFR-XX | ... | El sistema debe disponer de un entorno de prueba para poder testear los cambios de configuración antes de aplicarlos. | ... |
-| NFR-XX | ... | El sistema interno puede estar en español, pero las comunicaciones al cliente deben poder elegir inglés. | ... |
-| NFR-XX | ... | Asegurar que no haya conflictos con las zonas horarias, las fechas de facturas deben usar la zona horaria del receptor. | ... |
-| NFR-XX | ... | Las tareas normales deben realizarse en menos de un minuto y de manera fluida. | ... |
-| NFR-XX | ... | Las operaciones largas o pesadas deben realizarse en segundo plano. | ... |
-| NFR-XX | ... | Debe haber buen UX (User experience) con autosugerencias y no hacer repetir formularios si falla un campo. | ... |
-| NFR-XX | ... | Al adjuntar un archivo a una factura debe haber limites de tamaño y no ejecutar archivos peligrosos. | ... |
-| NFR-XX | ... | El dashboard con los resúmenes de las finanzas debe poder explicar de dónde sale cada cifra. | ... |
-| NFR-XX | ... | La API externa debe someterse a las mismas reglas de acceso que la interfaz. | ... |
-| NFR-XX | ... | Las integraciones de servicios externos deben estar encapsuladas y deben poder cambiarse por otro servicio fácilmente. | ... |
-| NFR-XX | ... | Los errores deben estar bien distinguidos para que cuando algo no funciona el usuario sepa qué parte del sistema está fallando. | ... |
-| NFR-12 | Seguridad | El sistema debe cerrar la sesión activa del usuario tras un tiempo de inactividad para evitar el riesgo de acceso no autorizado. | ... |
-| NFR-13 | Seguridad | El sistema debe tener una medida de protección ante varios intentos fallidos de inicio de sesión. | ... |
-| NFR-14 | Mantenibilidad | El sistema debe disponer de pruebas automatizadas para verificar el funcionamiento de las reglas económicas importantes. | ... |
-| NFR-15 | Verificabilidad | El sistema debe tener escenarios de aceptación claros para los administradores | ... |
-| NFR-16 | Mantenibilidad | Debe haber una documentación de usuario corta y útil, instrucciones de despliegue y mantenimiento, modelo de datos y API, decisiones importantes y explicación de reglas de negocio. | ... |
-| NFR-17 | Compatibilidad | Se debe usar software libre o accesibles para una aplicación web responsive que sea compatible para cualquier navegador y dispositivo. | ... |
-| NFR-18 | Mantenibilidad | Debe tener un entorno de desarrollo y pruebas. | ... |
-| NFR-19 | Seguridad | Se debe separar la configuración y secretos del código. | ... |
-| NFR-20 | Mantenibilidad | Se debe evitar duplicar los datos del usuario en el código. | ... |
-| NFR-21 | Fiabilidad | Se debe utilizar precisión decimal. | ... |
-| NFR-22 | Fiabilidad | El sistema debe ser tolerante con tareas en segundo plano. | ... |
-| NFR-23 | QoL | Se debe poder completar cualquier operación con pocos clics | Los clics no deben sentirse innecesarios |
-| NFR-24 | QoL | Interfaz intuitiva para nuevos usuarios y menús con poca profundidad | Deben meterse opciones claras y genéricas para hacer menús con poca profundidad|
-| NFR-25 | Usabilidad| Consistencia en la distribución de los menús y opciones| Boton de guardar siempre en la misma esquina, carga, descarga , edicion, cada cosa no debe cambiar segun el lugar o plataforma en la que estè 
-| NFR-XX | Escalabilidad | El sistema debe poder continuarse por otro equipo para ello mantener la legibilidad , escalabilidad y uso de convenciones |
-| NFR-XX | Escalabilidad | El sistema no debe impedir estructuralmente el desarrollo de otras opciones a futuro |
+| NFR-06 | ... | No debe haber conflictos si varias personas editan una factura a la vez. | ... |
+| NFR-07 | Escalabilidad | El sistema debe poder soportar centenas de usuarios internos. | ... |
+| NFR-08 | Disponibilidad | Puede haber caídas breves del sistema, pero no deben causar la pérdida ni duplicación de ninguna factura. | ... |
+| NFR-09 | ... | El sistema debe disponer de un entorno de prueba para poder testear los cambios de configuración antes de aplicarlos. | ... |
+| NFR-10 | ... | El sistema interno puede estar en español, pero las comunicaciones al cliente deben poder elegir inglés. | ... |
+| NFR-11 | ... | Asegurar que no haya conflictos con las zonas horarias, las fechas de facturas deben usar la zona horaria del receptor. | ... |
+| NFR-12 | ... | Las tareas normales deben realizarse en menos de un minuto y de manera fluida. | ... |
+| NFR-13 | ... | Las operaciones largas o pesadas deben realizarse en segundo plano. | ... |
+| NFR-14 | ... | Debe haber buen UX (User experience) con autosugerencias y no hacer repetir formularios si falla un campo. | ... |
+| NFR-15 | ... | Al adjuntar un archivo a una factura debe haber limites de tamaño y no ejecutar archivos peligrosos. | ... |
+| NFR-16 | ... | El dashboard con los resúmenes de las finanzas debe poder explicar de dónde sale cada cifra. | ... |
+| NFR-17 | ... | La API externa debe someterse a las mismas reglas de acceso que la interfaz. | ... |
+| NFR-18 | ... | Las integraciones de servicios externos deben estar encapsuladas y deben poder cambiarse por otro servicio fácilmente. | ... |
+| NFR-19 | ... | Los errores deben estar bien distinguidos para que cuando algo no funciona el usuario sepa qué parte del sistema está fallando. | ... |
+| NFR-20 | Seguridad | El sistema debe cerrar la sesión activa del usuario tras un tiempo de inactividad para evitar el riesgo de acceso no autorizado. | ... |
+| NFR-21 | Seguridad | El sistema debe tener una medida de protección ante varios intentos fallidos de inicio de sesión. | ... |
+| NFR-22 | Mantenibilidad | El sistema debe disponer de pruebas automatizadas para verificar el funcionamiento de las reglas económicas importantes. | ... |
+| NFR-23 | Verificabilidad | El sistema debe tener escenarios de aceptación claros para los administradores | ... |
+| NFR-24 | Mantenibilidad | Debe haber una documentación de usuario corta y útil, instrucciones de despliegue y mantenimiento, modelo de datos y API, decisiones importantes y explicación de reglas de negocio. | ... |
+| NFR-25 | Compatibilidad | Se debe usar software libre o accesibles para una aplicación web responsive que sea compatible para cualquier navegador y dispositivo. | ... |
+| NFR-26 | Mantenibilidad | Debe tener un entorno de desarrollo y pruebas. | ... |
+| NFR-27 | Seguridad | Se debe separar la configuración y secretos del código. | ... |
+| NFR-28 | Mantenibilidad | Se debe evitar duplicar los datos del usuario en el código. | ... |
+| NFR-29 | Fiabilidad | Se debe utilizar precisión decimal. | ... |
+| NFR-30 | Fiabilidad | El sistema debe ser tolerante con tareas en segundo plano. | ... |
+| NFR-31 | QoL | Se debe poder completar cualquier operación con pocos clics | Los clics no deben sentirse innecesarios |
+| NFR-32 | QoL | Interfaz intuitiva para nuevos usuarios y menús con poca profundidad | Deben meterse opciones claras y genéricas para hacer menús con poca profundidad|
+| NFR-33 | Usabilidad| Consistencia en la distribución de los menús y opciones| Boton de guardar siempre en la misma esquina, carga, descarga , edicion, cada cosa no debe cambiar segun el lugar o plataforma en la que estè 
+| NFR-34 | Escalabilidad | El sistema debe poder continuarse por otro equipo para ello mantener la legibilidad , escalabilidad y uso de convenciones |
+| NFR-35 | Escalabilidad | El sistema no debe impedir estructuralmente el desarrollo de otras opciones a futuro |
 
 ## 5. Reglas de negocio
 
