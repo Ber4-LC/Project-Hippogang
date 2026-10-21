@@ -145,7 +145,6 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-03 | El rol superadmin debe poder cancelar una deuda, cambiando una factura de "impagada" a "pagada". | ... |
 | FR-04 | El rol superadmin debe poder editar la tabla con los rangos para los precios recurrentes. | ... |
 | FR-05 | El rol superadmin debe poder editar la configuración interna de la aplicación | ... |
-
 | FR-06 | El rol admin debe poder registrar nuevas empresas clientes con sus respectivas personas de contacto, nombre comercial, razón social, NIF o identificador fiscal, domicilio fiscal, país y moneda de trabajo.  | ... |
 | FR-07 | El rol admin debe poder añadir y editar a qué clientes tiene acceso un empleado. | ... |
 | FR-08 | El rol admin debe poder eliminar un cliente. | ... |
@@ -153,7 +152,6 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-10 | El rol admin debe poder importar datos de clientes nuevos mediante CSV, lo cual debe mostrar una vista previa en la cual el admin pueda decidir que datos mantener en caso de haber datos corruptos u otros errores de formato. | ... |
 | FR-11 | El rol admin debe poder filtrar los informes por periodo, cliente, responsable interno, país, sector, estado de factura y tipo (recurrente/adicional) | 16 |
 | FR-12 | El rol admin debe poder ver el estado de los mensajes, mostrando si están en cola, enviados, entregados, fallidos o reintentados. | ... |
-
 | FR-13 | Los usuarios deben poder consultar las facturas de los clientes a los que esté asignado, así como descargarlas. | ... |
 | FR-14 | Los usuarios deben poder iniciar sesión con su email @turbineh.com y su contraseña, entrando con los privilegios correspondientes a su rol. | ... |
 | FR-15 | Los usuarios deben poder crear facturas adicionales a las mensuales. | ... |
@@ -168,7 +166,6 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-24 | Los usuarios deben poder dejar comentarios asociados a elementos, mencionar a otro usuario le envía una notificación | ... |
 | FR-25 | Los usuarios deben poder etiquetar clientes (partner, estratégico, beta, etc) | ... |
 | FR-26 | Los usuarios deben poder adjuntar archivos a las facturas. | ... |
-
 | FR-27 | El sistema debe poder aportar datos a traves de una API. | ... |
 | FR-28 | El sistema debe producir facturas mensuales a cada cliente el primer día del mes, así como las facturas adicionales. | ... |
 | FR-29 | EL sistema debe enviar un flujo automático de recordatorios de pago, en un principio 3 días y 5 días después de la factura, y luego cada 2 días. | ... |
