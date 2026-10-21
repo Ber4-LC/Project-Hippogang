@@ -1,0 +1,22 @@
+@startuml 
+title Importar empresa
+left to right direction
+:Administrador: as ADM
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+(Editar personas de contacto\nde cliente) as UC6
+ UC6 ..>(Añadir contacto):Include
+ UC6 ..>(Modificar contacto):Include
+ UC6 ..>(Eliminar contacto):Include
+ (Eliminar contacto)<..(Notificar error: empresa\nsin contactos) :Extend
+
+ 
+ 
+}
+note bottom of UC6 :El Administrador responsable ha iniciado sesión\n en el sistema
+
+ADM  --> UC6
+
+
+
+@enduml
