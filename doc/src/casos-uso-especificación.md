@@ -9,10 +9,9 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Identificador: CU-01.  
 • Objetivo: Autenticar a un empleado interno de Turbineh y habilitarle las funcionalidades correspondientes a su rol.  
 • Actor o actores participantes:  
-                    1. Empleado.  
-                    2. Empleado (lector).  
-                    3. Administrador.  
-                    4. Superadministrador.  
+                    1. Empleado/Resposable.   
+                    2. Administrador.  
+                    3. Superadministrador.  
 • Precondiciones:  
                     1. El usuario debe tener una cuenta dada de alta en el sistema con un correo corporativo.  
 • Flujo principal:  
@@ -86,7 +85,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Flujo principal:  
                     1. El Administrador selecciona la opción de registrar un nuevo cliente.  
                     2. El Administrador introduce sus datos (Nombre, Razón Social, id, domicilio fiscal, país, etc.).  
-                    3. El sistema valida que estén completos los campos obligatorios.
+                    3. El sistema valida que estén completos los campos obligatorios y los clientes no existen previamente.
                     4. El sistema almacena al nuevo cliente y registra la acción.    
 • Flujos alternativos:
                     3. El cliente existía anteriormente y fue eliminado pero como la base de datos conserva sus datos aún, se ofrece la posibilidad de reactivar su registro.  
@@ -124,16 +123,16 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Identificador: CU-06.  
 • Objetivo: Actualizar la información de los contactos y destinatarios de facturación asociados a una empresa cliente.    
 • Actor o actores participantes:  
-                    1. Usuario responsable.  
+                    1. Responsable.  
 • Precondiciones:  
-                    1. El Usuario responsable ha iniciado sesión en el sistema y tiene permisos para editar la ficha de la empresa cliente.  
+                    1. El Empleado responsable ha iniciado sesión en el sistema y tiene permisos para editar la ficha de la empresa cliente.  
 • Flujo principal:  
-                    1. El Usuario responsable accede a la ficha del cliente.   
-                    2. El Usuario responsable añade un nuevo contacto, modifica los datos existentes o elimina un contacto.
+                    1. El Responsable accede a la ficha del cliente.   
+                    2. El Responsable añade un nuevo contacto, modifica los datos existentes o elimina un contacto.
                     3. El sistema valida la operación y la registra.  
 • Flujos alternativos (No existen en este caso).      
 • Flujos de excepción, cuando corresponda:
-                    2. El Usuario responsable deja sin contacto a la empresa y salta un error.    
+                    2. El Responsable deja sin contacto a la empresa y salta un error.    
 • Postcondiciones:  
                     1. Los contactos de la empresa quedan actualizados.
 ```
@@ -234,19 +233,19 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Identificador: CU-11.  
 • Objetivo: Visualizar el listado de las facturas de los clientes asignados y poder descargarlas.  
 • Actor o actores participantes:  
-                    1. Usuario responsable.  
+                    1. Responsable.  
 • Precondiciones:  
-                    1. El usuario ha iniciado sesión y tiene acceso asignado al menos a un cliente.
+                    1. El Responsable ha iniciado sesión y tiene acceso asignado al menos a un cliente.
 • Flujo principal:  
-                    1. El usuario accede a la sección de facturación.  
-                    2. El sistema muestra las facturas correspondientes a los clientes a los que el usuario tiene acceso.  
-                    3. El usuario selecciona una factura para ver su detalle y pulsa la opción de descarga.
+                    1. El Responsable accede a la sección de facturación.  
+                    2. El sistema muestra las facturas correspondientes a los clientes a los que el responsable tiene acceso.  
+                    3. El Responsable selecciona una factura para ver su detalle y pulsa la opción de descarga.
                     4. El sistema genera y descarga el documento de la factura y notifica a la base de datos.  
 • Flujos alternativos. (No existen en este caso)  
 • Flujos de excepción:    
                     4. Error al generar el archivo de descarga. 
 • Postcondiciones:  
-                      1. El usuario visualiza y descarga el archivo.  
+                      1. El Responsable visualiza y descarga el archivo.  
 ```
 
 
@@ -256,11 +255,11 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Identificador: CU-12.  
 • Objetivo: Acotar el listado de facturas según su estado de cobro o rango de fechas.  
 • Actor o actores participantes:  
-                    1. Usuario responsable.  
+                    1. Responsable responsable.  
 • Precondiciones:  
-                    1. El usuario ha iniciado sesión y tiene acceso asignado al menos a un cliente
+                    1. El Responsable ha iniciado sesión y tiene acceso asignado al menos a un cliente
 • Flujo principal:  
-                    1. El usuario selecciona uno o más criterios de filtrado.  
+                    1. El Responsable selecciona uno o más criterios de filtrado.  
                     2. El sistema muestra las facturas correspondientes a los criterios seleccionados.  
 • Flujos alternativos.   
                     2. No existen facturas para los criterios seleccionados.
@@ -276,12 +275,12 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Identificador: CU-13.  
 • Objetivo: Emitir una factura puntual para un cliente al margen de su facturación mensual recurrente.  
 • Actor o actores participantes:  
-                    1. Usuario responsable.  
+                    1. Responsable responsable.  
 • Precondiciones:  
-                    1. El usuario ha iniciado sesión y tiene acceso asignado al menos a un cliente activo.  
+                    1. El Responsable ha iniciado sesión y tiene acceso asignado al menos a un cliente activo.  
 • Flujo principal:  
-                    1. El usuario selecciona un cliente y crea una factura adicional.  
-                    2. El usuario introduce los conceptos e importes adicionales.  
+                    1. El Responsable selecciona un cliente y crea una factura adicional.  
+                    2. El Responsable introduce los conceptos e importes adicionales.  
                     3. El sistema verifica que la factura adicional no tiene errores.  
                     4. El sistema genera y envía la factura al cliente y la añade a la base de datos como pendiente de pago.  
 • Flujos alternativos.:
@@ -298,15 +297,15 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Identificador: CU-14.  
 • Objetivo: Detener temporalmente el envío de correos automáticos de reclamación de pago para una factura pendiente.  
 • Actor o actores participantes:  
-                    1. Usuario responsable.  
+                    1. Responsable responsable.  
 • Precondiciones:  
-                    1. El usuario ha iniciado sesión existe una factura sin pagar.
+                    1. El Responsable ha iniciado sesión existe una factura sin pagar.
 • Flujo principal:  
-                    1. El usuario selecciona una factura sin pagar y la pone en estado de "pausa".  
+                    1. El Responsable selecciona una factura sin pagar y la pone en estado de "pausa".  
                     2. El sistema cambia el estado a "pausa".    
                     3. El sistema deja de enviar recordatorios de impago.    
 • Flujos alternativos.:
-                    1. El usuario selecciona una factura en "pausa" y la reanuda. 
+                    1. El Responsable selecciona una factura en "pausa" y la reanuda. 
 • Flujos de excepción (no hay).  
 • Postcondiciones:  
                       1. La factura para a estar marcada como "en pausa".
@@ -341,12 +340,12 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Identificador: CU-16.  
 • Objetivo: Definir y personalizar la plantilla de correo electrónico (incluyendo idioma español o inglés) que se utilizará al enviar facturas a los clientes.  
 • Actor o actores participantes:  
-                    1. Usuario responsable.  
+                    1. Responsable responsable.  
 • Precondiciones:  
-                    1. El Usuario responsable ha iniciado sesión y tiene permisos sobre el cliente.
+                    1. El Responsable responsable ha iniciado sesión y tiene permisos sobre el cliente.
 • Flujo principal:  
-                    1. El usuario accede a la configuración de comunicaciones del cliente.  
-                    2. El usuario selecciona o edita la plantilla de correo de facturación y define el idioma (español o inglés).    
+                    1. El Responsable accede a la configuración de comunicaciones del cliente.  
+                    2. El Responsable selecciona o edita la plantilla de correo de facturación y define el idioma (español o inglés).    
                     3. El sistema actualiza la base de datos cambiando la configuración del cliente.
 • Flujos alternativos (no hay).
 • Flujos de excepción (no hay).  
@@ -363,18 +362,18 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Identificador: CU-17.  
 • Objetivo: Mostrar en un panel las incidencias pendientes de atender.  
 • Actor o actores participantes:  
-                    1. Usuario responsable.  
+                    1. Responsable responsable.  
 • Precondiciones:  
-                    1. El usuario ha iniciado sesión.  
+                    1. El Responsable ha iniciado sesión.  
 • Flujo principal:  
-                    1. El usuario accede al panel de seguimiento.  
+                    1. El Responsable accede al panel de seguimiento.  
                     2. El sistema muestra las incidencias pendientes de atender.  
-                    3. El usuario pulsa sobre cualquiera de las incidencias y se le muestra dicha incidencia para revisarla.    
+                    3. El Responsable pulsa sobre cualquiera de las incidencias y se le muestra dicha incidencia para revisarla.    
 • Flujos alternativos:
                     2. El sistema no tiene ninguna incidencia que mostrar.  
 • Flujos de excepción (no hay).  
 • Postcondiciones:  
-                      1. El usuario visualiza las incidencias.  
+                      1. El Responsable visualiza las incidencias.  
 ```
 
 
@@ -384,12 +383,12 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Identificador: CU-18.  
 • Objetivo: Consultar los avisos que puedan surgir y resolverlos.  
 • Actor o actores participantes:  
-                    1. Usuario responsable.  
+                    1. Responsable responsable.  
 • Precondiciones:  
-                    1. El usuario ha iniciado sesión y tiene notificaciones pendientes.  
+                    1. El Responsable ha iniciado sesión y tiene notificaciones pendientes.  
 • Flujo principal:  
-                    1. El usuario abre la bandeja de notificaciones y las revisa.  
-                    2. El usuario marca la notificación como resuelta.  
+                    1. El Responsable abre la bandeja de notificaciones y las revisa.  
+                    2. El Responsable marca la notificación como resuelta.  
                     3. El sistema actualiza el estado de la notificación y modifica la base de datos, eliminándola de la lista de pendientes.    
 • Flujos alternativos (no hay).  
 • Flujos de excepción (no hay).  
@@ -411,7 +410,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Flujo principal:  
                     1. El administrador accede a la pestaña de informes financieros.  
                     2. El sistema muestra los informes financieros mensuales, trimestrales y anuales.  
-                    3. El administrador filtra por cliente/periodo/usuario responsable/país/estado de factura (pagada o no)/tipo de factura (recurrente o adicional).
+                    3. El administrador filtra por cliente/periodo/responsable responsable/país/estado de factura (pagada o no)/tipo de factura (recurrente o adicional).
                     4. El sistema muestra los informes con los filtros aplicados.      
 • Flujos alternativos (no hay).  
 • Flujos de excepción (no hay).  
@@ -432,7 +431,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Flujo principal:  
                     1. El superadministrador accede a la pestaña de revisión y copias de seguridad. 
                     2. El superadministrador filtra la vista a revisar.  
-                    3. El sistema muestra los registros detallados con fecha y hora, usuario que lo modificó, destinatario y resultado de la operación.
+                    3. El sistema muestra los registros detallados con fecha y hora, responsable que lo modificó, destinatario y resultado de la operación.
                     4. El superadministrador puede generar una copia de seguridad o descargar los archivos.      
 • Flujos alternativos (no hay).  
 • Flujos de excepción:
@@ -545,7 +544,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Flujos alternativos:
                     1. La factura está en el estado "en pausa".
 • Flujos de excepción:
-                    3. El sistema no puede enviar el recordatorio por correo y notifica al usuario empleado encargado de la empresa.
+                    3. El sistema no puede enviar el recordatorio por correo y notifica al responsable encargado de la empresa.
 • Postcondiciones:  
                       1. Los clientes con facturas pendientes de pagar reciben el aviso de impago.
 ```
