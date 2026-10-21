@@ -4,7 +4,7 @@
 
 ### 1.1. Objetivo del sistema 
 
-Turbine es una empresa que ofrece servicios de su inteligencia artificial "Brain" mediante suscripciones. Esta se enfrenta a un problema relacionado con la gestión económica y el aumento del número de clientes. Este crecimiento dificulta la administración de facturas y cobros, puesto que, a medida que aumenta el número de clientes, también aumenta la cantidad de datos, movimientos, facturas y suscripciones que es necesario gestionar.
+TurbineH es una empresa que ofrece servicios de su inteligencia artificial "Brain" mediante suscripciones. Esta se enfrenta a un problema relacionado con la gestión económica y el aumento del número de clientes. Este crecimiento dificulta la administración de facturas y cobros, puesto que, a medida que aumenta el número de clientes, también aumenta la cantidad de datos, movimientos, facturas y suscripciones que es necesario gestionar.
 
 Por lo tanto, el objetivo del sistema, para solucionar el problema presentado, sería crear una aplicación que permita:
 
@@ -14,14 +14,22 @@ Por lo tanto, el objetivo del sistema, para solucionar el problema presentado, s
 
 - *Mejorar la gestión a mayor escala.* Poder tener una mayor cantidad de clientes registrados y gestionarlos de forma cómoda, sin que el aumento de su número dificulte la administración.
 
-- *Reducir el trabajo manual.* Poder automatizar procesos y mejorar la organización de los datos, facilitando así el trabajo a los empleados de Turbine.
+- *Reducir el trabajo manual.* Poder automatizar procesos y mejorar la organización de los datos, facilitando así el trabajo a los empleados de TurbineH.
 
-*Es importante considerar que esta es una aplicación diseñada únicamente para el uso interno de Turbine. La aplicación no se encarga de proporcionar los servicios ofrecidos por la empresa, sino de gestionar los aspectos administrativos y económicos relacionados con su facturación y cobro.*
+*Es importante considerar que esta es una aplicación diseñada únicamente para el uso interno de TurbineH. La aplicación no se encarga de proporcionar los servicios ofrecidos por la empresa, sino de gestionar los aspectos administrativos y económicos relacionados con su facturación y cobro.*
 
 ### 1.2. Alcance
 
-Descripción de qué responsabilidades corresponden al sistema y, cuando sea relevante,
-qué elementos quedan explícitamente fuera de su alcance.
+El alcance de nuestra aplicación aborda diversos frentes, aun así hay cosas fuera de dicho alcance. Dentro de lo que sí entra en el alcance, tenemos:
+
+- *Registrar y gestionar clientes.* No ofrecemos un portal de gestión a los clientes, únicamente a la empresa.
+- *Gestionar subscripciones y tarifas.* Los empleados pueden consultar y administrar la información de las subscripciones y sus condiciones.
+- *Generar y enviar facturas.* La aplicación permite generar facturas de forma automática y manual, así como enviarlas a los clientes correspondientes. 
+- *Consultar pagos pendientes.* La empresa tendrá a su disposición los pagos pendientes de sus clientes.
+- *Gestión de usuarios y permisos.* Permite administrar los usuarios de la aplicación y establecer diferentes permisos según las funciones que puedan realizar los empleados.
+- *Consulta de información de facturación.* Permite visualizar datos generales sobre facturas, cobros y deudas pendientes.
+
+Es importante anotar que nuestra aplicación no distribuye ni desarrolla la IA, sino que esta está destinada a facilitar la gestión administrativa de la empresa. De igual manera, la aplicación no se encarga de procesar pagos reales, únicamente de mantener registros de los cobros para que la empresa pueda tenerlas a su disposición.
 
 ### 1.3. Actores y partes interesadas
 
