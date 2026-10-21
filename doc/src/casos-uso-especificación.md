@@ -465,7 +465,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```  
 
 
-## Especificación del diagrama 6 (Facturación mensual y recordatorios):
+/*## Especificación del diagrama 6 (Facturación mensual y recordatorios):
 
 ### CU-22: Generar y enviar facturas automáticamente.
 ```
@@ -573,3 +573,4 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Postcondiciones:  
                       1. Los clientes reciben una notificación indicando si se les ha reajustado el precio o no.
 ```  
+*/
