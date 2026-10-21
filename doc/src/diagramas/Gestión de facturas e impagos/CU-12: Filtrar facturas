@@ -1,0 +1,16 @@
+@startuml
+left to right direction
+
+
+
+:Responsable: as Emp
+
+rectangle "Sistema Turbineh" as SistemaTurbineh {
+ (Filtrar facturas) as UC12
+ UC12 ..>(Seleccionar criterios\nde filtrado):Include
+ UC12 ..>(Mostrar facturas según\nlos criterios):Include
+}
+note bottom of UC12 : Precondicion el usuario ha iniciado sesión y tiene \nacceso asignado al menos a un cliente.
+Emp ..>UC12
+
+@enduml
