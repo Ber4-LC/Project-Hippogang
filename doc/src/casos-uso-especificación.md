@@ -397,8 +397,27 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Postcondiciones:  
                       1. El Responsable visualiza las incidencias.  
 ```
-
-
+  
+  
+### CU-XX: Gestionar incidencias y comentarios.
+```
+• Nombre del caso de uso: Crear las incidencias y comentarios.  
+• Identificador: CU-XX.  
+• Objetivo: Avisar de posibles errores o incidencias para su posterior resolución.  
+• Actor o actores participantes:  
+                    1. Responsable.  
+• Precondiciones:  
+                    1. El Responsable ha iniciado sesión y está en la ficha de una empresa cliente.  
+• Flujo principal:  
+                    1. El Responsable selecciona la opción de abrir una incidencia o comentario.  
+                    2. El sistema guarda la incidencia o el comentario y genera una notificación interna al empleado mencionado.  
+• Flujos alternativos (no hay).  
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. La incidencia o comentario queda registrado en el historial y el destinatario recibe la notificación.  
+```
+  
+  
 ### CU-18: Gestionar notificaciones internas.
 ```
 • Nombre del caso de uso: Gestionar notificaciones internas.  
@@ -417,6 +436,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Postcondiciones:  
                       1. El estado de la notificación pasa a leída o resuelta.  
 ```
+
   
 ## Especificación del diagrama 5 (Tareas del superadministrador):
 
