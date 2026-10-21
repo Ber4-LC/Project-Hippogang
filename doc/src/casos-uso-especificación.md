@@ -374,7 +374,26 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Postcondiciones:  
                       1. La nueva plantilla queda activa para los siguientes envíos.  
 ```
+    
   
+### CU-XX: Configurar objetivos de recaudación.
+```
+• Nombre del caso de uso: Configurar cobros y objetivos de recaudación.  
+• Identificador: CU-XX.  
+• Objetivo: Establecer metas de cobro y visualizar su progreso en el panel de control.  
+• Actor o actores participantes:  
+                    1. Administrador.  
+• Precondiciones:  
+                    1. El Administrador ha iniciado sesión en el sistema.  
+• Flujo principal:  
+                    1. El Administrador accede a la configuración de objetivos y establece uno nuevo.  
+                    2. El sistema guarda el objetivo actual.  
+                    3. El sistema actualiza el panel de control para mostrar el progreso del objetivo nuevo.    
+• Flujos alternativos (no hay).  
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. El nuevo objetivo queda configurado y su progreso es visible.  
+```
   
 ## Especificación del diagrama 4 (Sistema de comunicación interno):
 
@@ -503,8 +522,50 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Postcondiciones:  
                     1. La tabla de rangos de los precios queda actualizada y se envía una notificación a la empresas clientes.  
 ```  
+  
 
-
+### CU-XX: Consultar estado del sistema.
+```
+• Nombre del caso de uso: Consultar estado del sistema.  
+• Identificador: CU-XX.  
+• Objetivo: Visualizar el estado técnico del sistema y garantizar su estabilidad.  
+• Actor o actores participantes:  
+                    1. Superadministrador.  
+• Precondiciones:  
+                    1. El superadministrador ha iniciado sesión.  
+• Flujo principal:  
+                    1. El superadministrador accede a la pestaña de estabilidad del sistema. 
+                    2. El sistema recopila las métricas técnicas y el estado del servidor.  
+                    3. El sistema muestra la información al Superadministrador.
+                    4. El superadministrador confirma los cambios y el sistema actualiza la base de datos, cambiando la tabla de referencia.      
+• Flujos alternativos (no hay).  
+• Flujos de excepción (no hay).
+• Postcondiciones:  
+                    1. El Superadministrador visualiza el estado técnico de la plataforma.  
+```
+  
+  
+### CU-XX: Revertir acciones previas.
+```
+• Nombre del caso de uso: Revertir acciones previas.  
+• Identificador: CU-XX.
+• Objetivo: Deshacer una modificación o acción reciente en el sistema.  
+• Actor o actores participantes:  
+                    1. Superadministrador.  
+• Precondiciones:  
+                    1. El superadministrador ha iniciado sesión.  
+• Flujo principal:  
+                    1. El superadministrador accede al historial de cambios. 
+                    2. El superadministrador selecciona la opción de "Revertir".  
+                    3. El sistema valida que la acción es legalmente reversible.
+                    4. El sistema restaura el estado anterior de los datos y registra la revesión.  
+• Flujos alternativos (no hay).  
+• Flujos de excepción:
+                    3. La acción no se puede revertir por motivos legales.
+• Postcondiciones:  
+                    1. El Superadministrador revierte la acción y el sistema recupera su estado previo.  
+```
+    
 ### CU-24: Sincronizar estado de pagos con Stripe y confirmar cobro.
 ```
 • Nombre del caso de uso: Sincronizar estado de pagos con Stripe y confirmar cobro.  
