@@ -1,7 +1,7 @@
 @startuml 
 title Importar empresa
 left to right direction
-:Administrador: as ADM
+:Responsable: as RES
 
 rectangle "Sistema Turbine" as SistemaTurbine {
 (Editar personas de contacto\nde cliente) as UC6
@@ -15,7 +15,7 @@ rectangle "Sistema Turbine" as SistemaTurbine {
 }
 note bottom of UC6 :El Administrador responsable ha iniciado sesión\n en el sistema
 
-ADM  --> UC6
+RES  --> UC6
 
 
 
