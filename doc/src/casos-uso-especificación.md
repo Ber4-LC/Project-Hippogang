@@ -355,7 +355,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
   
   
-## Especificación del diagrama 4 (Panel de control, informes y alertas):
+## Especificación del diagrama 4 (Sistema de comunicación interno):
 
 ### CU-17: Consultar panel de control.
 ```
@@ -397,6 +397,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
                       1. El estado de la notificación pasa a leída o resuelta.  
 ```
   
+## Especificación del diagrama 5 (Tareas del superadministrador):
 
 ### CU-19: Consultar y filtrar informes financieros.
 ```
@@ -463,7 +464,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```  
 
 
-## Especificación del diagrama 5 (Facturación mensual y recordatorios):
+## Especificación del diagrama 6 (Facturación mensual y recordatorios):
 
 ### CU-22: Generar y enviar facturas automáticamente.
 ```
