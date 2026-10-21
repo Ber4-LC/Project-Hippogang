@@ -1,0 +1,61 @@
+@startuml 
+title Gestión de empresas cliente
+left to right direction
+:Usuario responsable: as RESP
+:Superadministrador: as SADM
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Consultar y descargar\nfacturas) as UC11
+ UC11 ..>(Mostrar facturas de los\nclientes con acceso):Include
+ UC11 ..>(Seleccionar factura y\nver su detalle): Include
+ UC11 ..>(Generar y descargar factura\ny notificar a la base de datos): Include
+ (Generar y descargar factura\ny notificar a la base de datos)<..(Notificar error al generar\nel archivo):Extent
+ 
+ (Filtrar facturas) as UC12
+ UC12 ..>(Seleccionar criterios\nde filtrado):Include
+ UC12 ..>(Mostrar facturas según\nlos criterios):Include
+ 
+ (Crear factura adicional) as UC13
+ UC13 ..>(Introducir conceptos e\nimportes adicionales) :Include
+ UC13 ..>(Verificar que la factura\nno tiene errores):Include
+ UC13 ..>(Generar y enviar factura y registrarla\ncomo pendiente de pago):Include
+ (Generar y enviar factura y registrarla\ncomo pendiente de pago)<..(Guardar factura para emitirla con la\ndel mes próximo):Extend
+
+ (Pausar recordatorios de\nfactura impagada) as UC14
+ UC14 ..>(Seleccionar factura impagada\ny ponerla en "pausa"):Include
+ UC14 ..>(Cambiar el estado a "pausa"):Include
+ UC14 ..>(Dejar de enviar recordatorios\nde impago):Include
+ (Seleccionar factura impagada\ny ponerla en "pausa")<..(Reanudar factura en "pausa")
+
+ (Cancelar deuda de\nfactura) as UC15
+ UC15 ..>(Seleccionar factura impagada\ny marcarla como "saldada"):Include
+ UC15 ..>(Solicitar confirmación de\nseguridad y justificación):Include
+ UC15 ..>(Confirmar la operación):Include
+ UC15 ..>(Actualizar a «pagada» y\ndetener recordatorios):Include
+
+ (Configurar plantilla de email\nde facturación) as UC16
+ UC16 ..>(Acceder a la configuración de\ncomunicaciones del cliente):Include
+ UC16 ..>(selecciona o edita la plantilla de correo de \nfacturación y define el idioma (español o inglés):Include
+ UC16 ..>(El Sistema actualiza la base de datos cambiando la configuración del cliente):Include
+
+}
+
+RESP -- UC11
+RESP -- UC12
+RESP -- UC13
+RESP -- UC14
+SADM -- UC15
+RESP -- UC16
+
+note left of UC11 : Precondicion El usuario ha iniciado sesión y tiene \nacceso asignado al menos a un cliente.
+note left of UC12 : Precondicion el usuario ha iniciado sesión y tiene \nacceso asignado al menos a un cliente.
+note left of UC13 : Precondicion el usuario ha iniciado sesión y tiene \nacceso asignado al menos a un cliente.
+note left of UC14 : Precondicion el usuario ha iniciado sesión y existe \nuna factura sin pagar.
+note left of UC15 : Precondicion el superadministrador ha iniciado sesión\ ny existe una factura sin pagar.
+note left of UC16 : Precondicion  el usuario responsable ha iniciado sesión \ny tiene permisos sobre el cliente.
+
+
+
+
+
+@enduml
