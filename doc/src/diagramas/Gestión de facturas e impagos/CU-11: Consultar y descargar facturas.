@@ -1,0 +1,19 @@
+@startuml
+left to right direction
+
+
+
+:Responsable: as Emp
+
+rectangle "Sistema Turbineh" as SistemaTurbineh {
+ (Consultar y descargar\nfacturas) as UC11
+ UC11 ..>(Mostrar facturas de los\nclientes con acceso):Include
+ UC11 ..>(Seleccionar factura y\nver su detalle): Include
+ UC11 ..>(Generar y descargar factura\ny notificar a la base de datos): Include
+ (Generar y descargar factura\ny notificar a la base de datos)<..(Notificar error al generar\nel archivo):Extent
+}
+note bottom of UC11 : Precondicion El usuario ha iniciado sesión y tiene \nacceso asignado al menos a un cliente.
+
+Emp --> UC11
+
+@enduml
