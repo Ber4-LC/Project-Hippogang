@@ -204,7 +204,9 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-XX | Se deben anonimizar los datos de los usuarios siempre y cuando los datos no invaliden facturas historicas| ... |
 | FR-XX | El sistema debe guardar métricas del tiempo empleado para realizar operaciones y clics necesarios| ... |
 | FR-XX | El sistema debe hacer guardado de borradores en caso de cierre accidental | ... |
-| FR-XX | El sistema debe permitir  | ... |
+| FR-XX | El sistema debe permitir revertir acciones siempre y cuando sea legal revertirlas o esté permitido  | ... |
+| FR-XX | En caso de implementarse funciones inteligentes deben seguir las normas y no saltarse nada además de pedir validación humana ates de completar | ... |
+| FR-XX | ... | ... |
 | FR-XX | ... | ... |
 
 
@@ -268,8 +270,8 @@ interpretación realizada.
 | NFR-23 | QoL | Se debe poder completar cualquier operación con pocos clics | Los clics no deben sentirse innecesarios |
 | NFR-24 | QoL | Interfaz intuitiva para nuevos usuarios y menús con poca profundidad | Deben meterse opciones claras y genéricas para hacer menús con poca profundidad|
 | NFR-25 | Usabilidad| Consistencia en la distribución de los menús y opciones| Boton de guardar siempre en la misma esquina, carga, descarga , edicion, cada cosa no debe cambiar segun el lugar o plataforma en la que estè 
-
-| NFR-XX | ... | ... | ... |
+| NFR-XX | Escalabilidad | El sistema debe poder continuarse por otro equipo para ello mantener la legibilidad , escalabilidad y uso de convenciones |
+| NFR-XX | Escalabilidad | El sistema no debe impedir estructuralmente el desarrollo de otras opciones a futuro |
 
 ## 5. Reglas de negocio
 
