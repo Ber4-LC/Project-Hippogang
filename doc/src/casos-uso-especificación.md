@@ -88,9 +88,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
                     3. El sistema valida que estén completos los campos obligatorios y los clientes no existen previamente.
                     4. El sistema almacena al nuevo cliente y registra la acción.    
 • Flujos alternativos:
-                    3. El cliente existía anteriormente y fue eliminado pero como la base de datos conserva sus datos aún, se ofrece la posibilidad de reactivar su registro.  
+                    3a. El cliente existía anteriormente y fue eliminado pero como la base de datos conserva sus datos aún, se ofrece la posibilidad de reactivar su registro.
 • Flujos de excepción, cuando corresponda:  
-                    3. Datos fiscales incompletos o inválidos.  
+                    3a. Datos fiscales incompletos o inválidos.
+                    3b. El cliente existe y está activo por lo que se registra un error.  
 • Postcondiciones:  
                     1. La empresa queda registrada y lista para asignarle suscripciones y facturas.
 ```
@@ -153,7 +154,8 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
                     3. El sistema aplica los nuevos parámetros, actualiza la suscripción y registra las modificaciones.    
 • Flujos alternativos (No existen en este caso).      
 • Flujos de excepción, cuando corresponda:
-                    2. El formato del importe o el mismo importe no son válidos.    
+                    2a. El formato del importe o el mismo importe no son válidos.
+                    2b. Los datos no son suficientes, el sistema bloquea la acción.    
 • Postcondiciones:  
                     1. Los parámetros de facturación de la empresa quedan actualizados.
 ```
@@ -279,7 +281,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Precondiciones:  
                     1. El Responsable ha iniciado sesión y tiene acceso asignado al menos a un cliente activo.  
 • Flujo principal:  
-                    1. El Responsable selecciona un cliente y crea una factura adicional.  
+                    1. El Responsable selecciona un cliente y crea una factura adicional. Adicionalmente, puede adjuntar archivos a la factura.   
                     2. El Responsable introduce los conceptos e importes adicionales.  
                     3. El sistema verifica que la factura adicional no tiene errores.  
                     4. El sistema genera y envía la factura al cliente y la añade a la base de datos como pendiente de pago.  
