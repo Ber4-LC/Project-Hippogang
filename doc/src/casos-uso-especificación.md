@@ -226,10 +226,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
                     1. El cliente deja de estar activo para nuevas facturaciones automáticas, aunque sus datos de facturas siguen almacenados en la base de datos.    
 ```
 
-### CU-XX: Gestión de empresas clientes.  
+### CU-11: Gestión de empresas clientes.  
 ```
 • Nombre del caso de uso: Gestión de clientes y usuarios.   
-• Identificador: CU-XX.  
+• Identificador: CU-11.  
 • Objetivo: Gestionar las empresas clientes.    
 • Actor o actores participantes:  
                     1. Responsable.  
@@ -249,10 +249,32 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 
 ## Especificación del diagrama 3 (Gestión de facturas e impagos):
 
-### CU-11: Consultar y descargar facturas.
+### CU-12: Crear factura adicional.
+```
+• Nombre del caso de uso: Crear factura adicional.  
+• Identificador: CU-12.  
+• Objetivo: Emitir una factura puntual para un cliente al margen de su facturación mensual recurrente.  
+• Actor o actores participantes:  
+                    1. Responsable responsable.  
+• Precondiciones:  
+                    1. El Responsable ha iniciado sesión y tiene acceso asignado al menos a un cliente activo.  
+• Flujo principal:  
+                    1. El Responsable selecciona un cliente y crea una factura adicional. Adicionalmente, puede adjuntar archivos a la factura.   
+                    2. El Responsable introduce los conceptos e importes adicionales.  
+                    3. El sistema verifica que la factura adicional no tiene errores.  
+                    4. El sistema genera y envía la factura al cliente y la añade a la base de datos como pendiente de pago.  
+• Flujos alternativos.:
+                    4. El sistema guarda la factura para que se emita junto a la del mes próximo.  
+• Flujos de excepción (no hay).  
+• Postcondiciones:  
+                      1. La nueva factura queda creada y almacenada.
+```
+
+  
+### CU-13: Consultar y descargar facturas.
 ```
 • Nombre del caso de uso: Consultar y descargar facturas.  
-• Identificador: CU-11.  
+• Identificador: CU-13.  
 • Objetivo: Visualizar el listado de las facturas de los clientes asignados y poder descargarlas.  
 • Actor o actores participantes:  
                     1. Responsable.  
@@ -271,10 +293,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
 
 
-### CU-12: Filtrar facturas.
+### CU-14: Filtrar facturas.
 ```
 • Nombre del caso de uso: Filtrar facturas.  
-• Identificador: CU-12.  
+• Identificador: CU-14.  
 • Objetivo: Acotar el listado de facturas según su estado de cobro o rango de fechas.  
 • Actor o actores participantes:  
                     1. Responsable responsable.  
@@ -291,32 +313,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```    
 
 
-### CU-13: Crear factura adicional.
-```
-• Nombre del caso de uso: Crear factura adicional.  
-• Identificador: CU-13.  
-• Objetivo: Emitir una factura puntual para un cliente al margen de su facturación mensual recurrente.  
-• Actor o actores participantes:  
-                    1. Responsable responsable.  
-• Precondiciones:  
-                    1. El Responsable ha iniciado sesión y tiene acceso asignado al menos a un cliente activo.  
-• Flujo principal:  
-                    1. El Responsable selecciona un cliente y crea una factura adicional. Adicionalmente, puede adjuntar archivos a la factura.   
-                    2. El Responsable introduce los conceptos e importes adicionales.  
-                    3. El sistema verifica que la factura adicional no tiene errores.  
-                    4. El sistema genera y envía la factura al cliente y la añade a la base de datos como pendiente de pago.  
-• Flujos alternativos.:
-                    4. El sistema guarda la factura para que se emita junto a la del mes próximo.  
-• Flujos de excepción (no hay).  
-• Postcondiciones:  
-                      1. La nueva factura queda creada y almacenada.
-```
-
-
-### CU-14: Pausar recordatorios de factura impagada.
+### CU-15: Pausar recordatorios de factura impagada.
 ```
 • Nombre del caso de uso: Pausar recordatorios de factura impagada.  
-• Identificador: CU-14.  
+• Identificador: CU-15.  
 • Objetivo: Detener temporalmente el envío de correos automáticos de reclamación de pago para una factura pendiente.  
 • Actor o actores participantes:  
                     1. Responsable responsable.  
@@ -334,10 +334,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
 
 
-### CU-15: Cancelar deuda de factura.
+### CU-16: Cancelar deuda de factura.
 ```
 • Nombre del caso de uso: Cancelar deuda de factura.  
-• Identificador: CU-15.  
+• Identificador: CU-16.  
 • Objetivo: Dar por saldada manualmente una deuda cambiando el estado de una factura de "impagada" a "pagada".  
 • Actor o actores participantes:  
                     1. Superadministrador.  
@@ -356,10 +356,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
 
 
-### CU-16: Configurar plantilla de email de facturación.
+### CU-17: Configurar plantilla de email de facturación.
 ```
 • Nombre del caso de uso: Configurar plantilla de email de facturación.  
-• Identificador: CU-16.  
+• Identificador: CU-17.  
 • Objetivo: Definir y personalizar la plantilla de correo electrónico (incluyendo idioma español o inglés) que se utilizará al enviar facturas a los clientes.  
 • Actor o actores participantes:  
                     1. Responsable responsable.  
@@ -376,10 +376,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
     
   
-### CU-XX: Configurar objetivos de recaudación.
+### CU-18: Configurar objetivos de recaudación.
 ```
 • Nombre del caso de uso: Configurar cobros y objetivos de recaudación.  
-• Identificador: CU-XX.  
+• Identificador: CU-18.  
 • Objetivo: Establecer metas de cobro y visualizar su progreso en el panel de control.  
 • Actor o actores participantes:  
                     1. Administrador.  
@@ -394,13 +394,35 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 • Postcondiciones:  
                       1. El nuevo objetivo queda configurado y su progreso es visible.  
 ```
-  
+
+
+### CU-19: Sincronizar estado de pagos con Stripe y confirmar cobro.
+```
+• Nombre del caso de uso: Sincronizar estado de pagos con Stripe y confirmar cobro.  
+• Identificador: CU-19.  
+• Objetivo: Registrar los pagos con Stripe y enviar una confirmación de pago al cliente.  
+• Actor o actores participantes:  
+                    1. El Sistema de pagos.  
+• Precondiciones:  
+                    1. Existen facturas emitidas pendientes y existe una conexión registrada con Stripe.  
+• Flujo principal:  
+                    1. El sistema consulta o recibe eventos de pago desde Stripe para almacenarlos en la base de datos.  
+                    2. El sistema recibe la confirmación de pago de Stripe y cambia el estado de la factura a "pagada".  
+                    3. El sistema envía una confirmación de pago al cliente.
+                    4. El sistema registra la operación en el historial de procesos.    
+• Flujos alternativos (no hay)  
+• Flujos de excepción:
+                    1. La conexión con Stripe se cae. 
+• Postcondiciones:  
+                      1. Todas las facturas abonadas pasan al estado "pagada" y la empresa cliente recibe su justificante de pago.
+```
+    
 ## Especificación del diagrama 4 (Sistema de comunicación interno):
 
-### CU-17: Consultar panel de control.
+### CU-20: Consultar panel de control.
 ```
 • Nombre del caso de uso: Consultar panel de control.  
-• Identificador: CU-17.  
+• Identificador: CU-20.  
 • Objetivo: Mostrar en un panel las incidencias pendientes de atender.  
 • Actor o actores participantes:  
                     1. Responsable responsable.  
@@ -418,10 +440,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
   
   
-### CU-XX: Gestionar incidencias y comentarios.
+### CU-21: Gestionar incidencias y comentarios.
 ```
 • Nombre del caso de uso: Crear las incidencias y comentarios.  
-• Identificador: CU-XX.  
+• Identificador: CU-21.  
 • Objetivo: Avisar de posibles errores o incidencias para su posterior resolución.  
 • Actor o actores participantes:  
                     1. Responsable.  
@@ -437,10 +459,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
   
   
-### CU-18: Gestionar notificaciones internas.
+### CU-22: Gestionar notificaciones internas.
 ```
 • Nombre del caso de uso: Gestionar notificaciones internas.  
-• Identificador: CU-18.  
+• Identificador: CU-22.  
 • Objetivo: Consultar los avisos que puedan surgir y resolverlos.  
 • Actor o actores participantes:  
                     1. Responsable responsable.  
@@ -459,10 +481,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   
 ## Especificación del diagrama 5 (Tareas del superadministrador):
 
-### CU-19: Consultar y filtrar informes financieros.
+### CU-23: Consultar y filtrar informes financieros.
 ```
 • Nombre del caso de uso: Consultar y filtrar informes financieros.  
-• Identificador: CU-19.  
+• Identificador: CU-23.  
 • Objetivo: Obtener y filtrar reportes del estado financiero de Turbineh.  
 • Actor o actores participantes:  
                     1. Administrador.  
@@ -480,10 +502,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
   
   
-### CU-20: Revisión de historiales y copias de seguridad.
+### CU-24: Revisión de historiales y copias de seguridad.
 ```
 • Nombre del caso de uso: Revisión de historiales y copias de seguridad.  
-• Identificador: CU-20.  
+• Identificador: CU-24.  
 • Objetivo: Supervisar los cambios manuales y el estado de las copias de seguridad.  
 • Actor o actores participantes:  
                     1. Superadministrador.  
@@ -502,10 +524,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
   
 
-### CU-21: Edición de la tabla de precios recurrentes.
+### CU-25: Edición de la tabla de precios recurrentes.
 ```
 • Nombre del caso de uso: Edición de la tabla de precios recurrentes.  
-• Identificador: CU-21.  
+• Identificador: CU-25.  
 • Objetivo: Actualizar las tarifas preestablecidas y reajustar precios.  
 • Actor o actores participantes:  
                     1. Superadministrador.  
@@ -524,10 +546,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```  
   
 
-### CU-XX: Consultar estado del sistema.
+### CU-26: Consultar estado del sistema.
 ```
 • Nombre del caso de uso: Consultar estado del sistema.  
-• Identificador: CU-XX.  
+• Identificador: CU-26.  
 • Objetivo: Visualizar el estado técnico del sistema y garantizar su estabilidad.  
 • Actor o actores participantes:  
                     1. Superadministrador.  
@@ -545,10 +567,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
   
   
-### CU-XX: Revertir acciones previas.
+### CU-27: Revertir acciones previas.
 ```
 • Nombre del caso de uso: Revertir acciones previas.  
-• Identificador: CU-XX.
+• Identificador: CU-27.
 • Objetivo: Deshacer una modificación o acción reciente en el sistema.  
 • Actor o actores participantes:  
                     1. Superadministrador.  
@@ -566,23 +588,3 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
                     1. El Superadministrador revierte la acción y el sistema recupera su estado previo.  
 ```
     
-### CU-24: Sincronizar estado de pagos con Stripe y confirmar cobro.
-```
-• Nombre del caso de uso: Sincronizar estado de pagos con Stripe y confirmar cobro.  
-• Identificador: CU-24.  
-• Objetivo: Registrar los pagos con Stripe y enviar una confirmación de pago al cliente.  
-• Actor o actores participantes:  
-                    1. El Sistema de pagos.  
-• Precondiciones:  
-                    1. Existen facturas emitidas pendientes y existe una conexión registrada con Stripe.  
-• Flujo principal:  
-                    1. El sistema consulta o recibe eventos de pago desde Stripe para almacenarlos en la base de datos.  
-                    2. El sistema recibe la confirmación de pago de Stripe y cambia el estado de la factura a "pagada".  
-                    3. El sistema envía una confirmación de pago al cliente.
-                    4. El sistema registra la operación en el historial de procesos.    
-• Flujos alternativos (no hay)  
-• Flujos de excepción:
-                    1. La conexión con Stripe se cae. 
-• Postcondiciones:  
-                      1. Todas las facturas abonadas pasan al estado "pagada" y la empresa cliente recibe su justificante de pago.
-```
