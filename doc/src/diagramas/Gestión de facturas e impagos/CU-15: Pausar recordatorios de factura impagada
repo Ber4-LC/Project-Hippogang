@@ -1,0 +1,14 @@
+@startuml
+title Pausar recordatorios de factura impagada
+left to right direction
+:Usuario responsable: as RESP
+
+ rectangle "Sistema Turbine" as SistemaTurbine {
+ (Pausar recordatorios de\nfactura impagada) as UC15
+ UC15 ..>(Seleccionar factura impagada\ny cambiar a "pausa"):Include
+ UC15 ..>(Detener envío de\nrecordatorios de impago):Include
+ (Seleccionar factura impagada\ny cambiar a "pausa")<..(Reanudar factura\nen "pausa"):Extend
+ }
+RESP --> UC15
+
+@enduml
