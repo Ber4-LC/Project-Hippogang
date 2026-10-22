@@ -1,16 +1,14 @@
 @startuml
+title Filtrar facturas
 left to right direction
+:Usuario responsable: as RESP
 
-
-
-:Responsable: as Emp
-
-rectangle "Sistema Turbineh" as SistemaTurbineh {
- (Filtrar facturas) as UC12
- UC12 ..>(Seleccionar criterios\nde filtrado):Include
- UC12 ..>(Mostrar facturas según\nlos criterios):Include
-}
-note bottom of UC12 : Precondicion el usuario ha iniciado sesión y tiene \nacceso asignado al menos a un cliente.
-Emp ..>UC12
+ rectangle "Sistema Turbine" as SistemaTurbine {
+ (Filtrar facturas) as UC14
+ UC14 ..>(Seleccionar criterios\nde filtrado):Include
+ UC14 ..>(Mostrar facturas según\nlos criterios):Include
+ (Mostrar facturas según\nlos criterios)<..(Notificar que no existen\nfacturas con esos criterios):Extend
+ }
+RESP --> UC14
 
 @enduml
