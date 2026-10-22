@@ -1,14 +1,26 @@
 @startuml
 title Editar parámetros de facturación
 left to right direction
+:Superadmin: as SUP
 :Administrador: as ADM
 
  rectangle "Sistema Turbine" as SistemaTurbine {
+
+
+
+ rectangle "Sistema Turbine" as SistemaTurbine {
+ (Validar cambios de facturación\nde gran tamaño) as UC9
+
  (Editar parámetros de\nfacturación de cliente) as UC7
  UC7 ..>(Modificar importes y frecuencia\nde recordatorios de pago):Include
- UC7 ..>(Aplicar parámetros, actualizar\nsuscripción y registrar):Include
  (Modificar importes y frecuencia\nde recordatorios de pago)<..(Rechazar importe o formato\nno válido):Extend
- }
-ADM --> UC7
+ (Modificar importes y frecuencia\nde recordatorios de pago)<..UC9:Extend
 
+
+ 
+
+ UC9 ..>(Aplicar cambio y registrar\nmodificaciones):Include
+ }
+SUP-right-> UC9
+ADM --> UC7
 @enduml
