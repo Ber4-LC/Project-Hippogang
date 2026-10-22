@@ -1,0 +1,14 @@
+@startuml
+title Editar parámetros de facturación
+left to right direction
+:Administrador: as ADM
+
+ rectangle "Sistema Turbine" as SistemaTurbine {
+ (Editar parámetros de\nfacturación de cliente) as UC7
+ UC7 ..>(Modificar importes y frecuencia\nde recordatorios de pago):Include
+ UC7 ..>(Aplicar parámetros, actualizar\nsuscripción y registrar):Include
+ (Modificar importes y frecuencia\nde recordatorios de pago)<..(Rechazar importe o formato\nno válido):Extend
+ }
+ADM --> UC7
+
+@enduml
