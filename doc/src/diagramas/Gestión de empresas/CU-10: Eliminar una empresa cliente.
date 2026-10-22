@@ -1,0 +1,19 @@
+@startuml
+title Editar empresa cliente
+left to right direction
+
+:Administrador: as ADM
+
+ rectangle "Sistema Turbine" as SistemaTurbine {
+
+
+
+ rectangle "Sistema Turbine" as SistemaTurbine {
+ (Eliminar una empresa\ncliente) as UC10
+ UC10 ..>(Mostrar advertencia):Include
+ (Mostrar advertencia) ..>(Confirmar la eliminación):Extend
+ (Confirmar la eliminación)..>(Borrar datos, conservar facturas\ny registrar modificaciones):Include
+ }
+
+ADM --> UC10
+@enduml
