@@ -1,0 +1,18 @@
+@startuml
+title Gestión de empresas clientes
+left to right direction
+
+:Responsable: as RESP
+
+ rectangle "Sistema Turbine" as SistemaTurbine {
+
+
+
+ rectangle "Sistema Turbine" as SistemaTurbine {
+ (Acceder a la configuración de la empresa) as UC11
+ UC11 ..>(Cambiar datos fiscales):Extend
+ (Cambiar datos fiscales) ..> (Registrar los cambios en el historial):Include
+ }
+
+RESP--> UC11
+@enduml
