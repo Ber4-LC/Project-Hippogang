@@ -1,19 +1,14 @@
 @startuml
+title Consultar y descargar facturas
 left to right direction
+:Usuario responsable: as RESP
 
-
-
-:Responsable: as Emp
-
-rectangle "Sistema Turbineh" as SistemaTurbineh {
- (Consultar y descargar\nfacturas) as UC11
- UC11 ..>(Mostrar facturas de los\nclientes con acceso):Include
- UC11 ..>(Seleccionar factura y\nver su detalle): Include
- UC11 ..>(Generar y descargar factura\ny notificar a la base de datos): Include
- (Generar y descargar factura\ny notificar a la base de datos)<..(Notificar error al generar\nel archivo):Extent
-}
-note bottom of UC11 : Precondicion El usuario ha iniciado sesión y tiene \nacceso asignado al menos a un cliente.
-
-Emp --> UC11
+ rectangle "Sistema Turbine" as SistemaTurbine {
+ (Consultar y descargar\nfacturas) as UC13
+ UC13 ..>(Mostrar facturas y\nseleccionar detalle):Include
+ UC13 ..>(Generar, descargar factura y\nnotificar a la base de datos):Include
+ (Generar, descargar factura y\nnotificar a la base de datos)<..(Notificar error al generar\nel archivo):Extend
+ }
+RESP --> UC13
 
 @enduml
