@@ -1,0 +1,14 @@
+@startuml
+title Aplicar descuentos
+left to right direction
+:Usuario responsable: as RESP
+
+ rectangle "Sistema Turbine" as SistemaTurbine {
+ (Aplicar descuentos o\npruebas gratuitas) as UC8
+ UC8 ..>(Introducir porcentaje y\nfecha de caducidad):Include
+ UC8 ..>(Aplicar parámetros y\nregistrar modificaciones):Include
+ (Introducir porcentaje y\nfecha de caducidad)<..(Rechazar fecha o porcentaje\nerróneos):Extend
+ }
+RESP --> UC8
+
+@enduml
