@@ -1,0 +1,14 @@
+@startuml
+title Cancelar deuda de factura
+left to right direction
+:Superadministrador: as SADM
+
+ rectangle "Sistema Turbine" as SistemaTurbine {
+ (Cancelar deuda de\nfactura) as UC16
+ UC16 ..>(Marcar como "saldada" y\nsolicitar justificación):Include
+ UC16 ..>(Confirmar, actualizar a "pagada"\ny detener recordatorios):Include
+ (Confirmar, actualizar a "pagada"\ny detener recordatorios)<..(Cancelar operación y\nmantener impago):Extend
+ }
+SADM --> UC16
+
+@enduml
