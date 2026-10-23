@@ -319,9 +319,13 @@ los requisitos de usuario y los requisitos del sistema.
 
 | Requisito de negocio | Requisito de usuario | Requisito funcional / no funcional |
 |---|---|---|
-| BR-01 | UR-01 | FR-01, FR-02 |
-| BR-02 | UR-03 | FR-07, NFR-02 |
-
+| BR-01 | UR-01 | FR-13, FR-16, FR-57, NFR-12, NFR-31, NFR-32 | <!-- Mejorar eficiencia / consultar facturas y descargarlas -->
+| BR-01 | UR-02 | FR-15, FR-21, FR-26, FR-28, FR-45, FR-51, FR-63, NFR-06, NFR-08, NFR-11, NFR-13, NFR-14, NFR-15, FR-29 | <!-- * / crear o modificar facturas si se permite -->
+| BR-02 | UR-03 | FR-18, FR-22, FR-25 | <!-- organizar empleados y sus empresas asignadas / ver y modificar información de los clientes -->
+| BR-02 | UR-04 | FR-19, FR-23, FR-24, FR-36, FR-48, FR-60  | <!-- * / Poder comunicarse con otros empleados -->
+| BR-02 | UR-06 | FR-06, FR-08, FR-10, FR-40 | <!-- * / Admin puede añadir, eliminar y modificar empresas clientes -->
+| BR-03 | UR-01 | FR-13, FR-16, FR-37 | <!-- Registrar y controlar pagos y deudas de clientes a la hora de consultar facturas y descargarlas -->
+| BR-05 | UR-05 | FR-11, FR-32, FR-44, FR-54, FR-59, NFR-16 | <!-- Obtener informes y estadísticas sobre las finanzas de la empresa / Admin pueda consultar estadísticas varias -->
 
 ## 9. Glosario
 
