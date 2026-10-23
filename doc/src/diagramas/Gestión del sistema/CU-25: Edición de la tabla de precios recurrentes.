@@ -1,0 +1,18 @@
+@startuml 
+title Tabla de precios recurrentes
+left to right direction
+
+:Superadmin: as SADM
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ 
+ (Entrar en la tabla de precios recurrentes) as UC21
+ UC21 ..>(Modificar rangos\n y/o precios):Include
+ (Modificar rangos\n y/o precios)..>(Validar coherencia\nde los rangos):Include
+ (Modificar rangos\n y/o precios)..>(Confirmar cambios y actualizar\ntabla de referencia\n para la siguiente facturación\n recurrente automática):Include
+ (Modificar rangos\n y/o precios)<..(Rechazar solapamiento o error\nde formato):Extend
+}
+
+SADM -- UC21
+
+@enduml
