@@ -1,4 +1,6 @@
 # Project-Hippogang
 El proyecto está estructurado de la siguiente manera: en la carpeta raíz se encuentra el Informe Scrum con el registro de las actividades realizadas en las primeras reuiniones. Somos conscientes de que en las primeras reuniones no trabajamos con una metodología completamente "Scrum", pero esto se debía a que muchas de las tareas iniciales estaban entrerelacionadas y al ser un grupo pequeño nos era mucho más eficiente trabajar en conjunto al inicio.
+
 En la carpeta doc se encuentran los pdfs de la entrega, y dentro de ésta está la carpeta src con los archivos originales de trabajo.
+
 El pdf de los diagramas UML contiene un diagrama para cada caso de uso en la especificación de los casos de uso. Si no es evidente qué diagrama corresponde a qué caso (de todos modos se encuentran en ordem), dentro de la carpeta src también hay .png de cada diagrama con su nombre corresponiente.
