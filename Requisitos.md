@@ -327,5 +327,7 @@ los requisitos de usuario y los requisitos del sistema.
 
 | Término | Definición |
 |---|---|
-| ... | ... |
+| Rol "Usuario/empleado/responsable" | Estos términos se usan intercambiablemente y se refieren al rol con menos permisos del sistema. Cuando un requisito, caso de uso, o diagrama se refiere a este rol, se refiere a los usuarios con este rol o uno superior en la jerarquía, es decir: cualquier usario. |
+| Rol administrador | Este término se refiere al rol que tiene acceso a todas las empresas y facturas del sistema, y ciertas funcionalidades que no posee el rol anterior. Cuando un requisito, caso de uso, o diagrama se refiere a este rol, se refiere a los usuarios con este rol o uno superior en la jerarquía, es decir: un administrador o superadmin. |
+| Rol superadmin | Este término se refiere al rol con mayor jerarquía y permisos del sistema, que tiene acceso a todas las funcionalidades. |
 
