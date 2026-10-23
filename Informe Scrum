@@ -9,9 +9,6 @@
 | Juan Pérez Rodriíguez | Miembro | 
 | Miguel Moreno García | Miembro |
  
-## 2. Organización del trabajo 
-
-
 
 ## 3. Sprints realizados 
  
@@ -56,12 +53,19 @@
       La idea es tener estas cosas listas para que la siguiente reunión todos los miembros puedan revisar el trabajo de los compañeros y redistribuirse las tareas
       para terminar las versiones definitivas de las partes que no estén completas.
  
-## 4. Problemas y riesgos 
- 
-Descripción de los problemas y riesgos encontrados durante la entrega. 
- 
+    Reunión 21/10/26
+      Sprint Backlog:
+       - El archivo Requisitos .md está casi completo, sólo faltan los puntos iniciales, los requisitos de negocio y la trazabilidad (esto depende de que estuviesen terminados los requisitos funcionales y nF)
+       - Los diagramas de caso de uso están terminados, pero se han creado 5 diagramas grandes en lugar de un diagrama para cada caso de uso.
+       - El archivo de la especificación de casos de uso está terminado, con un par de errores ya que incluye casos de uso de más (funciones automáticas internas del sistema, no casos de uso).
+      Reunión Scrum:
+        - Repartición de tareas para este sprint:
+          Ricardo, Juan y Benjamín desarmarán los diagramas de uso grandes en diagramas más pequeños para cada caso.
+          Mario ordenará y limpiará el archivo de requisitos ya que al ser hecho en colaboración hay requistos duplicados y desordenados.
+          Emilio terminará el punto 1 de la plantilla y la trazabilidad.
+
 ## 5. Valoración final 
- 
-Reflexión sobre el trabajo realizado y propuestas de mejora.
+ El principal problema de esta entrega fue la falta de tener un tablero desde el primer momento, por lo que no se pudo añadir en el informe. Sin contar eso, el trabajo se realizó sin problemas,
+ utilizando una metodología de trabajo en branchs propias y Pull Requests para no sobreescribir el trabajo de otros miembros del trabajo.
     
 
