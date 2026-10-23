@@ -440,7 +440,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
   
   
-### CU-21: Gestionar incidencias y comentarios.
+### CU-21: Crear incidencias y comentarios.
 ```
 • Nombre del caso de uso: Crear las incidencias y comentarios.  
 • Identificador: CU-21.  
