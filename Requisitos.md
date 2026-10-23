@@ -241,35 +241,34 @@ interpretación realizada.
 
 | ID | Categoría | Requisito | Criterio verificable |
 |---|---|---|---|
-| NFR-01 | QoL | El sistema debe ser responsive, una aplicación web que funcione en dispositivos móviles correctamente | ... |
+| NFR-01 | QoL | El sistema debe ser responsive, una aplicación web que funcione en dispositivos móviles correctamente | La interfaz debe verse correctamente en cualquier dispositivo móvil. |
 | NFR-02 | Seguridad | El sistema debe comprobar cuando un usuario se loguee que el correa sea @turbineh.com | ... |
 | NFR-05 | Seguridad | Los datos de las facturas están bien cifrados para no tener problemas legales. Datos fiscales no deben estar en URLs públicas y las comunicaciones deben estar cifrados.| ... |
-| NFR-06 | Escalabilidad | No debe haber conflictos si varias personas editan una factura a la vez. | ... |
-| NFR-07 | Escalabilidad | El sistema debe poder soportar centenas de usuarios internos. | ... |
-| NFR-08 | Disponibilidad | Puede haber caídas breves del sistema, pero no deben causar la pérdida ni duplicación de ninguna factura. | ... |
+| NFR-06 | Escalabilidad | No debe haber conflictos si varias personas editan una factura a la vez. | Si dos usuarios modifican simultáneamente una factura, el sistema debe detectar el conflicto e impedir que una modificación sobrescriba silenciosamente a otra. |
+| NFR-07 | Escalabilidad | El sistema debe poder soportar centenas de usuarios internos. | El sistema debe soportar al menos 200 usuarios concurrentes realizando operaciones habituales sin errores. |
+| NFR-08 | Disponibilidad | Puede haber caídas breves del sistema, pero no deben causar la pérdida ni duplicación de ninguna factura. | Tras una interrupción simulada durante el registro de una factura, el sistema debe conservar las facturas confirmadas y evitar registros duplicados al reintentar la operación. |
 | NFR-09 | Mantenibilidad | El sistema debe disponer de un entorno de prueba para poder testear los cambios de configuración antes de aplicarlos. | ... |
 | NFR-11 | Mantenibilidad | Asegurar que no haya conflictos con las zonas horarias, las fechas de facturas deben usar la zona horaria del receptor. | ... |
-| NFR-12 | QoL | Las tareas normales deben realizarse en menos de un minuto y de manera fluida. | ... |
+| NFR-12 | QoL | Las tareas normales deben realizarse en menos de un minuto y de manera fluida. | En pruebas con usuarios, al menos el 90 % debe completar las tareas habituales en menos de 60 segundos. |
 | NFR-13 | QoL | Las operaciones largas o pesadas deben realizarse en segundo plano. | ... |
-| NFR-14 | QoL | Debe haber buen UX (User experience) con autosugerencias y no hacer repetir formularios si falla un campo. | ... |
+| NFR-14 | QoL | Debe haber buen UX (User experience) al rellenar formularios. | Si un formulario contiene un campo incorrecto, el sistema debe identificarlo y conservar los datos válidos introducidos. Las autosugerencias deben funcionar en los campos definidos para ello. |
 | NFR-15 | Seguridad | Al adjuntar un archivo a una factura debe haber limites de tamaño y no ejecutar archivos peligrosos. | ... |
 | NFR-16 | Verificabilidad | El dashboard con los resúmenes de las finanzas debe poder explicar de dónde sale cada cifra. | ... |
 | NFR-17 | Seguridad | La API externa debe someterse a las mismas reglas de acceso que la interfaz. | ... |
-| NFR-18 | Escalabilidad | Las integraciones de servicios externos deben estar encapsuladas y deben poder cambiarse por otro servicio fácilmente. | ... |
+| NFR-18 | Escalabilidad | Las integraciones de servicios externos deben estar encapsuladas y deben poder cambiarse por otro servicio fácilmente. | Debe ser posible sustituir un servicio externo sin cambiar el resto del sistema. |
 | NFR-19 | Mantenibilidad | Los errores deben estar bien distinguidos para que cuando algo no funciona el usuario sepa qué parte del sistema está fallando. | ... |
-| NFR-20 | Seguridad | El sistema debe cerrar la sesión activa del usuario tras un tiempo de inactividad para evitar el riesgo de acceso no autorizado. | ... |
-| NFR-21 | Seguridad | El sistema debe tener una medida de protección ante varios intentos fallidos de inicio de sesión. | ... |
+| NFR-20 | Seguridad | El sistema debe cerrar la sesión activa del usuario tras un tiempo de inactividad para evitar el riesgo de acceso no autorizado. | La sesión debe cerrarse automáticamente después de 15 minutos de inactividad y exigir una nueva autenticación. |
+| NFR-21 | Seguridad | El sistema debe tener una medida de protección ante varios intentos fallidos de inicio de sesión. | Después de 5 intentos fallidos consecutivos de inicio de sesión, el sistema debe aplicar una limitación temporal de nuevos intentos. |
 | NFR-22 | Mantenibilidad | El sistema debe disponer de pruebas automatizadas para verificar el funcionamiento de las reglas económicas importantes. | ... |
-| NFR-23 | Verificabilidad | El sistema debe tener escenarios de aceptación claros para los administradores | ... |
 | NFR-24 | Mantenibilidad | Debe haber una documentación de usuario corta y útil, instrucciones de despliegue y mantenimiento, modelo de datos y API, decisiones importantes y explicación de reglas de negocio. | ... |
-| NFR-25 | Compatibilidad | Se debe usar software libre o accesibles para una aplicación web responsive que sea compatible para cualquier navegador y dispositivo. | ... |
+| NFR-25 | Compatibilidad | Se debe usar software libre o accesibles para una aplicación web responsive que sea compatible para cualquier navegador y dispositivo. | Las funcionalidades principales deben ejecutarse correctamente en las dos últimas versiones estables de Chrome, Firefox, Edge y Safari, tanto en escritorio como en móvil cuando corresponda. |
 | NFR-26 | Mantenibilidad | Debe tener un entorno de desarrollo y pruebas. | ... |
-| NFR-27 | Seguridad | Se debe separar la configuración y secretos del código. | ... |
+| NFR-27 | Seguridad | Se debe separar la configuración y secretos del código. | Las credenciales y claves privadas no deben encontrarse en el código fuente ni en el repositorio y deben cargarse mediante variables de entorno o un gestor de secretos. |
 | NFR-28 | Mantenibilidad | Se debe evitar duplicar los datos del usuario en el código. | ... |
 | NFR-29 | Fiabilidad | Se debe utilizar precisión decimal. | ... |
-| NFR-30 | Fiabilidad | El sistema debe ser tolerante con tareas en segundo plano. | ... |
-| NFR-31 | QoL | Se debe poder completar cualquier operación con pocos clics. | Los clics no deben sentirse innecesarios. |
-| NFR-32 | QoL | Interfaz intuitiva para nuevos usuarios y menús con poca profundidad. | Deben meterse opciones claras y genéricas para hacer menús con poca profundidad. |
+| NFR-30 | Fiabilidad | El sistema debe ser tolerante con tareas en segundo plano. | Todas las funcionalidades del sistema deben funcionar sin errores mientras haya una tarea ocurriendo en segundo plano. |
+| NFR-31 | QoL | Se debe poder completar cualquier operación con pocos clics. | Las operaciones más frecuentes, como crear, consultar o editar una factura, deben poder realizarse en un máximo de 5 clics desde la pantalla principal. |
+| NFR-32 | QoL | Interfaz intuitiva para nuevos usuarios y menús con poca profundidad. | Las funcionalidades principales deben ser accesibles desde el menú principal con un máximo de 2 niveles de navegación. |
 | NFR-34 | Escalabilidad | El sistema debe poder continuarse por otro equipo para ello mantener la legibilidad , escalabilidad y uso de convenciones. | ... |
 | NFR-35 | Escalabilidad | El sistema no debe impedir estructuralmente el desarrollo de otras opciones a futuro | ... |
 | NFR-36 | Seguridad | En caso de implementarse funciones inteligentes deben seguir las normas y no saltarse nada además de pedir validación humana antes de completar. | ... |
@@ -297,8 +296,9 @@ un requisito.
 
 | ID | Suposición o decisión | Justificación | Requisitos afectados |
 |---|---|---|---|
-| A-01 | ... | ... | FR-... |
-| A-02 | ... | ... | ... |
+| A-01 | La capacidad mínima que debe soportar el sistema debe ser de 200 usuarios. | El cliente solamente especificó "centenas" y en cualquier caso ahora mismo es una empresa con pocos empleados y es un requisito para escalabilidad futura, así que no queremos invertir demasiados recursos en ello. | NFR-07 |
+| A-02 | La sesión debe cerrarse automáticamente después de 15 minutos de inactividad. | El cliente no especificó cuánto tiempo debía permanecer la sesión abierta en inactividad, pero 15 minutos en un tiempo que no causará inconveniencias seguidas y ayudará a la seguridad. | NFR-20 |
+| A-03 | Después de 5 intentos fallidos consecutivos de inicio de sesión, el sistema debe aplicar una limitación temporal de nuevos intentos. | El cliente no especificó cuántos intentos debía permitir, pero 5 es suficiente para probar distintas iteraciones de mayúsculas y espacios para no causar inconveniencias a un usuario legítimo y detener ataques de fuerza bruta. | NFR-21 |
 
 
 ## 7. Dudas, ambigüedades y cuestiones pendientes
