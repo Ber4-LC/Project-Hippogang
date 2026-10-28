@@ -204,9 +204,9 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
 
 
-### CU-10: Eliminar una empresa cliente.  
+### CU-10: Dar de baja a una empresa cliente.  
 ```
-• Nombre del caso de uso: Eliminar una empresa cliente.   
+• Nombre del caso de uso: Dar de baja a una empresa cliente.   
 • Identificador: CU-10.  
 • Objetivo: Dar de baja una empresa cliente en la operatoria activa conservando sus datos históricos y fiscales.    
 • Actor o actores participantes:  
