@@ -9,7 +9,7 @@ left to right direction
 
 
  rectangle "Sistema Turbine" as SistemaTurbine {
- (Eliminar una empresa\ncliente) as UC10
+ (Dar de baja a una empresa\ncliente) as UC10
  UC10 ..>(Mostrar advertencia):Include
  (Mostrar advertencia) ..>(Confirmar la eliminación):Extend
  (Confirmar la eliminación)..>(Borrar datos, conservar facturas\ny registrar modificaciones):Include
