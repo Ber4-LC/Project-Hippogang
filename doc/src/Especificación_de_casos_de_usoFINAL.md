@@ -22,7 +22,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   - 2a. Correo que no pertenece al dominio @turbineh.com.  
   - 2b. Fallo en inicio de sesión a consecuencia de credenciales incorrectas.  
 - Postcondiciones:  
-  1. El usuario queda autenticados con sus vistas y privilegios dependiendo de su rol.
+  1. El usuario queda autenticado con sus vistas y privilegios dependiendo de su rol.
   
   
 ### CU-02: Gestionar permisos de empleados.  
@@ -301,7 +301,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. El responsable selecciona una factura en "pausa" y la reanuda.  
 - Flujos de excepción (no hay).  
 - Postcondiciones:  
-  1. La factura para a estar marcada como "en pausa".
+  1. La factura pasa a estar marcada como "en pausa".
 
 
 ### CU-16: Cancelar deuda de factura.
@@ -496,7 +496,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 - Flujos de excepción:  
   3. Se produce un solapamiento entre los rangos de los precios o hay error de formato.  
 - Postcondiciones:  
-  1. La tabla de rangos de los precios queda actualizada y se envía una notificación a la empresas clientes.  
+  1. La tabla de rangos de los precios queda actualizada y se envía una notificación a las empresas clientes.  
   
 
 ### CU-26: Consultar estado del sistema.
@@ -510,8 +510,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 - Flujo principal:  
   1. El superadministrador accede a la pestaña de estabilidad del sistema.  
   2. El sistema recopila las métricas técnicas y el estado del servidor.  
-  3. El sistema muestra la información al Superadministrador.  
-  4. El superadministrador confirma los cambios y el sistema actualiza la base de datos, cambiando la tabla de referencia.      
+  3. El sistema muestra la información al Superadministrador.       
 - Flujos alternativos (no hay).  
 - Flujos de excepción (no hay).  
 - Postcondiciones:  
@@ -530,7 +529,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. El superadministrador accede al historial de cambios.  
   2. El superadministrador selecciona la opción de "Revertir".  
   3. El sistema valida que la acción es legalmente reversible.  
-  4. El sistema restaura el estado anterior de los datos y registra la revesión.  
+  4. El sistema restaura el estado anterior de los datos y registra la reversión.  
 - Flujos alternativos (no hay).  
 - Flujos de excepción:  
   3. La acción no se puede revertir por motivos legales.  
