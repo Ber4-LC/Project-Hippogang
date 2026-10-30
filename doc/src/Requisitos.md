@@ -211,6 +211,7 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-62 | El sistema debe guardar métricas del tiempo empleado para realizar operaciones y clics necesarios| ... |
 | FR-63 | El sistema debe hacer guardado de borradores en caso de cierre accidental | ... |
 | FR-64 | El sistema debe permitir revertir acciones siempre y cuando sea legal revertirlas o esté permitido  | ... |
+| FR-65 | Si el sistema recibe un pago de una factura el cual no está completamente correcto (importe equivocado, origen incorrecto, etc), notificará a los responsables de la empresa a la que correspondía la factura.  | ... |
 
 
 

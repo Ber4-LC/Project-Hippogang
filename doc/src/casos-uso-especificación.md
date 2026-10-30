@@ -396,23 +396,26 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ```
 
 
-### CU-19: Sincronizar estado de pagos con Stripe y confirmar cobro.
+### CU-19: Sincronizar estado de pagos con el Sistema de Pagos y confirmar cobro.
 ```
 • Nombre del caso de uso: Sincronizar estado de pagos con Stripe y confirmar cobro.  
 • Identificador: CU-19.  
-• Objetivo: Registrar los pagos con Stripe y enviar una confirmación de pago al cliente.  
+• Objetivo: Mantener actualizado el estado de las facturas a partir de la información de pagos proporcionada por el sistema de pagos.
 • Actor o actores participantes:  
                     1. El Sistema de pagos.  
 • Precondiciones:  
                     1. Existen facturas emitidas pendientes y existe una conexión registrada con Stripe.  
 • Flujo principal:  
-                    1. El sistema consulta o recibe eventos de pago desde Stripe para almacenarlos en la base de datos.  
-                    2. El sistema recibe la confirmación de pago de Stripe y cambia el estado de la factura a "pagada".  
-                    3. El sistema envía una confirmación de pago al cliente.
-                    4. El sistema registra la operación en el historial de procesos.    
-• Flujos alternativos (no hay)  
+                    1. El cliente realiza el pago de una factura mediante el sistema de pagos.
+                    2. El sistema de pagos envía a TurbineH la información correspondiente al pago recibido.
+                    3. El sistema comprueba que los datos del pago son correctos y válidos, incluyendo la correspondencia del importe y de la información   necesaria para asociarlo con la factura.
+                    4. El sistema registra el cobro y actualiza el estado de la factura a “pagada”.
+                    5. El sistema envía una confirmación de pago al contacto correspondiente de la empresa cliente.
+                    6. El sistema registra la operación en el historial de procesos.    
+• Flujos alternativos
+                    4. El importe es erróneo o algún dato no es válido, se notifica a los responsables de la empresa.
 • Flujos de excepción:
-                    1. La conexión con Stripe se cae. 
+                    4. La factura no se puede identificar.
 • Postcondiciones:  
                     1. Todas las facturas abonadas pasan al estado "pagada" y la empresa cliente recibe su justificante de pago.
 ```
