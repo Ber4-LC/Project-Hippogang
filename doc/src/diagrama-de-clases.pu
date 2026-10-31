@@ -1,0 +1,88 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+
+
+class EmpresaCliente {
+    - idEmpresa : int
+    - razonSocial : String
+    - nif : String
+    - domicilioFiscal : String
+}
+
+
+class Suscripcion {
+    - idSuscripcion : int
+    - importeRecurrente : Decimal
+    - estado : EstadoSuscripcion
+    - fechaInicio : Date
+    - descuento : Decimal
+
+    + modificarImporte(nuevoImporte : Decimal)
+    + aplicarDescuento(descuento : Decimal)
+}
+
+
+enum EstadoSuscripcion {
+    ACTIVA
+    PAUSADA
+    CANCELADA
+}
+
+
+class SuscripcionManager {
+    + generarFacturasMensuales()
+    + revisarPreciosAnuales()
+    + actualizarImporte(suscripcion : Suscripcion, nuevoImporte : Decimal)
+}
+
+
+class FacturaFactory {
+    {static} + crearFacturaRecurrente(empresa : EmpresaCliente, suscripcion : Suscripcion) : Factura
+}
+
+
+class Factura {
+    - idFactura : int
+    - empresa : EmpresaCliente
+    - fechaEmision : Date
+    - fechaVencimiento : Date
+    - importe : Decimal
+    - estado : EstadoFactura
+    - tipo : TipoFactura
+}
+
+
+enum EstadoFactura {
+    BORRADOR
+    EMITIDA
+    IMPAGADA
+    PAGADA
+    CANCELADA
+}
+
+
+enum TipoFactura {
+    RECURRENTE
+    ADICIONAL
+}
+
+
+' =========================
+' RELACIONES
+' =========================
+
+EmpresaCliente "1" -- "1" Suscripcion : suscripcion
+
+Factura "0..*" --> "1" EmpresaCliente : empresa
+
+SuscripcionManager ..> Suscripcion : usa
+SuscripcionManager ..> FacturaFactory : usa
+
+FacturaFactory ..> Factura : <<create>>
+
+Suscripcion --> EstadoSuscripcion : estado
+Factura --> EstadoFactura : estado
+Factura --> TipoFactura : tipo
+
+@enduml
