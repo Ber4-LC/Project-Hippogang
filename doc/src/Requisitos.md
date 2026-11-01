@@ -212,6 +212,7 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-63 | El sistema debe hacer guardado de borradores en caso de cierre accidental | ... |
 | FR-64 | El sistema debe permitir revertir acciones siempre y cuando sea legal revertirlas o esté permitido  | ... |
 | FR-65 | Si el sistema recibe un pago de una factura el cual no está completamente correcto (importe equivocado, origen incorrecto, etc), notificará a los responsables de la empresa a la que correspondía la factura.  | ... |
+| FR-66 | El sistema debe calcular y generar automáticamente una primera factura prorrateada de forma proporcional a los días restantes del mes cuando una empresa cliente sea dada de alta una vez iniciado el periodo mensual. | ... |
 
 
 
@@ -288,6 +289,7 @@ pero que no representan por sí mismas una funcionalidad.
 | RB-05 | Consistencia en la distribución de los menús y opciones: Botón de guardar siempre en la misma esquina, carga, descarga , etc. | 
 | RB-06 | El sistema interno puede estar en español, pero las comunicaciones al cliente deben poder elegir inglés. |
 | RB-07 | Cuando un cliente sea eliminado por un admin, sus datos deben permanecer en la base de datos tanto tiempo como la ley permita. | ... |
+| RB-08 | Si el alta de una empresa cliente se produce a mitad de mes, la primera factura se calculará de forma proporcional a los días restantes de dicho mes (prorrateo inicial). |
 
 ## 6. Suposiciones y decisiones de análisis
 
