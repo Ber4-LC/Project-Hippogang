@@ -79,7 +79,8 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. El administrador selecciona la opción de registrar un nuevo cliente.  
   2. El administrador introduce sus datos (Nombre, Razón Social, id, domicilio fiscal, país, etc.).  
   3. El sistema valida que estén completos los campos obligatorios y los clientes no existen previamente.  
-  4. El sistema almacena al nuevo cliente y registra la acción.    
+  4. El sistema almacena al nuevo cliente y registra la acción.  
+  5. El sistema calcula y genera automáticamente una primera factura prorrateada correspondiente al tiempo restante del mes en curso.  
 - Flujos alternativos:  
   - 3a. El cliente existía anteriormente y fue eliminado pero como la base de datos conserva sus datos aún, se ofrece la posibilidad de reactivar su registro.  
 - Flujos de excepción, cuando corresponda:  
