@@ -1,13 +1,20 @@
 @startuml
-
 skinparam classAttributeIconSize 0
 
+
+
+' =========================================================
+' EMPRESAS
+' =========================================================
 
 class EmpresaCliente {
     - idEmpresa : int
     - razonSocial : String
     - nif : String
     - domicilioFiscal : String
+
+    + agregarComentario(comentario : Comentario)
+    + obtenerComentarios() : List<Comentario>
 }
 
 
@@ -33,12 +40,24 @@ enum EstadoSuscripcion {
 class SuscripcionManager {
     + generarFacturasMensuales()
     + revisarPreciosAnuales()
-    + actualizarImporte(suscripcion : Suscripcion, nuevoImporte : Decimal)
 }
+
+
+' =========================================================
+' FACTURAS
+' =========================================================
 
 
 class FacturaFactory {
     {static} + crearFacturaRecurrente(empresa : EmpresaCliente, suscripcion : Suscripcion) : Factura
+}
+
+class ArchivoAdjunto {
+    - idArchivo : int
+    - nombre : String
+    - tipo : String
+    - referenciaArchivo : String
+    - fechaSubida : Date
 }
 
 
@@ -50,6 +69,7 @@ class Factura {
     - importe : Decimal
     - estado : EstadoFactura
     - tipo : TipoFactura
+    - archivos : List<ArchivoAdjunto>
 }
 
 
@@ -61,10 +81,69 @@ enum EstadoFactura {
     CANCELADA
 }
 
-
 enum TipoFactura {
     RECURRENTE
     ADICIONAL
+}
+
+
+' =========================================================
+' USUARIOS
+' =========================================================
+
+class Usuario {
+    - idUsuario : int
+    - nombre : String
+    - email : String
+    - rol : RolUsuario
+}
+
+enum RolUsuario {
+    RESPONSABLE
+    ADMIN
+    SUPERADMIN
+}
+
+
+' =========================================================
+' COMENTARIOS
+' =========================================================
+
+class Comentario {
+    - idComentario : int
+    - contenido : String
+    - fecha : DateTime
+    - tipo : TipoComentario
+    - autor : Usuario
+    - mencionados : List<Usuario>
+    - empresa: EmpresaCliente
+    
+
+    + obtenerMencionados() : List<Usuario>
+    + notificarMencionados(mencionados: List<Usuario>)
+}
+
+enum TipoComentario {
+    NORMAL
+    NOTA_ADMINISTRATIVA
+}
+
+
+' =========================================================
+' NOTIFICACIONES
+' =========================================================
+
+class Notificacion {
+    - idNotificacion : int
+    - mensaje : String
+    - fecha : DateTime
+    - leida : boolean
+    - resuelta : boolean
+    - destinatario : Usuario
+
+    + marcarLeida()
+    + marcarResuelta()
+    + abrirOrigen()
 }
 
 
@@ -76,6 +155,7 @@ EmpresaCliente "1" -- "1" Suscripcion : suscripcion
 
 Factura "0..*" --> "1" EmpresaCliente : empresa
 
+
 SuscripcionManager ..> Suscripcion : usa
 SuscripcionManager ..> FacturaFactory : usa
 
@@ -84,5 +164,23 @@ FacturaFactory ..> Factura : <<create>>
 Suscripcion --> EstadoSuscripcion : estado
 Factura --> EstadoFactura : estado
 Factura --> TipoFactura : tipo
+
+
+Factura "1" --> "0..*" ArchivoAdjunto : archivos
+
+
+Usuario --> RolUsuario : rol
+
+Comentario "0..*" --> "1" Usuario : autor
+Comentario "0..*" --> "0..*" Usuario : mencionados
+
+Comentario --> TipoComentario : tipo
+
+Notificacion "0..*" --> "1" Usuario : destinatario
+Comentario "1" --> "0..*" Notificacion : crea
+
+Comentario "0..*" --> "1" EmpresaCliente : empresa
+
+
 
 @enduml
