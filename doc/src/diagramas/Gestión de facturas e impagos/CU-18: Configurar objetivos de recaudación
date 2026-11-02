@@ -1,0 +1,13 @@
+@startuml
+title Configurar objetivos de recaudación
+left to right direction
+:Administrador: as ADM
+
+ rectangle "Sistema Turbine" as SistemaTurbine {
+ (Configurar cobros y objetivos\nde recaudación) as UC18
+ UC18 ..>(Establecer y guardar\nnuevo objetivo):Include
+ UC18 ..>(Actualizar panel de control\ny mostrar progreso):Include
+ }
+ADM --> UC18
+
+@enduml

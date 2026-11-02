@@ -1,0 +1,23 @@
+@startuml 
+title Importar empresa
+left to right direction
+:Administrador: as ADM
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Importar clientes\nmediante CSV) as UC5
+ UC5 ..>(Analizar y validar\nfilas del CSV) : Include
+ UC5 ..>(Crear fichas de\nempresas) :Include
+ UC5 ..>(Registrar la operación) : Include
+ UC5 <..(Rechazar archivo que\nno es CSV) : Extend
+ (Analizar y validar\nfilas del CSV)<..(Señalar la fila con\nerror):Extend
+
+ 
+ 
+}
+note left of UC5 :El Administrador ha iniciado\n sesión en el sistema y dispone\n del .csv para realizar el alta de la empresa
+
+ADM  --> UC5
+
+
+
+@enduml

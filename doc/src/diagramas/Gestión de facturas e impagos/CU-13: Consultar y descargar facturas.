@@ -1,0 +1,14 @@
+@startuml
+title Consultar y descargar facturas
+left to right direction
+:Usuario responsable: as RESP
+
+ rectangle "Sistema Turbine" as SistemaTurbine {
+ (Consultar y descargar\nfacturas) as UC13
+ UC13 ..>(Mostrar facturas y\nseleccionar detalle):Include
+ UC13 ..>(Generar, descargar factura y\nnotificar a la base de datos):Include
+ (Generar, descargar factura y\nnotificar a la base de datos)<..(Notificar error al generar\nel archivo):Extend
+ }
+RESP --> UC13
+
+@enduml

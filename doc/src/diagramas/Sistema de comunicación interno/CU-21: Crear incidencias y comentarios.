@@ -1,0 +1,17 @@
+@startuml 
+title Crear comentarios
+left to right direction
+
+:Usuario responsable: as RESP
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Abrir una factura) as UC17
+ UC17 ..>(Leer comentarios de\notros empleados):Include
+ UC17 ..>(Dejar un comentario):Include
+ (Dejar un comentario) ..> (Mencionar a otro empleado):Extend
+ (Mencionar a otro empleado) ..> (Notificación le llega a\n ese empleado):Include
+}
+
+RESP -- UC17
+
+@enduml

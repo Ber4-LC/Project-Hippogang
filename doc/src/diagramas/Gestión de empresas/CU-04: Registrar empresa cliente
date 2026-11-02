@@ -1,0 +1,22 @@
+@startuml 
+title Registrar empresa
+left to right direction
+:Administrador: as ADM
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Registrar empresa\ncliente) as UC4
+ UC4 ..>(Introducir datos\nde la empresa) :Include
+ UC4 ..>(Validar campos\nobligatorios) : Include
+ UC4 ..>(Almacenar cliente y\nregistrar la acción) : Include
+ UC4<.down.(Ofrecer reactivar cliente\neliminado):Extend
+ UC4<.down.(Generar primera factura\nprorrateada):Extend
+ (Validar campos\nobligatorios)<..(Excepción si datos fiscales incompletos\no inválidos):Extend
+
+ 
+ 
+}
+note left of UC4 :El Administrador ha iniciado sesión\n en el sistema
+note right of UC4 :Prorrateo: solo si el cliente\n se registra a mitad de mes
+
+ADM  --> UC4
+@enduml

@@ -1,0 +1,16 @@
+@startuml 
+title Consultar notificaciones
+left to right direction
+
+:Usuario responsable: as RESP
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Consultar panel\nde control) as UC17
+ UC17 ..>(Mostrar notificaciones\npendientes de atender):Include
+ UC17 ..>(Mostrar la incidencia seleccionada\npara revisarla):Include
+ (Mostrar la incidencia seleccionada\npara revisarla) ..> (Marcar notificación como leída):Extend
+}
+
+RESP -- UC17
+
+@enduml

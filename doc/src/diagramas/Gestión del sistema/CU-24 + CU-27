@@ -1,0 +1,19 @@
+@startuml 
+title Historial de cambios
+left to right direction
+
+:Superadmin: as SADM
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ 
+ (Revisión de historiales y\ncopias de seguridad) as UC20
+ UC20 ..>(Filtrar la vista\na revisar):Extend
+ UC20 ..>(Mostrar registros detallados):Extend
+ UC20 ..>(Generar copia de seguridad\no descargar archivos):Extend
+ (Filtrar la vista\na revisar)..>(Rechazar filtros\nerróneos):Extend
+ UC20 ..> (Revertir cambio):Extend
+}
+
+SADM -- UC20
+
+@enduml

@@ -1,31 +1,71 @@
-Reunión 30/09/26
+# Informe Scrum: Entrega 1 
+ 
+## 1. Identificación del equipo 
 
-  Organización de grupo y tareas. 
-  Preselección de requisitos a expensas de revisión.
-  Asignación de roles del Grupo.
-  Obvia creación del github.
-  Selección IMPORTANTE del nombre HippoGang.
+| Mario López Cano | Scrum Master | 
+| Emilio Calvo Fernández | Miembro |
+| Benjamín Lavinge Arbarello | Miembro | 
+| Ricardo Iribarnegaray Barrenechea | Miembro | 
+| Juan Pérez Rodriíguez | Miembro | 
+| Miguel Moreno García | Miembro |
+ 
 
-Reunión 07/10/26
+## 3. Sprints realizados 
+ 
+### Sprint 1 
+ 
+- Fecha de inicio: 30/09/26
+- Fecha de finalización: 23/10/26
+- Objetivo del Sprint: Completar la primera entrega.
+- Tareas planificadas: 
+    Creación del trabajo Git.
+    Redactar los requisitos.
+    Redactar los casos de usos.
+    Hacer los diagramas de casos de usos.
+- Reuniones realizadas: 
+    Reunión 30/09/26
+    
+      Organización de grupo y tareas. 
+      Preselección de requisitos a expensas de revisión.
+      Asignación de roles del Grupo.
+      Obvia creación del github.
+      Selección IMPORTANTE del nombre HippoGang.
+    
+    Reunión 07/10/26
+    
+      Inicio de UML por dos trabajadores.
+      Esbozo inicial del mismo.
+    
+      Revision de la ampliacion de los requisitos de la aplicacion. 
+      Edicion del informe de los requisitos a .md
+      Añadir al informe de requisitos varios añadidos con el nuevo template
+    
+    Reunión 14/10/26
+    
+      Sprint Backlog:
+        - Se creó un primer esbozo del diagrama de casos de uso.
+        - Se añadieron más requisitos faltantes.
+      Reunión Scrum:
+        - Repartición de tareas para este sprint: 
+          Benjamín, Miguel y Mario se reparten las partes restantes del pdf de la ampliación de requisitos para sacar la información restante.
+          Emilio se encarga de rellenar el resto de la plantilla de Requisitos.md.
+          Juan y Ricardo comenzarán a idear y organizar todos los diagramas de casos de uso.
+      La idea es tener estas cosas listas para que la siguiente reunión todos los miembros puedan revisar el trabajo de los compañeros y redistribuirse las tareas
+      para terminar las versiones definitivas de las partes que no estén completas.
+ 
+    Reunión 21/10/26
+      Sprint Backlog:
+       - El archivo Requisitos .md está casi completo, sólo faltan los puntos iniciales, los requisitos de negocio y la trazabilidad (esto depende de que estuviesen terminados los requisitos funcionales y nF)
+       - Los diagramas de caso de uso están terminados, pero se han creado 5 diagramas grandes en lugar de un diagrama para cada caso de uso.
+       - El archivo de la especificación de casos de uso está terminado, con un par de errores ya que incluye casos de uso de más (funciones automáticas internas del sistema, no casos de uso).
+      Reunión Scrum:
+        - Repartición de tareas para este sprint:
+          Ricardo, Juan y Benjamín desarmarán los diagramas de uso grandes en diagramas más pequeños para cada caso.
+          Mario ordenará y limpiará el archivo de requisitos ya que al ser hecho en colaboración hay requistos duplicados y desordenados.
+          Emilio terminará el punto 1 de la plantilla y la trazabilidad.
 
-  Inicio de UML por dos trabajadores.
-  Esbozo inicial del mismo.
-
-  Revision de la ampliacion de los requisitos de la aplicacion. 
-  Edicion del informe de los requisitos a .md
-  Añadir al informe de requisitos varios añadidos con el nuevo template
-
-Reunión 14/10/26
-
-  Sprint Backlog:
-    - Se creó un primer esbozo del diagrama de casos de uso.
-    - Se añadieron más requisitos faltantes.
-  Reunión Scrum:
-    - Repartición de tareas para este sprint: 
-      Benjamín, Miguel y Mario se reparten las partes restantes del pdf de la ampliación de requisitos para sacar la información restante.
-      Emilio se encarga de rellenar el resto de la plantilla de Requisitos.md.
-      Juan y Ricardo comenzarán a idear y organizar todos los diagramas de casos de uso.
-  La idea es tener estas cosas listas para que la siguiente reunión todos los miembros puedan revisar el trabajo de los compañeros y redistribuirse las tareas
-  para terminar las versiones definitivas de las partes que no estén completas.
+## 5. Valoración final 
+ El principal problema de esta entrega fue la falta de tener un tablero desde el primer momento, por lo que no se pudo añadir en el informe. Sin contar eso, el trabajo se realizó sin problemas,
+ utilizando una metodología de trabajo en branchs propias y Pull Requests para no sobreescribir el trabajo de otros miembros del trabajo.
     
 

@@ -1,0 +1,13 @@
+@startuml
+title Configurar plantilla de email de facturación
+left to right direction
+:Usuario responsable: as RESP
+
+ rectangle "Sistema Turbine" as SistemaTurbine {
+ (Configurar plantilla de email\nde facturación) as UC17
+ UC17 ..>(Editar plantilla de correo y\ndefinir idioma español o inglés):Include
+ UC17 ..>(Actualizar configuración del\ncliente en la base de datos):Include
+ }
+RESP --> UC17
+
+@enduml

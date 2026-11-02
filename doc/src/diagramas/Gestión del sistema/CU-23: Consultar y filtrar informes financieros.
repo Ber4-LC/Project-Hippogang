@@ -1,0 +1,16 @@
+@startuml 
+title Consultar informes financieros
+left to right direction
+
+:Administrador: as ADM
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Consultar y filtrar informes\nfinancieros) as UC19
+ UC19 ..>(Mostrar informes mensuales,\ntrimestrales y anuales):Include
+ UC19 ..>(Filtrar informes [cliente, periodo,\nresponsable, país, estado y\ntipo de factura]):Include
+ (Filtrar informes [cliente, periodo,\nresponsable, país, estado y\ntipo de factura]) ..>(Mostrar informes con\nlos filtros aplicados):Include
+}
+
+ADM -- UC19
+
+@enduml

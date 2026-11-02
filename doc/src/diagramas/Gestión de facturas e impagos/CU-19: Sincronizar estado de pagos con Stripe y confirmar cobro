@@ -1,0 +1,23 @@
+@startuml
+
+title Sincronizar estado de pagos con Stripe y confirmar cobro
+left to right direction
+:Sistema de pagos: as SPAG
+
+    (Envía información del pago recibido) as UC19
+ rectangle "Sistema Turbine" as SistemaTurbine {
+    (Factura generada)..>(Enviar notificación al cliente)
+    (Recibe la información del pago y lo \nenlaza con la factura correspondiente) as UC19B
+     UC19 ..> UC19B
+     UC19B ..> (Comprueba que el importe es correcto \n y que todos los detalles son válidos)
+(Comprueba que el importe es correcto \n y que todos los detalles son válidos) ..> (Si todo está correcto \n marca la factura como "pagada" \n y enviar una confirmación al cliente)
+(Comprueba que el importe es correcto \n y que todos los detalles son válidos) ..> (En caso de error notificar a los\n responsables de esa empresa)
+    
+ }
+    
+    (cliente realiza el pago) ..> SPAG
+
+
+SPAG ..> UC19
+
+@enduml

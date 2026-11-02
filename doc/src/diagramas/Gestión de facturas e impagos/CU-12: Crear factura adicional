@@ -1,0 +1,14 @@
+@startuml
+title Crear factura adicional
+left to right direction
+:Usuario responsable: as RESP
+
+ rectangle "Sistema Turbine" as SistemaTurbine {
+ (Crear factura adicional) as UC12
+ UC12 ..>(Introducir conceptos, importes\ny adjuntar archivos):Include
+ UC12 ..>(Verificar factura, enviarla y\nregistrarla como pendiente):Include
+ (Verificar factura, enviarla y\nregistrarla como pendiente)<..(Guardar factura para emitirla\ncon la del mes próximo):Extend
+ }
+RESP --> UC12
+
+@enduml

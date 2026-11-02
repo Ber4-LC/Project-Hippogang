@@ -1,0 +1,14 @@
+@startuml 
+title Consultar salud del sistema
+left to right direction
+
+:Superadmin: as SADM
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Entrar en la pantalla de salud del sistema) as UC19
+ UC19 ..>(Mostrar estadísticas de la salud del sistema\n (cantidad de usuarios activos,\n cantidad de requests, etc):Include
+}
+
+SADM -- UC19
+
+@enduml
