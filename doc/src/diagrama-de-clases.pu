@@ -12,11 +12,30 @@ class EmpresaCliente {
     - razonSocial : String
     - nif : String
     - domicilioFiscal : String
+    - personasDeContacto: List<Contacto>
+    - configuracionRecordatorios: ConfiguracionRecordatorios
 
     + agregarComentario(comentario : Comentario)
     + obtenerComentarios() : List<Comentario>
+    
+    + eliminarPersonaDeContacto(idAntiguo: int)
+    + añadirPersonaDeContacto(nombre: String, email: String, telefono: String, idioma: String, comunicacionAdmin: boolean)
+    + editarPersonaDeContacto(idAntiguo: int, nombre: String, email: String, telefono: String, idioma: String, comunicacionAdmin: boolean)
+
+    + editarFrecuenciaRecordatorios()
+
+    + darDeBaja()
 }
 
+
+class Contacto {
+    - idContacto : int
+    - nombre : String
+    - email : String
+    - telefono : String
+    - idioma : String
+    - admiteComunicacionesAdministrativas : boolean
+}
 
 class Suscripcion {
     - idSuscripcion : int
@@ -26,7 +45,7 @@ class Suscripcion {
     - descuento : Decimal
 
     + modificarImporte(nuevoImporte : Decimal)
-    + aplicarDescuento(descuento : Decimal)
+    + aplicarDescuento(descuento : Decimal, diasPeriodo: int)
 }
 
 
@@ -38,8 +57,32 @@ enum EstadoSuscripcion {
 
 
 class SuscripcionManager {
-    + generarFacturasMensuales()
-    + revisarPreciosAnuales()
+    {static} + generarFacturasMensuales()
+    {static} + revisarPreciosAnuales()
+
+}
+
+class ImportadorCSV {
+    + validarArchivo(archivo : File) : boolean
+    + importarEmpresa(archivo: File)
+}
+
+
+' =========================================================
+' TABLA
+' =========================================================
+
+class TablaPrecios {
+    - rangos : List<RangoPrecio>
+
+    + obtenerPrecio(ingresos : Decimal) : Decimal
+    + validarRangos() : boolean
+}
+
+class RangoPrecio {
+    - ingresoMinimo : Decimal
+    - ingresoMaximo : Decimal
+    - precioMensual : Decimal
 }
 
 
@@ -48,8 +91,11 @@ class SuscripcionManager {
 ' =========================================================
 
 
-class FacturaFactory {
+class FacturaManager {
     {static} + crearFacturaRecurrente(empresa : EmpresaCliente, suscripcion : Suscripcion) : Factura
+    {static} + crearFacturaAdicional(empresa: EmpresaCliente, importe: Decimal, programarProximoMes : boolean) : Factura
+
+    {static} + filtrarFacturas(estado : EstadoFactura, fechaInicio : Date, fechaFin : Date, tipo : TipoFactura) : List<Factura>
 }
 
 class ArchivoAdjunto {
@@ -70,6 +116,11 @@ class Factura {
     - estado : EstadoFactura
     - tipo : TipoFactura
     - archivos : List<ArchivoAdjunto>
+
+    + perdonarFactura()
+    + descargarFactura()
+    + pausarRecordatorios()
+    + reanudarRecordatorios()
 }
 
 
@@ -96,12 +147,44 @@ class Usuario {
     - nombre : String
     - email : String
     - rol : RolUsuario
+    - acceso: List<EmpresaCliente>
+    
+    + darAcceso(empresa: EmpresaCliente)
+    + quitarAcceso(empresa: EmpresaCliente)
+    + darAccesoTemporal(empresa: EmpresaCliente, dias: int)
 }
 
 enum RolUsuario {
     RESPONSABLE
     ADMIN
     SUPERADMIN
+}
+
+
+' =========================================================
+' PAGOS
+' =========================================================
+class Pago {
+    - idPago : int
+    - importe : Decimal
+    - fecha : DateTime
+    - estado : EstadoPago
+    - referencia: String
+    - factura : Factura
+}
+
+enum EstadoPago {
+    CONFIRMADO
+    REQUIERE_CONCILIACION
+}
+
+class PagoManager {
+    {static} + registrarPago(factura : Factura, importe : Decimal, referencia : String) : Pago
+    {static} + confirmarPago(pago : Pago)
+}
+
+interface ServicioPagos {
+    + obtenerPagos() : List<Pago>
 }
 
 
@@ -147,19 +230,87 @@ class Notificacion {
 }
 
 
+' =========================================================
+' MENSAJES
+' =========================================================
+
+class Plantilla {
+    - idPlantilla : int
+    - nombre : String
+    - asunto : String
+    - contenido : String
+    - idioma : String
+}
+
+class Mensaje {
+    - idMensaje : int
+    - empresa: EmpresaCliente
+    - destinatarios: List<Contacto>
+    - fechaEnvio : DateTime
+    - tipo: TipoMensaje
+    - estado : EstadoMensaje
+    - plantilla : Plantilla
+    - facturas: List<Factura>
+
+    + enviarMensaje()
+}
+
+enum EstadoMensaje {
+    EN_COLA
+    ENVIADO
+    ENTREGADO
+    FALLIDO
+    REINTENTADO
+}
+
+enum TipoMensaje {
+    FACTURA_ADICIONAL
+    FACTURA_RECURRENTE
+    RECORDATORIO
+    CONFIRMACION_PAGO
+    AVISO_CAMBIO_PRECIOS
+    OTRO
+}
+
+class MensajeManager {
+    {static} + crearMensaje(empresa: EmpresaCliente, tipo: TipoMensaje, plantilla: Plantilla, factura: Factura) : Mensaje
+}
+
+class ConfiguracionRecordatorios {
+    - diasIniciales : List<int>
+    - frecuenciaPosteriorDias : int
+}
+
+' =========================
+' Config
+' =========================
+class ConfiguracionSistema {
+    - recordatoriosPorDefecto : ConfiguracionRecordatorios
+    - tablaPrecios : TablaPrecios
+
+    + configurarRecordatoriosPorDefecto()
+    + editarTablaDePrecios()
+}
+
 ' =========================
 ' RELACIONES
 ' =========================
 
 EmpresaCliente "1" -- "1" Suscripcion : suscripcion
+EmpresaCliente "1" -- "0..*" Contacto: personasDeContacto
+EmpresaCliente "1" --> "1" ConfiguracionRecordatorios : recordatorios
+
+ImportadorCSV ..> EmpresaCliente : genera
 
 Factura "0..*" --> "1" EmpresaCliente : empresa
 
+TablaPrecios "1" --> "1..*" RangoPrecio : rangos
+SuscripcionManager ..> TablaPrecios : consulta
 
 SuscripcionManager ..> Suscripcion : usa
-SuscripcionManager ..> FacturaFactory : usa
+SuscripcionManager ..> FacturaManager : usa
 
-FacturaFactory ..> Factura : <<create>>
+FacturaManager ..> Factura : <<create>>
 
 Suscripcion --> EstadoSuscripcion : estado
 Factura --> EstadoFactura : estado
@@ -167,6 +318,15 @@ Factura --> TipoFactura : tipo
 
 
 Factura "1" --> "0..*" ArchivoAdjunto : archivos
+
+
+Pago "0..*" --> "1" Factura : factura
+Pago --> EstadoPago : estado
+
+PagoManager ..> Pago : gestiona
+PagoManager ..> Factura : actualiza
+PagoManager ..> MensajeManager : envia confirmacion
+PagoManager ..> ServicioPagos : consulta
 
 
 Usuario --> RolUsuario : rol
@@ -182,5 +342,20 @@ Comentario "1" --> "0..*" Notificacion : crea
 Comentario "0..*" --> "1" EmpresaCliente : empresa
 
 
+Usuario "0..*" --> "0..*" EmpresaCliente : acceso
+
+
+Mensaje "0..*" --> "1" EmpresaCliente : empresa
+Mensaje "0..*" --> "1..*" Contacto : destinatarios
+Mensaje --> EstadoMensaje : estado
+Mensaje --> TipoMensaje : tipo
+Mensaje "0..*" --> "1" Plantilla : plantilla
+MensajeManager ..> Mensaje : crea
+FacturaManager ..> MensajeManager : llama al crear
+
+ConfiguracionSistema "1" --> "1" ConfiguracionRecordatorios : recordatoriosPorDefecto
+ConfiguracionSistema "1" --> "1" TablaPrecios : tablaPrecios
+
+TablaPrecios "1" --> "1..*" RangoPrecio : rangos
 
 @enduml
