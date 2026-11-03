@@ -1,0 +1,13 @@
+@startuml 
+title Consultar panel de control
+left to right direction
+
+:Usuario responsable: as RESP
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Consultar panel\nde control) as UC20
+}
+
+RESP -- UC20
+
+@enduml
