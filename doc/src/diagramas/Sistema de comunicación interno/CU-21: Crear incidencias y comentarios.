@@ -1,17 +1,15 @@
 @startuml 
-title Crear comentarios
+title Crear incidencias y comentarios
 left to right direction
 
 :Usuario responsable: as RESP
 
 rectangle "Sistema Turbine" as SistemaTurbine {
- (Abrir una factura) as UC17
- UC17 ..>(Leer comentarios de\notros empleados):Include
- UC17 ..>(Dejar un comentario):Include
- (Dejar un comentario) ..> (Mencionar a otro empleado):Extend
- (Mencionar a otro empleado) ..> (Notificación le llega a\n ese empleado):Include
+ (Crear incidencias\ny comentarios) as UC21
+ UC21 ..>(Guardar la incidencia\no el comentario):Include
+ UC21 ..>(Generar notificación interna al\nempleado mencionado):Include
 }
 
-RESP -- UC17
+RESP -- UC21
 
 @enduml
