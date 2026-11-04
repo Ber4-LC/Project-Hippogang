@@ -1,0 +1,16 @@
+@startuml
+title Cerrar periodo económico
+left to right direction
+ 
+:Superadmin: as SADM
+ 
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Cerrar periodo\neconómico) as UC17
+ UC17 ..>(Verificar que no hay datos sensibles\nni facturas sin resolver):Include
+ UC17 ..>(Bloquear las modificaciones\ndel periodo):Include
+ UC17 ..>(Crear paquete del periodo\nen el tipo de archivo elegido):Include
+ (Enviar el paquete\na la gestoría) ..> UC17:Extend
+}
+ 
+SADM -- UC17
+@enduml
