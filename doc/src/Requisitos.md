@@ -157,7 +157,7 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-08 | El rol admin debe poder eliminar un cliente. | ... |
 | FR-09 | El rol admin debe poder editar varios parámetros para cada clientes: importe recurrente, importes adicionales, frecuencia de recordatorios de pago. Ciertos cambios de gran tamaño deben pasar por el superadmin. | ... |
 | FR-10 | El rol admin debe poder importar datos de clientes nuevos mediante CSV, lo cual debe mostrar una vista previa en la cual el admin pueda decidir que datos mantener en caso de haber datos corruptos u otros errores de formato. | ... |
-| FR-11 | El rol admin debe poder filtrar los informes por periodo, cliente, responsable interno, país, sector, estado de factura y tipo (recurrente/adicional) | 32 |
+| FR-11 | El rol admin debe poder filtrar los informes por periodo, cliente, responsable interno, país, sector, estado de factura y tipo (recurrente/adicional) | 31 |
 | FR-12 | El rol admin debe poder ver el estado de los mensajes, mostrando si están en cola, enviados, entregados, fallidos o reintentados. | ... |
 | FR-13 | Los usuarios deben poder consultar las facturas de los clientes a los que esté asignado, así como descargarlas. | ... |
 | FR-14 | Los usuarios deben poder iniciar sesión con su email @turbineh.com y su contraseña, entrando con los privilegios correspondientes a su rol. | ... |
@@ -165,54 +165,53 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-16 | Los usuarios deben poder filtrar las facturas (pagadas/impagadas, por fecha, recurrente/adicional) | ... |
 | FR-17 | Los usuarios deben poder marcar una factura en periodo de impago como "en pausa" para detener los recordatorios periodicos. | ... |
 | FR-18 | Los usuarios deben poder editar las personas de contacto de una empresa. | ... |
-| FR-19 | Los usuarios deben poder poder marcar las notificaciones como leídas o resueltas. | 60 |
+| FR-19 | Los usuarios deben poder poder marcar las notificaciones como leídas o resueltas. | 59 |
 | FR-20 | Los usuarios deben poder dar descuentos o pruebas gratuitas a empresas. | ... |
 | FR-21 | Los usuarios deben poder establecer la plantilla de los emails de factura a sus clientes, y debe quedar registrado la plantilla usada. | ... |
 | FR-22 | Los usuarios deben poder realizar acciones a varios clientes a la vez pero debe pedir confirmación y mostrar a cuántos elementos está afectando y cómo. | ... |
 | FR-23 | Los usuarios deben poder abrir incidencias hacia un cliente, especificando un responsable, estado, prioridad y comentarios. | ... |
 | FR-24 | Los usuarios deben poder dejar comentarios asociados a elementos, mencionar a otro usuario le envía una notificación | ... |
-| FR-25 | Los usuarios deben poder etiquetar clientes (partner, estratégico, beta, etc) | ... |
-| FR-26 | Los usuarios deben poder adjuntar archivos a las facturas. | ... |
-| FR-27 | El sistema debe poder aportar datos a traves de una API. | ... |
-| FR-28 | El sistema debe producir facturas mensuales a cada cliente el primer día del mes, así como las facturas adicionales. | ... |
-| FR-29 | EL sistema debe enviar un flujo automático de recordatorios de pago, en un principio 3 días y 5 días después de la factura, y luego cada 2 días. | ... |
-| FR-30 | EL sistema debe hacer un seguimiento del estado de pagos de todas las facturas automáticamente mediante conexión con Stripe. | ... |
-| FR-31 | El sistema enviará una confirmación automática al cliente cuando las facturas sean pagadas con éxito. | ... |
-| FR-32 | El sistema debe enviar a los roles admin un seguimiento mensual/trimestral/anual de las finanzas de la empresa. | ... |
-| FR-33 | El sistema cuádo envía una factura, debe quedar registrado a qué destinatario se envío en ese momento | ... |
-| FR-34 | El sistema debe hacer anualmente una revisión de los rangos en los que se encuentra cada empresa y reajustar sus precios recurrentes, con validación humana. | ... |
-| FR-35 | El sistema debe generar copias de seguridad con una política que se pueda definir y que se pueda restaurar. | ... |
-| FR-36 | El sistema debe enviar una notificación de eventos relevantes a los encargados de cada empresa. | ... |
-| FR-37 | El sistema debe mostrar facturas que vencen pronto, facturas vencidas, pagos que necesitan conciliación, clientes con problemas de entrega y aprobaciones pendientes. | ... |
-| FR-38 | El sistema debe tener una pantalla sencilla de la salud del sistema. | ... |
-| FR-39 | El sistema debe mostrar con detalle los fallos que ocurran al administrador y mostrar al usuario solo un código de incidencia. | ... |
-| FR-40 | El sistema debe buscar posibles clientes duplicados antes de crearlos, permitiendo que los campos no necesarios para la emisión de facturas no tengan datos. | ... |
-| FR-41 | El sistema debe registrar el historial de cada usuario y permitir al administrador acceder a ellos. | ... |
-| FR-42 | El sistema debe permitir marcar a usuarios como favoritos y acceder a ellos, así como a los usuarios recientemente consultados. | ... |
-| FR-43 | El sistema debe invalidar las sesiones de un usuario cuando un administrador desactiva a este usuario. | ... |
-| FR-44 | El sistema debe permitir configurar un objetivo mensual o anual de cobros y poder ver su progreso por parte del administrador; si se cambia de objetivo, debe guardarse el anterior objetivo establecido. | ... |
-| FR-45 | El sistema debe calcular correctamente los importes, reflejando exactamente lo que se guarda. | ... |
-| FR-46 | El sistema debe permitir gestionar el estado de un usuario mediante diferentes etiquetas, pudiendo estar prospecto importado, pendiente de activación, activo, inactivo, etc. | ... |
-| FR-47 | El sistema debe bloquear y explicar en caso de que se intente activar la recurrencia de un usuario sin tener los datos fiscales suficientes para poder activarla. | ... |
-| FR-48 | El sistema debe tener una bandeja de aprobaciones que permita a los usuarios ver el estado de sus solicitudes y comentarios de los administradores asociados a ellas. | 24 |
-| FR-49 | El sistema debe impedir que el usuario apruebe sus propias solicitudes. | ... |
-| FR-50 | El sistema debe permitir configurar los umbrales económicos y las operaciones que requieren separación de funciones para importes sensibles. | ... |
-| FR-51 | El sistema debe impedir que el usuario genere varias facturas iguales si este lo solicita en varias ocasiones. Para estos casos se mostrara un mensaje informando que está en proceso. | ... |
-| FR-52 | El sistema debe permitir que los administradores cierren periodos económicos mensuales o trimestrales. Una vez cerrado el periodo, no se permitirán modificaciones económicas ordinarias sobre los registros incluidos en él. | 53 |
-| FR-53 | El sistema debe permitir que los administradores realicen modificaciones excepcionales en los periodos económicos cerrados mediante un procedimiento controlado y auditado. | 52 |
-| FR-54 | El sistema debe poder exportar un paquete mensual o trimestral para la gestoría en un formato configurable por el administrador, así como generar cuándo se generó y el período que cubría. | ... |
-| FR-55 | El sistema debe permitir registrar y consultar si el canal de contacto de usuario admite comunicaciones administrativas. | ... |
-| FR-56 | El sistema debe registrar las exportaciones realizadas con fecha/hora, usuario que lo realizó, filtros aplicados y volumen de datos exportados. Las exportaciones masivas de datos deben quedar registradas. | ... |
-| FR-57 | El sistema debe poder conservar los documentos un tiempo configurable por el administrador, así como regenerarlos si se permiten. Se debe diferenciar entre un archivo temporal de un documento contable a conservar. | ... |
-| FR-58 | El sistema debe trasladar las alertas programadas para los findes de semana o festivos al próximo día laborable y debe ser configurable por el administrador. | ... |
-| FR-59 | El sistema deberá mostrar cada factura en la moneda de emisión y permitir la conversión de importes a otras monedas para la elaboración de informes, diferenciando los importes originales de los convertidos. | ... |
-| FR-60 | El sistema permite realizar comentarios por parte de los usuarios y los administradores, diferenciando los comentarios de los usuarios como comentarios normales y los comentarios de los administradores como notas restringidas administrativas. | ... |
-| FR-61 | Se deben anonimizar los datos de los usuarios siempre y cuando los datos no invaliden facturas historicas| ... |
-| FR-62 | El sistema debe guardar métricas del tiempo empleado para realizar operaciones y clics necesarios| ... |
-| FR-63 | El sistema debe hacer guardado de borradores en caso de cierre accidental | ... |
-| FR-64 | El sistema debe permitir revertir acciones siempre y cuando sea legal revertirlas o esté permitido  | ... |
-| FR-65 | Si el sistema recibe un pago de una factura el cual no está completamente correcto (importe equivocado, origen incorrecto, etc), notificará a los responsables de la empresa a la que correspondía la factura.  | ... |
-| FR-66 | El sistema debe calcular y generar automáticamente una primera factura prorrateada de forma proporcional a los días restantes del mes cuando una empresa cliente sea dada de alta una vez iniciado el periodo mensual. | ... |
+| FR-25 | Los usuarios deben poder adjuntar archivos a las facturas. | ... |
+| FR-26 | El sistema debe poder aportar datos a traves de una API. | ... |
+| FR-27 | El sistema debe producir facturas mensuales a cada cliente el primer día del mes, así como las facturas adicionales. | ... |
+| FR-28 | EL sistema debe enviar un flujo automático de recordatorios de pago, en un principio 3 días y 5 días después de la factura, y luego cada 2 días. | ... |
+| FR-29 | EL sistema debe hacer un seguimiento del estado de pagos de todas las facturas automáticamente mediante conexión con Stripe. | ... |
+| FR-30 | El sistema enviará una confirmación automática al cliente cuando las facturas sean pagadas con éxito. | ... |
+| FR-31 | El sistema debe enviar a los roles admin un seguimiento mensual/trimestral/anual de las finanzas de la empresa. | ... |
+| FR-32 | El sistema cuádo envía una factura, debe quedar registrado a qué destinatario se envío en ese momento | ... |
+| FR-33 | El sistema debe hacer anualmente una revisión de los rangos en los que se encuentra cada empresa y reajustar sus precios recurrentes, con validación humana. | ... |
+| FR-34 | El sistema debe generar copias de seguridad con una política que se pueda definir y que se pueda restaurar. | ... |
+| FR-35 | El sistema debe enviar una notificación de eventos relevantes a los encargados de cada empresa. | ... |
+| FR-36 | El sistema debe mostrar facturas que vencen pronto, facturas vencidas, pagos que necesitan conciliación, clientes con problemas de entrega y aprobaciones pendientes. | ... |
+| FR-37 | El sistema debe tener una pantalla sencilla de la salud del sistema. | ... |
+| FR-38 | El sistema debe mostrar con detalle los fallos que ocurran al administrador y mostrar al usuario solo un código de incidencia. | ... |
+| FR-39 | El sistema debe buscar posibles clientes duplicados antes de crearlos, permitiendo que los campos no necesarios para la emisión de facturas no tengan datos. | ... |
+| FR-40 | El sistema debe registrar el historial de cada usuario y permitir al administrador acceder a ellos. | ... |
+| FR-41 | El sistema debe permitir marcar a usuarios como favoritos y acceder a ellos, así como a los usuarios recientemente consultados. | ... |
+| FR-42 | El sistema debe invalidar las sesiones de un usuario cuando un administrador desactiva a este usuario. | ... |
+| FR-43 | El sistema debe permitir configurar un objetivo mensual o anual de cobros y poder ver su progreso por parte del administrador; si se cambia de objetivo, debe guardarse el anterior objetivo establecido. | ... |
+| FR-44 | El sistema debe calcular correctamente los importes, reflejando exactamente lo que se guarda. | ... |
+| FR-45 | El sistema debe permitir gestionar el estado de un usuario mediante diferentes etiquetas, pudiendo estar prospecto importado, pendiente de activación, activo, inactivo, etc. | ... |
+| FR-46 | El sistema debe bloquear y explicar en caso de que se intente activar la recurrencia de un usuario sin tener los datos fiscales suficientes para poder activarla. | ... |
+| FR-47 | El sistema debe tener una bandeja de aprobaciones que permita a los usuarios ver el estado de sus solicitudes y comentarios de los administradores asociados a ellas. | 24 |
+| FR-48 | El sistema debe impedir que el usuario apruebe sus propias solicitudes. | ... |
+| FR-49 | El sistema debe permitir configurar los umbrales económicos y las operaciones que requieren separación de funciones para importes sensibles. | ... |
+| FR-50 | El sistema debe impedir que el usuario genere varias facturas iguales si este lo solicita en varias ocasiones. Para estos casos se mostrara un mensaje informando que está en proceso. | ... |
+| FR-51 | El sistema debe permitir que los administradores cierren periodos económicos mensuales o trimestrales. Una vez cerrado el periodo, no se permitirán modificaciones económicas ordinarias sobre los registros incluidos en él. | 52 |
+| FR-52 | El sistema debe permitir que los administradores realicen modificaciones excepcionales en los periodos económicos cerrados mediante un procedimiento controlado y auditado. | 51 |
+| FR-53 | El sistema debe poder exportar un paquete mensual o trimestral para la gestoría en un formato configurable por el administrador, así como generar cuándo se generó y el período que cubría. | ... |
+| FR-54 | El sistema debe permitir registrar y consultar si el canal de contacto de usuario admite comunicaciones administrativas. | ... |
+| FR-55 | El sistema debe registrar las exportaciones realizadas con fecha/hora, usuario que lo realizó, filtros aplicados y volumen de datos exportados. Las exportaciones masivas de datos deben quedar registradas. | ... |
+| FR-56 | El sistema debe poder conservar los documentos un tiempo configurable por el administrador, así como regenerarlos si se permiten. Se debe diferenciar entre un archivo temporal de un documento contable a conservar. | ... |
+| FR-57 | El sistema debe trasladar las alertas programadas para los findes de semana o festivos al próximo día laborable y debe ser configurable por el administrador. | ... |
+| FR-58 | El sistema deberá mostrar cada factura en la moneda de emisión y permitir la conversión de importes a otras monedas para la elaboración de informes, diferenciando los importes originales de los convertidos. | ... |
+| FR-59 | El sistema permite realizar comentarios por parte de los usuarios y los administradores, diferenciando los comentarios de los usuarios como comentarios normales y los comentarios de los administradores como notas restringidas administrativas. | ... |
+| FR-60 | Se deben anonimizar los datos de los usuarios siempre y cuando los datos no invaliden facturas historicas| ... |
+| FR-61 | El sistema debe guardar métricas del tiempo empleado para realizar operaciones y clics necesarios| ... |
+| FR-62 | El sistema debe hacer guardado de borradores en caso de cierre accidental | ... |
+| FR-63 | El sistema debe permitir revertir acciones siempre y cuando sea legal revertirlas o esté permitido  | ... |
+| FR-64 | Si el sistema recibe un pago de una factura el cual no está completamente correcto (importe equivocado, origen incorrecto, etc), notificará a los responsables de la empresa a la que correspondía la factura.  | ... |
+| FR-65 | El sistema debe calcular y generar automáticamente una primera factura prorrateada de forma proporcional a los días restantes del mes cuando una empresa cliente sea dada de alta una vez iniciado el periodo mensual. | ... |
 
 
 
@@ -321,13 +320,13 @@ los requisitos de usuario y los requisitos del sistema.
 
 | Requisito de negocio | Requisito de usuario | Requisito funcional / no funcional |
 |---|---|---|
-| BR-01 | UR-01 | FR-13, FR-16, FR-57, NFR-09, NFR-27, NFR-28 | <!-- Mejorar eficiencia / consultar facturas y descargarlas -->
-| BR-01 | UR-02 | FR-15, FR-21, FR-26, FR-28, FR-45, FR-51, FR-63, NFR-04, NFR-06, NFR-08, NFR-10, NFR-11, NFR-12, FR-29 | <!-- * / crear o modificar facturas si se permite -->
-| BR-02 | UR-03 | FR-18, FR-22, FR-25 | <!-- organizar empleados y sus empresas asignadas / ver y modificar información de los clientes -->
-| BR-02 | UR-04 | FR-19, FR-23, FR-24, FR-36, FR-48, FR-60 | <!-- * / Poder comunicarse con otros empleados -->
-| BR-02 | UR-06 | FR-06, FR-08, FR-10, FR-40 | <!-- * / Admin puede añadir, eliminar y modificar empresas clientes -->
-| BR-03 | UR-01 | FR-13, FR-16, FR-37 | <!-- Registrar y controlar pagos y deudas de clientes a la hora de consultar facturas y descargarlas -->
-| BR-05 | UR-05 | FR-11, FR-32, FR-44, FR-54, FR-59, NFR-13 | <!-- Obtener informes y estadísticas sobre las finanzas de la empresa / Admin pueda consultar estadísticas varias -->
+| BR-01 | UR-01 | FR-13, FR-16, FR-56, NFR-09, NFR-27, NFR-28 | <!-- Mejorar eficiencia / consultar facturas y descargarlas -->
+| BR-01 | UR-02 | FR-15, FR-21, FR-25, FR-27, FR-44, FR-50, FR-62, NFR-04, NFR-06, NFR-08, NFR-10, NFR-11, NFR-12, NFR-25 | <!-- * / crear o modificar facturas si se permite -->
+| BR-02 | UR-03 | FR-18, FR-22, FR-45 | <!-- organizar empleados y sus empresas asignadas / ver y modificar información de los clientes -->
+| BR-02 | UR-04 | FR-19, FR-23, FR-24, FR-35, FR-47, FR-59 | <!-- * / Poder comunicarse con otros empleados -->
+| BR-02 | UR-06 | FR-06, FR-08, FR-10, FR-39 | <!-- * / Admin puede añadir, eliminar y modificar empresas clientes -->
+| BR-03 | UR-01 | FR-13, FR-16, FR-36 | <!-- Registrar y controlar pagos y deudas de clientes a la hora de consultar facturas y descargarlas -->
+| BR-05 | UR-05 | FR-11, FR-31, FR-43, FR-53, FR-58, NFR-13 | <!-- Obtener informes y estadísticas sobre las finanzas de la empresa / Admin pueda consultar estadísticas varias -->
 
 ## 9. Glosario
 
