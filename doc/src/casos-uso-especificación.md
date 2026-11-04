@@ -317,12 +317,12 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. El superadministrador selecciona una factura sin pagar y la pone en estado "saldada".  
   2. El sistema solicita confirmación de seguridad y justificación.     
   3. El superadministrador confirma la operación.  
-  4. El sistema actualiza la factura al estado "pagada" y detiene los recordatorios, modificando la base de datos así.  
+  4. El sistema actualiza la factura al estado "Condonada" y detiene los recordatorios, modificando la base de datos así.  
 - Flujos alternativos.:  
   3. Operación cancelada por el superadministrador por lo que la factura mantiene su estado de impago.  
 - Flujos de excepción (no hay).  
 - Postcondiciones:  
-  1. La deuda pasa a estar saldada y la factura a pagada.
+  1. La deuda pasa a estar condonada y la factura a impagada.
 
 
 ### CU-17: Cerrar periodo economico
