@@ -325,14 +325,14 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. La deuda pasa a estar condonada y la factura a impagada.
 
 
-### CU-17: Cerrar periodo economico
-- Nombre del caso de uso: Cerrar periodo economico
+### CU-17: Cerrar periodo económico
+- Nombre del caso de uso: Cerrar periodo económico
 - Identificador: CU-17
 - Objetivo: Impedir modificaciones de registros a partir de una fecha.
 - Actor o actores participantes:
   1. Superadministrador:
 - Precondiciones:
-  1. El superadministrador ha iniciado sesion.
+  1. El superadministrador ha iniciado sesión.
   2. No hay facturas inconclusas en la fecha a restringir.
 - Flujo principal:
   1. El superadministrador revisa que no haya factoras inconclusas.
@@ -340,7 +340,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   3. El sistema revisa que no haya datos sensibles expuestos y una verificación de seguridad de facturas no resueltas.
   4. El sistema bloquea las modificaciones de todo ese periodo.
   5. El sistema crea un paquete del periodo en un archivo del tipo seleccionado por el superadministrador.
-  6. El superadministrador puede decidir enviarlo a la gestoría o no hacerlo.
+  6. El superadministrador lo envía a la gestoría.
 - Flujo alternativo:
   3. El sistema bloquea el cierre por facturas no resueltas.
   6. El superadministrador puede decidir que ese paquete no se envíe.
