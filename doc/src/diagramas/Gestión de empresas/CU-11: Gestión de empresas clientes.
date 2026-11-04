@@ -10,8 +10,8 @@ left to right direction
 
  rectangle "Sistema Turbine" as SistemaTurbine {
  (Acceder a la configuración de la empresa) as UC11
- UC11 ..>(Cambiar datos fiscales):Extend
- (Cambiar datos fiscales) ..> (Registrar los cambios en el historial):Include
+ UC11 ..>(Cambiar datos fiscales o modificar etiqueta):Extend
+ (Cambiar datos fiscales o modificar etiqueta) ..> (Registrar los cambios en el historial):Include
  }
 
 RESP--> UC11
