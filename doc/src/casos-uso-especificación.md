@@ -217,8 +217,8 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. El Responsable ha iniciado sesión y tiene acceso a la empresa cliente.  
 - Flujo principal:  
   1. El responsable accede al menú de la empresa cliente.   
-  2. El sistema muestra los datos.  
-  3. El responsable activa la edición y cambia datos como los datos fiscales.  
+  2. El sistema muestra los datos según preferencias como favoritos o recientemente visitados.  
+  3. El responsable activa la edición y cambia datos como los datos fiscales o modifica la etiqueta asociada.  
   4. El sistema actualiza los datos de la empresa cliente.      
 - Flujos alternativos (No existen en este caso).    
 - Flujos de excepción, cuando corresponda:  
@@ -325,7 +325,32 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. La deuda pasa a estar saldada y la factura a pagada.
 
 
-### CU-17: Configurar plantilla de email de facturación.
+### CU-17: Cerrar periodo economico
+- Nombre del caso de uso: Cerrar periodo economico
+- Identificador: CU-17
+- Objetivo: Impedir modificaciones de registros a partir de una fecha.
+- Actor o actores participantes:
+  1. Superadministrador:
+- Precondiciones:
+  1. El superadministrador ha iniciado sesion.
+  2. No hay facturas inconclusas en la fecha a restringir.
+- Flujo principal:
+  1. El superadministrador revisa que no haya factoras inconclusas.
+  2. El superadministrador solicita cerrar un periodo economico.
+  3. El sistema revisa que no haya datos sensibles expuestos y una verificación de seguridad de facturas no resueltas.
+  4. El sistema bloquea las modificaciones de todo ese periodo.
+  5. El sistema crea un paquete del periodo en un archivo del tipo seleccionado por el superadministrador.
+  6. El superadministrador puede decidir enviarlo a la gestoría o no hacerlo.
+- Flujo alternativo:
+  3. El sistema bloquea el cierre por facturas no resueltas.
+  6. El superadministrador puede decidir que ese paquete no se envíe.
+- Postcondiciones:
+  1. Toda información del periodo no puede modificarse por métodos regulares a excepción de auditorias.
+  
+ 
+
+
+### CU-18: Configurar plantilla de email de facturación.
 - Nombre del caso de uso: Configurar plantilla de email de facturación.  
 - Identificador: CU-17.  
 - Objetivo: Definir y personalizar la plantilla de correo electrónico (incluyendo idioma español o inglés) que se utilizará al enviar facturas a los clientes.  
@@ -343,7 +368,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. La nueva plantilla queda activa para los siguientes envíos.  
     
   
-### CU-18: Configurar objetivos de recaudación.
+### CU-19: Configurar objetivos de recaudación.
 - Nombre del caso de uso: Configurar cobros y objetivos de recaudación.  
 - Identificador: CU-18.  
 - Objetivo: Establecer metas de cobro y visualizar su progreso en el panel de control.  
@@ -361,7 +386,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. El nuevo objetivo queda configurado y su progreso es visible.  
 
 
-### CU-19: Sincronizar estado de pagos con el Sistema de Pagos y confirmar cobro.
+### CU-20: Sincronizar estado de pagos con el Sistema de Pagos y confirmar cobro.
 - Nombre del caso de uso: Sincronizar estado de pagos con Stripe y confirmar cobro.  
 - Identificador: CU-19.  
 - Objetivo: Mantener actualizado el estado de las facturas a partir de la información de pagos proporcionada por el sistema de pagos.  
@@ -385,7 +410,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
     
 ## Especificación del diagrama 4 (Sistema de comunicación interno):
 
-### CU-20: Consultar panel de control.
+### CU-21: Consultar panel de control.
 - Nombre del caso de uso: Consultar panel de control.  
 - Identificador: CU-20.  
 - Objetivo: Mostrar en un panel las incidencias pendientes de atender.  
@@ -404,7 +429,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. El responsable visualiza las incidencias.  
   
   
-### CU-21: Crear incidencias y comentarios.
+### CU-22: Crear incidencias y comentarios.
 - Nombre del caso de uso: Crear las incidencias y comentarios.  
 - Identificador: CU-21.  
 - Objetivo: Avisar de posibles errores o incidencias para su posterior resolución.  
@@ -421,7 +446,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. La incidencia o comentario queda registrado en el historial y el destinatario recibe la notificación.  
   
   
-### CU-22: Gestionar notificaciones internas.
+### CU-23: Gestionar notificaciones internas.
 - Nombre del caso de uso: Gestionar notificaciones internas.  
 - Identificador: CU-22.  
 - Objetivo: Consultar los avisos que puedan surgir y resolverlos.  
@@ -430,9 +455,10 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 - Precondiciones:  
   1. El responsable ha iniciado sesión y tiene notificaciones pendientes.  
 - Flujo principal:  
-  1. El responsable abre la bandeja de notificaciones y las revisa.  
-  2. El responsable marca la notificación como resuelta.  
-  3. El sistema actualiza el estado de la notificación y modifica la base de datos, eliminándola de la lista de pendientes.    
+  1. El responsable abre la bandeja de notificaciones y las revisa.
+  2. El responsable filtra las notificaciones según su estado.
+  3. El responsable marca la notificación como resuelta.  
+  4. El sistema actualiza el estado de la notificación y modifica la base de datos, eliminándola de la lista de pendientes.    
 - Flujos alternativos (no hay).  
 - Flujos de excepción (no hay).  
 - Postcondiciones:  
@@ -441,7 +467,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   
 ## Especificación del diagrama 5 (Tareas del superadministrador):
 
-### CU-23: Consultar y filtrar informes financieros.
+### CU-24: Consultar y filtrar informes financieros.
 - Nombre del caso de uso: Consultar y filtrar informes financieros.  
 - Identificador: CU-23.  
 - Objetivo: Obtener y filtrar reportes del estado financiero de Turbineh.  
@@ -460,7 +486,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. El administrador obtiene el informe según los filtros aplicados.  
   
   
-### CU-24: Revisión de historiales y copias de seguridad.
+### CU-25: Revisión de historiales y copias de seguridad.
 - Nombre del caso de uso: Revisión de historiales y copias de seguridad.  
 - Identificador: CU-24.  
 - Objetivo: Supervisar los cambios manuales y el estado de las copias de seguridad.  
@@ -480,7 +506,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. El administrador verifica los informes y genera copia de seguridad.  
   
 
-### CU-25: Edición de la tabla de precios recurrentes.
+### CU-26: Edición de la tabla de precios recurrentes.
 - Nombre del caso de uso: Edición de la tabla de precios recurrentes.  
 - Identificador: CU-25.  
 - Objetivo: Actualizar las tarifas preestablecidas y reajustar precios.  
@@ -500,7 +526,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. La tabla de rangos de los precios queda actualizada y se envía una notificación a las empresas clientes.  
   
 
-### CU-26: Consultar estado del sistema.
+### CU-27: Consultar estado del sistema.
 - Nombre del caso de uso: Consultar estado del sistema.  
 - Identificador: CU-26.  
 - Objetivo: Visualizar el estado técnico del sistema y garantizar su estabilidad.  
@@ -518,7 +544,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   1. El superadministrador visualiza el estado técnico de la plataforma.  
   
   
-### CU-27: Revertir acciones previas.
+### CU-28: Revertir acciones previas.
 - Nombre del caso de uso: Revertir acciones previas.  
 - Identificador: CU-27.  
 - Objetivo: Deshacer una modificación o acción reciente en el sistema.  
@@ -535,4 +561,6 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 - Flujos de excepción:  
   3. La acción no se puede revertir por motivos legales.  
 - Postcondiciones:  
-  1. El Superadministrador revierte la acción y el sistema recupera su estado previo.  
+  1. El Superadministrador revierte la acción y el sistema recupera su estado previo.
+ 
+
