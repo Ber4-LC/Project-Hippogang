@@ -174,7 +174,7 @@ Eso corresponde al diseño, no a los requisitos.
 | FR-25 | Los usuarios deben poder adjuntar archivos a las facturas. | ... |
 | FR-26 | El sistema debe poder aportar datos a traves de una API. | ... |
 | FR-27 | El sistema debe producir facturas mensuales a cada cliente el primer día del mes, así como las facturas adicionales. | ... |
-| FR-28 | EL sistema debe enviar un flujo automático de recordatorios de pago, en un principio 3 días y 5 días después de la factura, y luego cada 2 días. | ... |
+| FR-28 | EL sistema debe enviar un flujo automático de recordatorios de pago, en un principio 3 días y 5 días después de la factura, y luego cada día. | ... |
 | FR-29 | EL sistema debe hacer un seguimiento del estado de pagos de todas las facturas automáticamente mediante conexión con Stripe. | ... |
 | FR-30 | El sistema enviará una confirmación automática al cliente cuando las facturas sean pagadas con éxito. | ... |
 | FR-31 | El sistema debe enviar a los roles admin un seguimiento mensual/trimestral/anual de las finanzas de la empresa. | ... |
