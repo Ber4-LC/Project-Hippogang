@@ -9,22 +9,40 @@ skinparam classAttributeIconSize 0
 
 class EmpresaCliente {
     - idEmpresa : int
+    - nombreComercial : String
     - razonSocial : String
     - nif : String
     - domicilioFiscal : String
+    - pais : String
+    - monedaTrabajo : String
+    - sector : String
+    - fechaAlta : Date
+    - activa : boolean
     - personasDeContacto: List<Contacto>
     - configuracionRecordatorios: ConfiguracionRecordatorios
+    - plantillaFacturacion : Plantilla
 
     + agregarComentario(comentario : Comentario)
     + obtenerComentarios() : List<Comentario>
-    
+
     + eliminarPersonaDeContacto(idAntiguo: int)
     + añadirPersonaDeContacto(nombre: String, email: String, telefono: String, idioma: String, comunicacionAdmin: boolean)
     + editarPersonaDeContacto(idAntiguo: int, nombre: String, email: String, telefono: String, idioma: String, comunicacionAdmin: boolean)
 
     + editarFrecuenciaRecordatorios()
+    + editarDatosFiscales()
+    + datosFiscalesCompletos() : boolean
 
     + darDeBaja()
+    + reactivar()
+}
+
+
+class EmpresaManager {
+    {static} + registrarEmpresa(empresa : EmpresaCliente) : EmpresaCliente
+    {static} + buscarDuplicados(empresa : EmpresaCliente) : List<EmpresaCliente>
+    {static} + darDeBaja(empresa : EmpresaCliente)
+    {static} + reactivarEmpresa(empresa : EmpresaCliente)
 }
 
 
@@ -43,6 +61,7 @@ class Suscripcion {
     - estado : EstadoSuscripcion
     - fechaInicio : Date
     - descuento : Decimal
+    - fechaFinDescuento : Date
 
     + modificarImporte(nuevoImporte : Decimal)
     + aplicarDescuento(descuento : Decimal, diasPeriodo: int)
@@ -59,17 +78,19 @@ enum EstadoSuscripcion {
 class SuscripcionManager {
     {static} + generarFacturasMensuales()
     {static} + revisarPreciosAnuales()
-
 }
+
 
 class ImportadorCSV {
     + validarArchivo(archivo : File) : boolean
+    + generarVistaPrevia(archivo : File)
     + importarEmpresa(archivo: File)
+    + importarEmpresas(archivo : File) : List<EmpresaCliente>
 }
 
 
 ' =========================================================
-' TABLA
+' TABLA DE PRECIOS
 ' =========================================================
 
 class TablaPrecios {
@@ -90,12 +111,19 @@ class RangoPrecio {
 ' FACTURAS
 ' =========================================================
 
-
 class FacturaManager {
     {static} + crearFacturaRecurrente(empresa : EmpresaCliente, suscripcion : Suscripcion) : Factura
+    {static} + crearFacturaInicialProrrateada(empresa : EmpresaCliente, suscripcion : Suscripcion, fechaAlta : Date) : Factura
     {static} + crearFacturaAdicional(empresa: EmpresaCliente, importe: Decimal, programarProximoMes : boolean) : Factura
 
+    {static} + validarFactura(factura : Factura) : boolean
+    {static} + buscarFacturasProgramadas(empresa : EmpresaCliente) : List<Factura>
     {static} + filtrarFacturas(estado : EstadoFactura, fechaInicio : Date, fechaFin : Date, tipo : TipoFactura) : List<Factura>
+}
+
+class ConceptoFactura {
+    - descripcion : String
+    - importe : Decimal
 }
 
 class ArchivoAdjunto {
@@ -113,12 +141,17 @@ class Factura {
     - fechaEmision : Date
     - fechaVencimiento : Date
     - importe : Decimal
+    - moneda : String
     - estado : EstadoFactura
     - tipo : TipoFactura
+    - conceptos : List<ConceptoFactura>
     - archivos : List<ArchivoAdjunto>
+    - recordatoriosPausados : boolean
+    - programadaProximoMes : boolean
 
-    + perdonarFactura()
+    + condonarDeuda(justificacion : String)
     + descargarFactura()
+    + guardarBorrador()
     + pausarRecordatorios()
     + reanudarRecordatorios()
 }
@@ -129,6 +162,7 @@ enum EstadoFactura {
     EMITIDA
     IMPAGADA
     PAGADA
+    CONDONADA
     CANCELADA
 }
 
@@ -139,19 +173,23 @@ enum TipoFactura {
 
 
 ' =========================================================
-' USUARIOS
+' USUARIOS Y AUTENTICACION
 ' =========================================================
 
 class Usuario {
     - idUsuario : int
     - nombre : String
     - email : String
+    - passwordHash : String
+    - activo : boolean
     - rol : RolUsuario
     - acceso: List<EmpresaCliente>
-    
+
     + darAcceso(empresa: EmpresaCliente)
     + quitarAcceso(empresa: EmpresaCliente)
     + darAccesoTemporal(empresa: EmpresaCliente, dias: int)
+    + activar()
+    + desactivar()
 }
 
 enum RolUsuario {
@@ -160,16 +198,36 @@ enum RolUsuario {
     SUPERADMIN
 }
 
+class Sesion {
+    - idSesion : String
+    - fechaInicio : DateTime
+    - ultimaActividad : DateTime
+    - activa : boolean
+    - usuario : Usuario
+
+    + actualizarActividad()
+    + cerrar()
+}
+
+class AutenticacionManager {
+    {static} + iniciarSesion(email : String, password : String) : Sesion
+    {static} + cerrarSesion(sesion : Sesion)
+    {static} + invalidarSesiones(usuario : Usuario)
+    {static} + validarDominioCorporativo(email : String) : boolean
+}
+
 
 ' =========================================================
 ' PAGOS
 ' =========================================================
+
 class Pago {
     - idPago : int
     - importe : Decimal
     - fecha : DateTime
     - estado : EstadoPago
     - referencia: String
+    - origen : String
     - factura : Factura
 }
 
@@ -179,7 +237,9 @@ enum EstadoPago {
 }
 
 class PagoManager {
+    {static} + sincronizarPagos()
     {static} + registrarPago(factura : Factura, importe : Decimal, referencia : String) : Pago
+    {static} + validarPago(pago : Pago) : EstadoPago
     {static} + confirmarPago(pago : Pago)
 }
 
@@ -189,7 +249,7 @@ interface ServicioPagos {
 
 
 ' =========================================================
-' COMENTARIOS
+' COMENTARIOS E INCIDENCIAS
 ' =========================================================
 
 class Comentario {
@@ -200,7 +260,7 @@ class Comentario {
     - autor : Usuario
     - mencionados : List<Usuario>
     - empresa: EmpresaCliente
-    
+
 
     + obtenerMencionados() : List<Usuario>
     + notificarMencionados(mencionados: List<Usuario>)
@@ -209,6 +269,39 @@ class Comentario {
 enum TipoComentario {
     NORMAL
     NOTA_ADMINISTRATIVA
+}
+
+
+class Incidencia {
+    - idIncidencia : int
+    - contenido : String
+    - fecha : DateTime
+    - estado: EstadoIncidencia
+    - autor : Usuario
+    - prioridad: PrioridadIncidencia
+    - empresa: EmpresaCliente
+    - comentarios : List<Comentario>
+
+    + cambiarEstado(estadoNuevo: EstadoIncidencia)
+    + cambiarPrioridad(prioridadNueva : PrioridadIncidencia)
+    + agregarComentario(comentario : Comentario)
+}
+
+enum EstadoIncidencia {
+    ABIERTA
+    EN_PROCESO
+    SOLUCIONADA
+}
+
+enum PrioridadIncidencia {
+    BAJA
+    MEDIA
+    ALTA
+}
+
+class IncidenciaManager {
+    {static} + crearIncidencia(empresa : EmpresaCliente, autor : Usuario, responsable : Usuario, prioridad : PrioridadIncidencia, contenido : String) : Incidencia
+    {static} + obtenerPendientes() : List<Incidencia>
 }
 
 
@@ -229,6 +322,11 @@ class Notificacion {
     + abrirOrigen()
 }
 
+class NotificacionManager {
+    {static} + crearNotificacion(destinatario : Usuario, mensaje : String) : Notificacion
+    {static} + filtrarNotificaciones(leida : boolean, resuelta : boolean) : List<Notificacion>
+}
+
 
 ' =========================================================
 ' MENSAJES
@@ -239,13 +337,15 @@ class Plantilla {
     - nombre : String
     - asunto : String
     - contenido : String
-    - idioma : String
+
+    + editar(asunto : String, contenido : String, idioma : String)
 }
 
 class Mensaje {
     - idMensaje : int
     - empresa: EmpresaCliente
     - destinatarios: List<Contacto>
+    - destinatariosEnvio : List<String>
     - fechaEnvio : DateTime
     - tipo: TipoMensaje
     - estado : EstadoMensaje
@@ -274,6 +374,7 @@ enum TipoMensaje {
 
 class MensajeManager {
     {static} + crearMensaje(empresa: EmpresaCliente, tipo: TipoMensaje, plantilla: Plantilla, factura: Factura) : Mensaje
+    {static} + generarRecordatoriosPendientes()
 }
 
 class ConfiguracionRecordatorios {
@@ -281,9 +382,167 @@ class ConfiguracionRecordatorios {
     - frecuenciaPosteriorDias : int
 }
 
-' =========================
-' Config
-' =========================
+
+' =========================================================
+' APROBACIONES
+' =========================================================
+
+class SolicitudAprobacion {
+    - idSolicitud : int
+    - fechaSolicitud : DateTime
+    - descripcion : String
+    - importe : Decimal
+    - estado : EstadoAprobacion
+    - solicitante : Usuario
+    - aprobador : Usuario
+    - empresa : EmpresaCliente
+    - comentarioResolucion : String
+
+    + aprobar(aprobador : Usuario, comentario : String)
+    + rechazar(aprobador : Usuario, comentario : String)
+}
+
+enum EstadoAprobacion {
+    PENDIENTE
+    APROBADA
+    RECHAZADA
+}
+
+class AprobacionManager {
+    {static} + requiereAprobacion(importe : Decimal) : boolean
+    {static} + crearSolicitud(solicitante : Usuario, empresa : EmpresaCliente, importe : Decimal, descripcion : String) : SolicitudAprobacion
+    {static} + obtenerPendientes() : List<SolicitudAprobacion>
+}
+
+
+' =========================================================
+' PERIODOS ECONOMICOS Y GESTORIA
+' =========================================================
+
+class PeriodoEconomico {
+    - idPeriodo : int
+    - fechaInicio : Date
+    - fechaFin : Date
+    - tipo : TipoPeriodo
+    - estado : EstadoPeriodo
+    - fechaCierre : DateTime
+
+    + cerrar()
+    + estaCerrado() : boolean
+}
+
+enum EstadoPeriodo {
+    ABIERTO
+    CERRADO
+}
+
+enum TipoPeriodo {
+    MENSUAL
+    TRIMESTRAL
+    ANUAL
+}
+
+class PaqueteGestoria {
+    - idPaquete : int
+    - formato : String
+    - fechaGeneracion : DateTime
+    - referenciaArchivo : String
+    - periodo : PeriodoEconomico
+}
+
+class PeriodoEconomicoManager {
+    {static} + validarCierre(periodo : PeriodoEconomico) : boolean
+    {static} + cerrarPeriodo(periodo : PeriodoEconomico, formato : String) : PaqueteGestoria
+    {static} + realizarModificacionExcepcional(periodo : PeriodoEconomico, justificacion : String)
+}
+
+
+' =========================================================
+' AUDITORIA E HISTORIAL
+' =========================================================
+
+class RegistroAuditoria {
+    - idRegistro : int
+    - fecha : DateTime
+    - accion : String
+    - resultado : String
+    - detalles : String
+    - entidadAfectada : String
+    - idEntidad : String
+    - automatico : boolean
+    - reversible : boolean
+    - usuario : Usuario
+}
+
+class AuditoriaManager {
+    {static} + registrarAccion(accion : String, usuario : Usuario, resultado : String, detalles : String) : RegistroAuditoria
+    {static} + registrarProcesoAutomatico(accion : String, resultado : String, detalles : String) : RegistroAuditoria
+    {static} + filtrarHistorial(fechaInicio : Date, fechaFin : Date, usuario : Usuario) : List<RegistroAuditoria>
+    {static} + revertirAccion(registro : RegistroAuditoria) : boolean
+}
+
+
+' =========================================================
+' COPIAS DE SEGURIDAD
+' =========================================================
+
+class CopiaSeguridad {
+    - idCopia : int
+    - fecha : DateTime
+    - referenciaArchivo : String
+    - estado : EstadoCopiaSeguridad
+}
+
+enum EstadoCopiaSeguridad {
+    GENERANDO
+    DISPONIBLE
+    FALLIDA
+}
+
+class CopiaSeguridadManager {
+    {static} + generarCopia() : CopiaSeguridad
+    {static} + restaurarCopia(copia : CopiaSeguridad)
+    {static} + listarCopias() : List<CopiaSeguridad>
+}
+
+
+' =========================================================
+' INFORMES Y OBJETIVOS
+' =========================================================
+
+class ObjetivoCobro {
+    - idObjetivo : int
+    - importeObjetivo : Decimal
+    - tipoPeriodo : TipoPeriodo
+    - fechaInicio : Date
+    - fechaFin : Date
+    - activo : boolean
+}
+
+class ObjetivoCobroManager {
+    {static} + configurarObjetivo(importe : Decimal, tipoPeriodo : TipoPeriodo) : ObjetivoCobro
+    {static} + calcularProgreso(objetivo : ObjetivoCobro) : Decimal
+}
+
+class InformeFinanciero {
+    - fechaInicio : Date
+    - fechaFin : Date
+    - totalFacturado : Decimal
+    - totalCobrado : Decimal
+    - totalPendiente : Decimal
+    - moneda : String
+}
+
+class InformeFinancieroManager {
+    {static} + generarInforme(fechaInicio : Date, fechaFin : Date) : InformeFinanciero
+    {static} + filtrarInformes(fechaInicio : Date, fechaFin : Date, empresa : EmpresaCliente, responsable : Usuario, pais : String, sector : String, estadoFactura : EstadoFactura, tipoFactura : TipoFactura) : List<InformeFinanciero>
+}
+
+
+' =========================================================
+' CONFIGURACION
+' =========================================================
+
 class ConfiguracionSistema {
     - recordatoriosPorDefecto : ConfiguracionRecordatorios
     - tablaPrecios : TablaPrecios
@@ -292,70 +551,161 @@ class ConfiguracionSistema {
     + editarTablaDePrecios()
 }
 
-' =========================
-' RELACIONES
-' =========================
+
+' =========================================================
+' RELACIONES - EMPRESAS Y SUSCRIPCIONES
+' =========================================================
 
 EmpresaCliente "1" -- "1" Suscripcion : suscripcion
-EmpresaCliente "1" -- "0..*" Contacto: personasDeContacto
+EmpresaCliente "1" -- "0..*" Contacto : personasDeContacto
 EmpresaCliente "1" --> "1" ConfiguracionRecordatorios : recordatorios
+EmpresaCliente "0..*" --> "0..1" Plantilla : plantillaFacturacion
 
+EmpresaManager ..> EmpresaCliente : gestiona
+EmpresaManager ..> FacturaManager : genera primera factura
 ImportadorCSV ..> EmpresaCliente : genera
-
-Factura "0..*" --> "1" EmpresaCliente : empresa
-
-TablaPrecios "1" --> "1..*" RangoPrecio : rangos
-SuscripcionManager ..> TablaPrecios : consulta
-
-SuscripcionManager ..> Suscripcion : usa
-SuscripcionManager ..> FacturaManager : usa
-
-FacturaManager ..> Factura : <<create>>
+ImportadorCSV ..> EmpresaManager : usa
 
 Suscripcion --> EstadoSuscripcion : estado
+SuscripcionManager ..> Suscripcion : usa
+SuscripcionManager ..> TablaPrecios : consulta
+SuscripcionManager ..> FacturaManager : usa
+
+
+' =========================================================
+' RELACIONES - FACTURAS
+' =========================================================
+
+Factura "0..*" --> "1" EmpresaCliente : empresa
 Factura --> EstadoFactura : estado
 Factura --> TipoFactura : tipo
-
-
+Factura "1" --> "1..*" ConceptoFactura : conceptos
 Factura "1" --> "0..*" ArchivoAdjunto : archivos
 
+FacturaManager ..> Factura : <<create>>
+FacturaManager ..> MensajeManager : llama al crear
 
-Pago "0..*" --> "1" Factura : factura
+
+' =========================================================
+' RELACIONES - USUARIOS Y AUTENTICACION
+' =========================================================
+
+Usuario --> RolUsuario : rol
+Usuario "0..*" --> "0..*" EmpresaCliente : acceso
+
+Sesion "0..*" --> "1" Usuario : usuario
+AutenticacionManager ..> Usuario : autentica
+AutenticacionManager ..> Sesion : gestiona
+
+
+' =========================================================
+' RELACIONES - PAGOS
+' =========================================================
+
+Pago "0..*" --> "0..1" Factura : factura
 Pago --> EstadoPago : estado
 
 PagoManager ..> Pago : gestiona
 PagoManager ..> Factura : actualiza
 PagoManager ..> MensajeManager : envia confirmacion
+PagoManager ..> NotificacionManager : avisa conciliacion
 PagoManager ..> ServicioPagos : consulta
 
 
-Usuario --> RolUsuario : rol
+' =========================================================
+' RELACIONES - COMENTARIOS, INCIDENCIAS Y NOTIFICACIONES
+' =========================================================
 
 Comentario "0..*" --> "1" Usuario : autor
 Comentario "0..*" --> "0..*" Usuario : mencionados
-
 Comentario --> TipoComentario : tipo
-
-Notificacion "0..*" --> "1" Usuario : destinatario
+Comentario "0..*" --> "1" EmpresaCliente : empresa
+Comentario "0..*" --> "0..1" Incidencia : incidencia
 Comentario "1" --> "0..*" Notificacion : crea
 
-Comentario "0..*" --> "1" EmpresaCliente : empresa
+Incidencia "0..*" --> "1" Usuario : autor
+Incidencia "0..*" --> "1" Usuario : responsable
+Incidencia "0..*" --> "1" EmpresaCliente : empresa
+Incidencia --> EstadoIncidencia : estado
+Incidencia --> PrioridadIncidencia : prioridad
+Incidencia "1" --> "0..*" Comentario : comentarios
+
+IncidenciaManager ..> Incidencia : gestiona
+IncidenciaManager ..> NotificacionManager : notifica
+
+Notificacion "0..*" --> "1" Usuario : destinatario
+NotificacionManager ..> Notificacion : gestiona
 
 
-Usuario "0..*" --> "0..*" EmpresaCliente : acceso
-
+' =========================================================
+' RELACIONES - MENSAJES
+' =========================================================
 
 Mensaje "0..*" --> "1" EmpresaCliente : empresa
 Mensaje "0..*" --> "1..*" Contacto : destinatarios
+Mensaje "0..*" --> "0..*" Factura : facturas
 Mensaje --> EstadoMensaje : estado
 Mensaje --> TipoMensaje : tipo
 Mensaje "0..*" --> "1" Plantilla : plantilla
+
 MensajeManager ..> Mensaje : crea
-FacturaManager ..> MensajeManager : llama al crear
+
+
+' =========================================================
+' RELACIONES - CONFIGURACION Y PRECIOS
+' =========================================================
 
 ConfiguracionSistema "1" --> "1" ConfiguracionRecordatorios : recordatoriosPorDefecto
 ConfiguracionSistema "1" --> "1" TablaPrecios : tablaPrecios
-
 TablaPrecios "1" --> "1..*" RangoPrecio : rangos
 
+
+' =========================================================
+' RELACIONES - APROBACIONES
+' =========================================================
+
+SolicitudAprobacion --> EstadoAprobacion : estado
+SolicitudAprobacion "0..*" --> "1" Usuario : solicitante
+SolicitudAprobacion "0..*" --> "0..1" Usuario : aprobador
+SolicitudAprobacion "0..*" --> "1" EmpresaCliente : empresa
+
+AprobacionManager ..> SolicitudAprobacion : gestiona
+SuscripcionManager ..> AprobacionManager : validacion humana
+
+
+' =========================================================
+' RELACIONES - PERIODOS ECONOMICOS
+' =========================================================
+
+PeriodoEconomico --> EstadoPeriodo : estado
+PeriodoEconomico --> TipoPeriodo : tipo
+PaqueteGestoria "0..*" --> "1" PeriodoEconomico : periodo
+
+PeriodoEconomicoManager ..> PeriodoEconomico : gestiona
+PeriodoEconomicoManager ..> PaqueteGestoria : genera
+PeriodoEconomicoManager ..> AuditoriaManager : audita excepciones
+
+
+' =========================================================
+' RELACIONES - AUDITORIA Y COPIAS
+' =========================================================
+
+RegistroAuditoria "0..*" --> "0..1" Usuario : usuario
+AuditoriaManager ..> RegistroAuditoria : gestiona
+
+CopiaSeguridad --> EstadoCopiaSeguridad : estado
+CopiaSeguridadManager ..> CopiaSeguridad : gestiona
+
+
+' =========================================================
+' RELACIONES - INFORMES Y OBJETIVOS
+' =========================================================
+
+ObjetivoCobro --> TipoPeriodo : tipoPeriodo
+ObjetivoCobroManager ..> ObjetivoCobro : gestiona
+
+InformeFinancieroManager ..> InformeFinanciero : genera
+InformeFinancieroManager ..> Factura : consulta
+InformeFinancieroManager ..> Pago : consulta
+InformeFinancieroManager ..> EmpresaCliente : filtra
 @enduml
