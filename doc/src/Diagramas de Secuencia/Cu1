@@ -14,9 +14,5 @@ AutenticacionManager --> Empleado : [credenciales incorrectas] error de credenci
 AutenticacionManager -> Sesion : [credenciales correctas] crear sesión
 AutenticacionManager --> Empleado : [credenciales correctas] sesión iniciada según su rol
 
-actor Administrador
 
-Administrador -> Usuario : desactivar()
-Administrador -> AutenticacionManager : invalidarSesiones(usuario)
-AutenticacionManager -> Sesion : *[por cada sesión activa] cerrar()
 @enduml
