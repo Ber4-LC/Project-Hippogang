@@ -1,0 +1,22 @@
+@startuml
+title CU-01 Iniciar sesión
+hide footbox
+actor Empleado
+participant AutenticacionManager << (C,#ADD1B2) >>
+participant Usuario << (C,#ADD1B2) >>
+participant Sesion << (C,#ADD1B2) >>
+
+Empleado -> AutenticacionManager : iniciarSesion(email, password)
+AutenticacionManager -> AutenticacionManager : validarDominioCorporativo(email)
+AutenticacionManager --> Empleado : [dominio incorrecto] error de dominio
+AutenticacionManager -> Usuario : [dominio correcto] comprobar credenciales
+AutenticacionManager --> Empleado : [credenciales incorrectas] error de credenciales
+AutenticacionManager -> Sesion : [credenciales correctas] crear sesión
+AutenticacionManager --> Empleado : [credenciales correctas] sesión iniciada según su rol
+
+actor Administrador
+
+Administrador -> Usuario : desactivar()
+Administrador -> AutenticacionManager : invalidarSesiones(usuario)
+AutenticacionManager -> Sesion : *[por cada sesión activa] cerrar()
+@enduml
