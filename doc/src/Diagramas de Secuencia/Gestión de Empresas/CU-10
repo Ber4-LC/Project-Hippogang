@@ -6,6 +6,7 @@ actor Administrador
 participant EmpresaManager << (C,#ADD1B2) >>
 participant EmpresaCliente << (C,#ADD1B2) >>
 participant AuditoriaManager << (C,#ADD1B2) >>
+participant RegistroAccion << (C,#ADD1B2) >>
 
 Administrador -> EmpresaManager : darDeBaja(empresa)
 EmpresaManager --> Administrador : mostrar advertencia de baja
@@ -23,6 +24,10 @@ note right of EmpresaCliente
 end note
 
 EmpresaManager -> AuditoriaManager : [baja realizada] registrarAccion(accion, usuario, resultado, detalles)
-EmpresaManager --> Administrador : [baja realizada] confirmación de baja
 
+create RegistroAccion
+AuditoriaManager -> RegistroAccion : <<create>>
+AuditoriaManager --> EmpresaManager : RegistroAccion
+
+EmpresaManager --> Administrador : [baja realizada] confirmación de baja
 @enduml
