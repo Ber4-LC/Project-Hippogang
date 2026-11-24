@@ -1,0 +1,28 @@
+@startuml
+title CU-10 Dar de baja a una empresa cliente
+hide footbox
+
+actor Administrador
+participant EmpresaManager << (C,#ADD1B2) >>
+participant EmpresaCliente << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+
+Administrador -> EmpresaManager : darDeBaja(empresa)
+EmpresaManager --> Administrador : mostrar advertencia de baja
+Administrador --> EmpresaManager : aceptar/rechazar
+
+EmpresaManager --> Administrador : [rechazar] baja cancelada
+EmpresaManager --> Administrador : [aceptar e impagos pendientes] baja bloqueada
+
+EmpresaManager -> EmpresaCliente : [aceptar y sin impagos pendientes] darDeBaja()
+
+note right of EmpresaCliente
+    activa = false
+    Se conserva el histórico de facturas
+    No se generan nuevas facturas recurrentes
+end note
+
+EmpresaManager -> AuditoriaManager : [baja realizada] registrarAccion(accion, usuario, resultado, detalles)
+EmpresaManager --> Administrador : [baja realizada] confirmación de baja
+
+@enduml
