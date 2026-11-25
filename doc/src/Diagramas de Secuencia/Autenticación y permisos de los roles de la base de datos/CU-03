@@ -1,0 +1,14 @@
+@startuml
+title CU-03 Consultar información mediante la API
+hide footbox
+actor Empleado
+participant FacturaManager << (C,#ADD1B2) >>
+participant Usuario << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+
+Empleado -> FacturaManager : [petición por la API] Informacion Empresa(estado, fechaInicio, fechaFin, tipo)
+FacturaManager -> Usuario : consultar acceso (empresas permitidas)
+FacturaManager --> Empleado : [no tiene permisos] consulta denegada
+FacturaManager --> Empleado : [tiene permisos] lista de facturas
+FacturaManager -> AuditoriaManager : [tiene permisos] registrarAccion(accion, usuario, resultado, detalles)
+@enduml
