@@ -22,8 +22,10 @@ class EmpresaCliente {
     - configuracionRecordatorios: ConfiguracionRecordatorios
     - plantillaFacturacion : Plantilla
 
-    + agregarComentario(comentario : Comentario)
+    + agregarComentario(usuario: Usuario, contenido: String): Comentario
     + obtenerComentarios() : List<Comentario>
+    + agregarIncidencia(autor: Usuario, responsable: Usuario, contenido: String, prioridad: PrioridadIncidencia): Incidencia
+    + obtenerIncidencias() : List<Incidencia>
 
     + eliminarPersonaDeContacto(idAntiguo: int)
     + añadirPersonaDeContacto(nombre: String, email: String, telefono: String, idioma: String, comunicacionAdmin: boolean)
@@ -38,11 +40,15 @@ class EmpresaCliente {
 }
 
 
-class EmpresaManager {
-    {static} + registrarEmpresa(empresa : EmpresaCliente) : EmpresaCliente
-    {static} + buscarDuplicados(empresa : EmpresaCliente) : List<EmpresaCliente>
-    {static} + darDeBaja(empresa : EmpresaCliente)
-    {static} + reactivarEmpresa(empresa : EmpresaCliente)
+class EmpresaManager <<Singleton>> {
+    {static} - instancia : EmpresaManager
+
+   
+    {static} + getInstancia() : EmpresaManager
+    + registrarEmpresa(empresa : EmpresaCliente) : EmpresaCliente
+    + buscarDuplicados(empresa : EmpresaCliente) : List<EmpresaCliente>
+    + darDeBaja(empresa : EmpresaCliente)
+    + reactivarEmpresa(empresa : EmpresaCliente)
 }
 
 
@@ -75,9 +81,12 @@ enum EstadoSuscripcion {
 }
 
 
-class SuscripcionManager {
-    {static} + generarFacturasMensuales()
-    {static} + revisarPreciosAnuales()
+class SuscripcionManager <<Singleton>> {
+    {static} - instancia: SuscripcionManager
+    
+    {static} + getInstancia: SuscripcionManager
+    + generarFacturasMensuales()
+    + revisarPreciosAnuales()
 }
 
 
@@ -93,32 +102,23 @@ class ImportadorCSV {
 ' TABLA DE PRECIOS
 ' =========================================================
 
-class TablaPrecios {
-    - rangos : List<RangoPrecio>
-
-    + obtenerPrecio(ingresos : Decimal) : Decimal
-    + validarRangos() : boolean
-}
-
-class RangoPrecio {
-    - ingresoMinimo : Decimal
-    - ingresoMaximo : Decimal
-    - precioMensual : Decimal
-}
-
 
 ' =========================================================
 ' FACTURAS
 ' =========================================================
 
-class FacturaManager {
-    {static} + crearFacturaRecurrente(empresa : EmpresaCliente, suscripcion : Suscripcion) : Factura
-    {static} + crearFacturaInicialProrrateada(empresa : EmpresaCliente, suscripcion : Suscripcion, fechaAlta : Date) : Factura
-    {static} + crearFacturaAdicional(empresa: EmpresaCliente, importe: Decimal, programarProximoMes : boolean) : Factura
+class FacturaManager <<Singleton>>{
+    {static} - instancia: FacturaManager
 
-    {static} + validarFactura(factura : Factura) : boolean
-    {static} + buscarFacturasProgramadas(empresa : EmpresaCliente) : List<Factura>
-    {static} + filtrarFacturas(estado : EstadoFactura, fechaInicio : Date, fechaFin : Date, tipo : TipoFactura) : List<Factura>
+    {static} + getInstancia: FacturaManager
+
+    + crearFacturaRecurrente(empresa : EmpresaCliente, suscripcion : Suscripcion) : Factura
+    + crearFacturaInicialProrrateada(empresa : EmpresaCliente, suscripcion : Suscripcion, fechaAlta : Date) : Factura
+    + crearFacturaAdicional(empresa: EmpresaCliente, importe: Decimal, programarProximoMes : boolean) : Factura
+
+    + validarFactura(factura : Factura) : boolean
+    + buscarFacturasProgramadas(empresa : EmpresaCliente) : List<Factura>
+    + filtrarFacturas(estado : EstadoFactura, fechaInicio : Date, fechaFin : Date, tipo : TipoFactura) : List<Factura>
 }
 
 class ConceptoFactura {
@@ -209,11 +209,15 @@ class Sesion {
     + cerrar()
 }
 
-class AutenticacionManager {
-    {static} + iniciarSesion(email : String, password : String) : Sesion
-    {static} + cerrarSesion(sesion : Sesion)
-    {static} + invalidarSesiones(usuario : Usuario)
-    {static} + validarDominioCorporativo(email : String) : boolean
+class AutenticacionManager <<Singleton>> {
+    {static} - instancia : AutenticacionManager
+
+    {static} + getInstancia() : AutenticacionManager
+
+    + iniciarSesion(email : String, password : String) : Sesion
+    + cerrarSesion(sesion : Sesion)
+    + invalidarSesiones(usuario : Usuario)
+    + validarDominioCorporativo(email : String) : boolean
 }
 
 
@@ -236,11 +240,14 @@ enum EstadoPago {
     REQUIERE_CONCILIACION
 }
 
-class PagoManager {
-    {static} + sincronizarPagos()
-    {static} + registrarPago(factura : Factura, importe : Decimal, referencia : String) : Pago
-    {static} + validarPago(pago : Pago) : EstadoPago
-    {static} + confirmarPago(pago : Pago)
+class PagoManager <<Singleton>>{
+    {static} - instancia: PagoManager
+
+    {static} + getInstancia(): PagoManager
+    + sincronizarPagos()
+    + registrarPago(importe : Decimal, referencia : String, origen: String) : Pago
+    + validarPago(pago : Pago) : EstadoPago
+    + confirmarPago(pago : Pago)
 }
 
 interface ServicioPagos {
@@ -278,6 +285,7 @@ class Incidencia {
     - fecha : DateTime
     - estado: EstadoIncidencia
     - autor : Usuario
+    - responsable: Usuario
     - prioridad: PrioridadIncidencia
     - empresa: EmpresaCliente
     - comentarios : List<Comentario>
@@ -299,11 +307,6 @@ enum PrioridadIncidencia {
     ALTA
 }
 
-class IncidenciaManager {
-    {static} + crearIncidencia(empresa : EmpresaCliente, autor : Usuario, responsable : Usuario, prioridad : PrioridadIncidencia, contenido : String) : Incidencia
-    {static} + obtenerPendientes() : List<Incidencia>
-}
-
 
 ' =========================================================
 ' NOTIFICACIONES
@@ -322,9 +325,12 @@ class Notificacion {
     + abrirOrigen()
 }
 
-class NotificacionManager {
-    {static} + crearNotificacion(destinatario : Usuario, mensaje : String) : Notificacion
-    {static} + filtrarNotificaciones(leida : boolean, resuelta : boolean) : List<Notificacion>
+class NotificacionManager <<Singleton>> {
+    {static} - instancia: NotificacionManager
+    
+    {static} + getInstancia: NotificacionManager
+    + crearNotificacion(destinatario : Usuario, mensaje : String) : Notificacion
+    + filtrarNotificaciones(leida : boolean, resuelta : boolean) : List<Notificacion>
 }
 
 
@@ -337,6 +343,7 @@ class Plantilla {
     - nombre : String
     - asunto : String
     - contenido : String
+    - idioma: String
 
     + editar(asunto : String, contenido : String, idioma : String)
 }
@@ -372,9 +379,12 @@ enum TipoMensaje {
     OTRO
 }
 
-class MensajeManager {
-    {static} + crearMensaje(empresa: EmpresaCliente, tipo: TipoMensaje, plantilla: Plantilla, factura: Factura) : Mensaje
-    {static} + generarRecordatoriosPendientes()
+class MensajeManager <<Singleton>> {
+    {static} - instancia: MensajeManager
+    
+    {static} + getInstancia: MensajeManager
+    + crearMensaje(empresa: EmpresaCliente, tipo: TipoMensaje, plantilla: Plantilla, factura: Factura) : Mensaje
+    + generarRecordatoriosPendientes()
 }
 
 class ConfiguracionRecordatorios {
@@ -393,11 +403,11 @@ class SolicitudAprobacion {
     - descripcion : String
     - importe : Decimal
     - estado : EstadoAprobacion
-    - solicitante : Usuario
-    - aprobador : Usuario
+    - aprobadoPor: Usuario
     - empresa : EmpresaCliente
     - comentarioResolucion : String
-
+    
+    + crearSolicitud
     + aprobar(aprobador : Usuario, comentario : String)
     + rechazar(aprobador : Usuario, comentario : String)
 }
@@ -408,10 +418,13 @@ enum EstadoAprobacion {
     RECHAZADA
 }
 
-class AprobacionManager {
-    {static} + requiereAprobacion(importe : Decimal) : boolean
-    {static} + crearSolicitud(solicitante : Usuario, empresa : EmpresaCliente, importe : Decimal, descripcion : String) : SolicitudAprobacion
-    {static} + obtenerPendientes() : List<SolicitudAprobacion>
+class AprobacionManager <<Singleton>> {
+    {static} - instancia: AprobacionManager
+    
+    {static} + getInstancia: AprobacionManager
+    + requiereAprobacion(importe : Decimal) : boolean
+    + crearSolicitud(solicitante : Usuario, empresa : EmpresaCliente, importe : Decimal, descripcion : String) : SolicitudAprobacion
+    + obtenerPendientes() : List<SolicitudAprobacion>
 }
 
 
@@ -426,6 +439,15 @@ class PeriodoEconomico {
     - tipo : TipoPeriodo
     - estado : EstadoPeriodo
     - fechaCierre : DateTime
+
+    - objetivoRecaudacion : Decimal
+    - totalFacturado : Decimal
+    - totalRecaudado : Decimal
+    - totalPendiente : Decimal
+    
+    + calcularTotales()
+    + calcularProgresoObjetivo() : Decimal
+    + configurarObjetivo(importe : Decimal)
 
     + cerrar()
     + estaCerrado() : boolean
@@ -450,10 +472,16 @@ class PaqueteGestoria {
     - periodo : PeriodoEconomico
 }
 
-class PeriodoEconomicoManager {
-    {static} + validarCierre(periodo : PeriodoEconomico) : boolean
-    {static} + cerrarPeriodo(periodo : PeriodoEconomico, formato : String) : PaqueteGestoria
-    {static} + realizarModificacionExcepcional(periodo : PeriodoEconomico, justificacion : String)
+class PeriodoEconomicoManager <<Singleton>> {
+    {static} - instancia: PeriodoEconomicoManager
+    
+    {static} + getInstancia: PeriodoEconomicoManager
+
+    + obtenerPeriodo(fechaInicio : Date, tipo: TipoPeriodo) : PeriodoEconomico
+    + validarCierre(periodo : PeriodoEconomico) : boolean
+    + cerrarPeriodo(periodo : PeriodoEconomico, formato : String) : PaqueteGestoria
+    + realizarModificacionExcepcional(periodo : PeriodoEconomico, justificacion : String)
+    + generarInformePeriodoPersonalizado(fechaInicio: Date, fechaFin: Date)
 }
 
 
@@ -461,7 +489,7 @@ class PeriodoEconomicoManager {
 ' AUDITORIA E HISTORIAL
 ' =========================================================
 
-class RegistroAuditoria {
+class RegistroAccion {
     - idRegistro : int
     - fecha : DateTime
     - accion : String
@@ -474,11 +502,14 @@ class RegistroAuditoria {
     - usuario : Usuario
 }
 
-class AuditoriaManager {
-    {static} + registrarAccion(accion : String, usuario : Usuario, resultado : String, detalles : String) : RegistroAuditoria
-    {static} + registrarProcesoAutomatico(accion : String, resultado : String, detalles : String) : RegistroAuditoria
-    {static} + filtrarHistorial(fechaInicio : Date, fechaFin : Date, usuario : Usuario) : List<RegistroAuditoria>
-    {static} + revertirAccion(registro : RegistroAuditoria) : boolean
+class AuditoriaManager <<Singleton>> {
+    {static} - instancia: AuditoriaManager
+    
+    {static} + getInstancia: AuditoriaManager
+    + registrarAccion(accion : String, usuario : Usuario, resultado : String, detalles : String) : RegistroAccion
+    + registrarProcesoAutomatico(accion : String, resultado : String, detalles : String) : RegistroAccion
+    + filtrarHistorial(fechaInicio : Date, fechaFin : Date, usuario : Usuario) : List<RegistroAccion>
+    + revertirAccion(registro : RegistroAccion) : boolean
 }
 
 
@@ -499,43 +530,13 @@ enum EstadoCopiaSeguridad {
     FALLIDA
 }
 
-class CopiaSeguridadManager {
-    {static} + generarCopia() : CopiaSeguridad
-    {static} + restaurarCopia(copia : CopiaSeguridad)
-    {static} + listarCopias() : List<CopiaSeguridad>
-}
-
-
-' =========================================================
-' INFORMES Y OBJETIVOS
-' =========================================================
-
-class ObjetivoCobro {
-    - idObjetivo : int
-    - importeObjetivo : Decimal
-    - tipoPeriodo : TipoPeriodo
-    - fechaInicio : Date
-    - fechaFin : Date
-    - activo : boolean
-}
-
-class ObjetivoCobroManager {
-    {static} + configurarObjetivo(importe : Decimal, tipoPeriodo : TipoPeriodo) : ObjetivoCobro
-    {static} + calcularProgreso(objetivo : ObjetivoCobro) : Decimal
-}
-
-class InformeFinanciero {
-    - fechaInicio : Date
-    - fechaFin : Date
-    - totalFacturado : Decimal
-    - totalCobrado : Decimal
-    - totalPendiente : Decimal
-    - moneda : String
-}
-
-class InformeFinancieroManager {
-    {static} + generarInforme(fechaInicio : Date, fechaFin : Date) : InformeFinanciero
-    {static} + filtrarInformes(fechaInicio : Date, fechaFin : Date, empresa : EmpresaCliente, responsable : Usuario, pais : String, sector : String, estadoFactura : EstadoFactura, tipoFactura : TipoFactura) : List<InformeFinanciero>
+class CopiaSeguridadManager <<Singleton>> {
+    {static} - instancia: CopiaSeguridadManager
+    
+    {static} + getInstancia: CopiaSeguridadManager
+    + generarCopia() : CopiaSeguridad
+    + restaurarCopia(copia : CopiaSeguridad)
+    + listarCopias() : List<CopiaSeguridad>
 }
 
 
@@ -543,13 +544,30 @@ class InformeFinancieroManager {
 ' CONFIGURACION
 ' =========================================================
 
-class ConfiguracionSistema {
+class ConfiguracionSistema <<Singleton>>{
+    {static} instancia: ConfiguracionSistema
+
     - recordatoriosPorDefecto : ConfiguracionRecordatorios
     - tablaPrecios : TablaPrecios
-
+    
+    {static} + getInstancia(): ConfiguracionSistema 
     + configurarRecordatoriosPorDefecto()
     + editarTablaDePrecios()
 }
+
+class TablaPrecios {
+    - rangos : List<RangoPrecio>
+
+    + obtenerPrecio(ingresos : Decimal) : Decimal
+    + validarRangos() : boolean
+}
+
+class RangoPrecio {
+    - ingresoMinimo : Decimal
+    - ingresoMaximo : Decimal
+    - precioMensual : Decimal
+}
+
 
 
 ' =========================================================
@@ -563,7 +581,6 @@ EmpresaCliente "0..*" --> "0..1" Plantilla : plantillaFacturacion
 
 EmpresaManager ..> EmpresaCliente : gestiona
 EmpresaManager ..> FacturaManager : genera primera factura
-ImportadorCSV ..> EmpresaCliente : genera
 ImportadorCSV ..> EmpresaManager : usa
 
 Suscripcion --> EstadoSuscripcion : estado
@@ -620,7 +637,6 @@ Comentario "0..*" --> "1" Usuario : autor
 Comentario "0..*" --> "0..*" Usuario : mencionados
 Comentario --> TipoComentario : tipo
 Comentario "0..*" --> "1" EmpresaCliente : empresa
-Comentario "0..*" --> "0..1" Incidencia : incidencia
 Comentario "1" --> "0..*" Notificacion : crea
 
 Incidencia "0..*" --> "1" Usuario : autor
@@ -629,9 +645,6 @@ Incidencia "0..*" --> "1" EmpresaCliente : empresa
 Incidencia --> EstadoIncidencia : estado
 Incidencia --> PrioridadIncidencia : prioridad
 Incidencia "1" --> "0..*" Comentario : comentarios
-
-IncidenciaManager ..> Incidencia : gestiona
-IncidenciaManager ..> NotificacionManager : notifica
 
 Notificacion "0..*" --> "1" Usuario : destinatario
 NotificacionManager ..> Notificacion : gestiona
@@ -665,7 +678,6 @@ TablaPrecios "1" --> "1..*" RangoPrecio : rangos
 ' =========================================================
 
 SolicitudAprobacion --> EstadoAprobacion : estado
-SolicitudAprobacion "0..*" --> "1" Usuario : solicitante
 SolicitudAprobacion "0..*" --> "0..1" Usuario : aprobador
 SolicitudAprobacion "0..*" --> "1" EmpresaCliente : empresa
 
@@ -683,29 +695,17 @@ PaqueteGestoria "0..*" --> "1" PeriodoEconomico : periodo
 
 PeriodoEconomicoManager ..> PeriodoEconomico : gestiona
 PeriodoEconomicoManager ..> PaqueteGestoria : genera
-PeriodoEconomicoManager ..> AuditoriaManager : audita excepciones
 
 
 ' =========================================================
 ' RELACIONES - AUDITORIA Y COPIAS
 ' =========================================================
 
-RegistroAuditoria "0..*" --> "0..1" Usuario : usuario
-AuditoriaManager ..> RegistroAuditoria : gestiona
+RegistroAccion "0..*" --> "0..1" Usuario : usuario
+AuditoriaManager ..> RegistroAccion : gestiona
 
 CopiaSeguridad --> EstadoCopiaSeguridad : estado
 CopiaSeguridadManager ..> CopiaSeguridad : gestiona
 
 
-' =========================================================
-' RELACIONES - INFORMES Y OBJETIVOS
-' =========================================================
-
-ObjetivoCobro --> TipoPeriodo : tipoPeriodo
-ObjetivoCobroManager ..> ObjetivoCobro : gestiona
-
-InformeFinancieroManager ..> InformeFinanciero : genera
-InformeFinancieroManager ..> Factura : consulta
-InformeFinancieroManager ..> Pago : consulta
-InformeFinancieroManager ..> EmpresaCliente : filtra
 @enduml
