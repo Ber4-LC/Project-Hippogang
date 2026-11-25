@@ -1,0 +1,16 @@
+@startuml
+title CU-28 Revertir acciones previas
+hide footbox
+actor Superadministrador
+participant AuditoriaManager << (C,#ADD1B2) >>
+participant RegistroAccion << (C,#ADD1B2) >>
+
+Superadministrador -> AuditoriaManager : filtrarHistorial(fechaInicio, fechaFin, usuario)
+AuditoriaManager --> Superadministrador : historial de cambios
+Superadministrador -> AuditoriaManager : revertirAccion(registro)
+AuditoriaManager -> RegistroAccion : comprobar si es reversible
+AuditoriaManager --> Superadministrador : [no reversible por motivos legales] error de reversión
+AuditoriaManager -> AuditoriaManager : [reversible] restaurar estado anterior de los datos
+AuditoriaManager -> AuditoriaManager : [reversible] registrarAccion(accion, usuario, resultado, detalles)
+AuditoriaManager --> Superadministrador : [reversible] acción revertida
+@enduml
