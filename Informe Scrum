@@ -81,14 +81,23 @@
   - Redactar los informes Scrum de seguimiento.
 
 **Reuniones realizadas:**
+  #### Reunión 28/11/26
+  - **Reunión Scrum (Repartición de tareas):**
+    - **Emilio, Juan, Ricardo y Mario**: Encargados de corregir todos los errores y elementos faltantes de la primera entrega
+    - **Benjamín:**: Empezar a diseñar las clases del sistema.
+    - **Miguel:**: Empezar a diseñar el diagrama de E/R
+  - **Artefactos / Archivos producidos tras la reunión:**
+    - Corrección de Requisitos.md, casos-uso-especificación.md y diagramas de casos de uso.
+    - Primeros bocetos del diagrama de clases y el de ER.
+
 
   #### Reunión 11/11/26
   - **Sprint Backlog:**
     - Se revisó la estructura base del sistema a partir de los requisitos consolidados en la Entrega 1.
     - Se inició el modelado estructural de datos y la identificación de interacciones entre objetos.
   - **Reunión Scrum (Repartición de tareas):**
-    - **Emilio y Ricardo:** Encargados de diseñar y codificar el **Diagrama de Clases** del sistema.
-    - **Benjamín y Juan:** Asignados a la elaboración de los **Diagramas de Secuencia** correspondientes a los casos de uso críticos.
+    - **Emilio, Juan y Ricardo:** Asignados a la elaboración de los **Diagramas de Secuencia** correspondientes a los casos de uso.
+    - **Benjamín:** Diseño del "Diagrama de clases".
     - **Miguel:** Responsable de modelar el **Esquema Entidad-Relación** para la base de datos.
     - **Mario:** Encargado del **Diagrama de Arquitectura** (planteando un diseño simple y abstracto centrado en la justificación de capas) y de coordinar las entregas en el repositorio.
   - **Artefactos / Archivos producidos tras la reunión:**
@@ -101,12 +110,17 @@
     - El **Esquema Entidad-Relación** está finalizado a falta de revisión e integración mediante *Pull Request*.
     - El **Diagrama de Arquitectura** necesita su documento explicativo detallando las decisiones de diseño.
   - **Reunión Scrum (Repartición de tareas para el cierre del Sprint):**
-    - **Miguel:** Realizará la *Pull Request* final con el esquema entidad-relación terminado para su revisión.
+    - **Miguel:** Corregir detalles para que el diagrama E/R sea coherente con el de clases.
+    - **Benjamín:** Realizar una explicación del Diagrama de clases
     - **Mario:** Revisará la *Pull Request* del modelo E/R, finalizará el diagrama de arquitectura junto con su documento PDF explicativo, recopilará todas las imágenes de los diagramas de secuencia en un único PDF y redactará los informes Scrum.
-    - **Emilio, Benjamín, Ricardo y Juan:** Revisarán que no falte ningún diagrama de secuencia por subir al repositorio y verificarán la coherencia entre el diagrama de clases y los de secuencia.
+    - **Emilio, Ricardo y Juan:** Revisarán que no falte ningún diagrama de secuencia por subir al repositorio y verificarán la coherencia entre el diagrama de clases y los de secuencia.
   - **Artefactos / Archivos producidos tras la reunión:**
     - Pull Request y archivo definitivo del modelo de datos .
-    - Documento unificado de interacciones .
+    - Documento unificado de diagramas de secuencia .
     - Diagrama de arquitectura y memoria justificativa.
-    - Documentación de seguimiento.
+    - Documentación del idagrama de clases.
 
+## 5. Valoración segunda entrega
+ Esta vez trabjamos utilizando el sistema de Issues de github, lo cual aumentó muchísimo al productividad al definir exactamente que tareas debían ser realizadas y asignarlas a una persona en específico.
+ El trabajo fue mucho mas fluido que la primera entrega y la organización fue muy buena.
+    
