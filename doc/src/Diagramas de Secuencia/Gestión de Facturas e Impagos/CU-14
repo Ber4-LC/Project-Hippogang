@@ -1,0 +1,18 @@
+@startuml
+title CU-14 Filtrar facturas
+hide footbox
+
+actor "Usuario responsable" as Responsable
+participant FacturaManager << (C,#ADD1B2) >>
+
+Responsable -> FacturaManager : filtrarFacturas(estado, fechaInicio, fechaFin, tipo)
+
+note right of FacturaManager
+    Se filtran las facturas según
+    los criterios seleccionados
+    y los permisos del responsable
+end note
+
+FacturaManager --> Responsable : [existen coincidencias] List<Factura>
+FacturaManager --> Responsable : [no existen coincidencias] notificar que no existen facturas con esos criterios
+@enduml
