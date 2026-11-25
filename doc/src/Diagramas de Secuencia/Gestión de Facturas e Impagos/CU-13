@@ -1,0 +1,29 @@
+@startuml
+title CU-13 Consultar y descargar facturas
+hide footbox
+
+actor "Usuario responsable" as Responsable
+participant FacturaManager << (C,#ADD1B2) >>
+participant Factura << (C,#ADD1B2) >>
+
+Responsable -> FacturaManager : filtrarFacturas(estado, fechaInicio, fechaFin, tipo)
+
+note right of FacturaManager
+    Solo se muestran facturas de empresas
+    a las que el responsable tiene acceso
+end note
+
+FacturaManager --> Responsable : List<Factura>
+
+Responsable -> Factura : seleccionar factura
+Factura --> Responsable : mostrar detalle de la factura
+
+Responsable -> Factura : descargarFactura()
+
+note right of Factura
+    Se genera el archivo de la factura
+end note
+
+Factura --> Responsable : [archivo generado correctamente] descarga de factura
+Factura --> Responsable : [error de generación] notificar error
+@enduml
