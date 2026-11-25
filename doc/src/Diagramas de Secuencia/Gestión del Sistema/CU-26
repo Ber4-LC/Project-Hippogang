@@ -1,0 +1,20 @@
+@startuml
+title CU-26 Edición de la tabla de precios recurrentes
+hide footbox
+actor Superadministrador
+participant ConfiguracionSistema << (C,#ADD1B2) >>
+participant TablaPrecios << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+participant MensajeManager << (C,#ADD1B2) >>
+participant Mensaje << (C,#ADD1B2) >>
+
+Superadministrador -> ConfiguracionSistema : editarTablaDePrecios()
+ConfiguracionSistema -> TablaPrecios : validarRangos()
+ConfiguracionSistema --> Superadministrador : [solapamiento o error de formato] cambios rechazados
+ConfiguracionSistema -> TablaPrecios : [rangos válidos] guardar tabla de precios
+ConfiguracionSistema -> AuditoriaManager : [rangos válidos] registrarAccion(accion, usuario, resultado, detalles)
+ConfiguracionSistema -> MensajeManager : [rangos válidos] crearMensaje(empresa, AVISO_CAMBIO_PRECIOS, plantilla, factura)
+MensajeManager -> Mensaje : [rangos válidos] enviarMensaje()
+ConfiguracionSistema --> Superadministrador : [rangos válidos] tabla de precios actualizada
+
+@enduml
