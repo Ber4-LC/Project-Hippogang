@@ -64,8 +64,49 @@
           Mario ordenará y limpiará el archivo de requisitos ya que al ser hecho en colaboración hay requistos duplicados y desordenados.
           Emilio terminará el punto 1 de la plantilla y la trazabilidad.
 
-## 5. Valoración final 
+## 5. Valoración primera entrega
  El principal problema de esta entrega fue la falta de tener un tablero desde el primer momento, por lo que no se pudo añadir en el informe. Sin contar eso, el trabajo se realizó sin problemas,
  utilizando una metodología de trabajo en branchs propias y Pull Requests para no sobreescribir el trabajo de otros miembros del trabajo.
     
+ ### Sprint 2
+
+- **Fecha de inicio:** 24/10/26
+- **Fecha de finalización:** 26/11/26
+- **Objetivo del Sprint:** Completar el diseño del sistema para la segunda entrega (diagramas de clases, secuencia, arquitectura y modelo entidad-relación).
+- **Tareas planificadas:**
+  - Diseñar el Diagrama de Clases.
+  - Elaborar los Diagramas de Secuencia para los casos de uso principales.
+  - Definir el Esquema Entidad-Relación (E/R).
+  - Diseñar el Diagrama de Arquitectura y su justificación técnica.
+  - Redactar los informes Scrum de seguimiento.
+
+**Reuniones realizadas:**
+
+  #### Reunión 11/11/26
+  - **Sprint Backlog:**
+    - Se revisó la estructura base del sistema a partir de los requisitos consolidados en la Entrega 1.
+    - Se inició el modelado estructural de datos y la identificación de interacciones entre objetos.
+  - **Reunión Scrum (Repartición de tareas):**
+    - **Emilio y Ricardo:** Encargados de diseñar y codificar el **Diagrama de Clases** del sistema.
+    - **Benjamín y Juan:** Asignados a la elaboración de los **Diagramas de Secuencia** correspondientes a los casos de uso críticos.
+    - **Miguel:** Responsable de modelar el **Esquema Entidad-Relación** para la base de datos.
+    - **Mario:** Encargado del **Diagrama de Arquitectura** (planteando un diseño simple y abstracto centrado en la justificación de capas) y de coordinar las entregas en el repositorio.
+  - **Artefactos / Archivos producidos tras la reunión:**
+    - Código fuente y exportación gráfica inicial del diagrama de clases.
+    - Primeros bocetos de secuencias en el repositorio .
+
+#### Reunión 24/11/26
+  - **Sprint Backlog:**
+    - El **Diagrama de Clases** y gran parte de los **Diagramas de Secuencia** están subidos al repositorio, aunque faltan algunos diagramas de secuencia por unificar.
+    - El **Esquema Entidad-Relación** está finalizado a falta de revisión e integración mediante *Pull Request*.
+    - El **Diagrama de Arquitectura** necesita su documento explicativo detallando las decisiones de diseño.
+  - **Reunión Scrum (Repartición de tareas para el cierre del Sprint):**
+    - **Miguel:** Realizará la *Pull Request* final con el esquema entidad-relación terminado para su revisión.
+    - **Mario:** Revisará la *Pull Request* del modelo E/R, finalizará el diagrama de arquitectura junto con su documento PDF explicativo, recopilará todas las imágenes de los diagramas de secuencia en un único PDF y redactará los informes Scrum.
+    - **Emilio, Benjamín, Ricardo y Juan:** Revisarán que no falte ningún diagrama de secuencia por subir al repositorio y verificarán la coherencia entre el diagrama de clases y los de secuencia.
+  - **Artefactos / Archivos producidos tras la reunión:**
+    - Pull Request y archivo definitivo del modelo de datos .
+    - Documento unificado de interacciones .
+    - Diagrama de arquitectura y memoria justificativa.
+    - Documentación de seguimiento.
 
