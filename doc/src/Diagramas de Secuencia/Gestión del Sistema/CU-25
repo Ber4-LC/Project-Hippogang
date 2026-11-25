@@ -1,0 +1,19 @@
+@startuml
+title CU-25 Revisión de historiales y copias de seguridad
+hide footbox
+actor Superadministrador
+participant AuditoriaManager << (C,#ADD1B2) >>
+participant CopiaSeguridadManager << (C,#ADD1B2) >>
+participant CopiaSeguridad << (C,#ADD1B2) >>
+
+Superadministrador -> AuditoriaManager : filtrarHistorial(fechaInicio, fechaFin, usuario)
+AuditoriaManager --> Superadministrador : [filtros correctos] registros detallados
+AuditoriaManager --> Superadministrador : [filtros erróneos] error de filtros
+Superadministrador -> CopiaSeguridadManager : listarCopias()
+CopiaSeguridadManager --> Superadministrador : copias de seguridad disponibles
+Superadministrador -> CopiaSeguridadManager : [genera una copia] generarCopia()
+CopiaSeguridadManager -> CopiaSeguridad : [genera una copia] crear copia de seguridad
+CopiaSeguridadManager -> AuditoriaManager : [genera una copia] registrarAccion(accion, usuario, resultado, detalles)
+CopiaSeguridadManager --> Superadministrador : [genera una copia] copia de seguridad generada
+
+@enduml
