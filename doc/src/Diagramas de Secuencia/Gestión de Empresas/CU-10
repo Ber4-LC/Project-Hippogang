@@ -10,7 +10,7 @@ participant RegistroAccion << (C,#ADD1B2) >>
 
 Administrador -> EmpresaManager : darDeBaja(empresa)
 EmpresaManager --> Administrador : mostrar advertencia de baja
-Administrador --> EmpresaManager : aceptar/rechazar
+Administrador -> EmpresaManager : aceptar/rechazar
 
 EmpresaManager --> Administrador : [rechazar] baja cancelada
 EmpresaManager --> Administrador : [aceptar e impagos pendientes] baja bloqueada
@@ -26,8 +26,9 @@ end note
 EmpresaManager -> AuditoriaManager : [baja realizada] registrarAccion(accion, usuario, resultado, detalles)
 
 create RegistroAccion
-AuditoriaManager -> RegistroAccion : <<create>>
-AuditoriaManager --> EmpresaManager : RegistroAccion
+AuditoriaManager -> RegistroAccion : [baja realizada] <<create>>
+AuditoriaManager --> EmpresaManager : [baja realizada] RegistroAccion
 
 EmpresaManager --> Administrador : [baja realizada] confirmación de baja
+
 @enduml
