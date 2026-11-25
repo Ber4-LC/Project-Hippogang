@@ -1,0 +1,15 @@
+@startuml
+title Revisión de historiales y copias de seguridad
+left to right direction
+
+:Superadmin: as SADM
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Revisión de historiales y\ncopias de seguridad) as UC24
+ UC24 ..>(Filtrar la vista\na revisar):Include
+ UC24 ..>(Mostrar registros\ndetallados):Include
+ (Generar copia de seguridad\no descargar archivos) ..> UC24:Extend
+}
+
+SADM -- UC24
+@enduml

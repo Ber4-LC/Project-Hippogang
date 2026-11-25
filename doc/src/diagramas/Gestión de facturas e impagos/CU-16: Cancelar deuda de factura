@@ -5,9 +5,9 @@ left to right direction
 
  rectangle "Sistema Turbine" as SistemaTurbine {
  (Cancelar deuda de\nfactura) as UC16
- UC16 ..>(Marcar como "saldada" y\nsolicitar justificación):Include
- UC16 ..>(Confirmar, actualizar a "pagada"\ny detener recordatorios):Include
- (Confirmar, actualizar a "pagada"\ny detener recordatorios)<..(Cancelar operación y\nmantener impago):Extend
+ UC16 ..>(Marcar como "condonada" y\nsolicitar justificación):Include
+ UC16 ..>(Confirmar, actualizar a "condonada"\ny detener recordatorios):Include
+ (Confirmar, actualizar a "condonada"\ny detener recordatorios)<..(Cancelar operación y\nmantener impago):Extend
  }
 SADM --> UC16
 

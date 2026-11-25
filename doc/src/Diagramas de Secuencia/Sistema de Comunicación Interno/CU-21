@@ -1,0 +1,14 @@
+@startuml
+title CU-21 Consultar panel de control
+hide footbox
+actor Responsable
+participant EmpresaCliente << (C,#ADD1B2) >>
+participant Incidencia << (C,#ADD1B2) >>
+
+Responsable -> EmpresaCliente : obtenerIncidencias()
+EmpresaCliente --> Responsable : [hay incidencias pendientes] incidencias pendientes de atender
+EmpresaCliente --> Responsable : [no hay incidencias pendientes] sin incidencias que mostrar
+Responsable -> Incidencia : [selecciona una incidencia] consultar incidencia
+Incidencia --> Responsable : incidencia mostrada para su revisión
+
+@enduml

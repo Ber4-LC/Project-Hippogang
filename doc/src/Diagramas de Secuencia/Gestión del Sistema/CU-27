@@ -1,0 +1,11 @@
+@startuml
+title CU-27 Consultar estado del sistema
+hide footbox
+actor Superadministrador
+participant Sistema
+
+Superadministrador -> Sistema : solicitar estado del sistema
+Sistema -> Sistema : recopilar métricas técnicas y estado del servidor
+Sistema --> Superadministrador : estadísticas de salud del sistema (usuarios activos, número de peticiones, etc.)
+
+@enduml

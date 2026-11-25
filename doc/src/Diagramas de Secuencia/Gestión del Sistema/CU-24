@@ -1,0 +1,13 @@
+@startuml
+title CU-24 Consultar y filtrar informes financieros
+hide footbox
+actor Administrador
+participant PeriodoEconomicoManager << (C,#ADD1B2) >>
+participant PeriodoEconomico << (C,#ADD1B2) >>
+
+Administrador -> PeriodoEconomicoManager : obtenerPeriodo(fechaInicio, tipo)
+PeriodoEconomicoManager -> PeriodoEconomico : calcularTotales()
+PeriodoEconomicoManager --> Administrador : informes mensuales, trimestrales y anuales
+Administrador -> PeriodoEconomicoManager : [aplica filtros] generarInformePeriodoPersonalizado(fechaInicio, fechaFin)
+PeriodoEconomicoManager --> Administrador : [aplica filtros] informes con los filtros aplicados
+@enduml

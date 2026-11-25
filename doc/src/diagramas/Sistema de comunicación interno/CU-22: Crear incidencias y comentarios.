@@ -1,0 +1,15 @@
+@startuml 
+title Crear incidencias y comentarios
+left to right direction
+
+:Usuario responsable: as RESP
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Crear incidencias\ny comentarios) as UC21
+ UC21 ..>(Guardar la incidencia\no el comentario):Include
+ UC21 ..>(Generar notificación interna al\nempleado mencionado):Include
+}
+
+RESP -- UC21
+
+@enduml

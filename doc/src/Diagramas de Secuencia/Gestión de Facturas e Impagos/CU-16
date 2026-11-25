@@ -1,0 +1,35 @@
+@startuml
+title CU-16 Cancelar deuda de factura
+hide footbox
+
+actor Superadministrador
+participant Factura << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+participant RegistroAccion << (C,#ADD1B2) >>
+
+Superadministrador -> Factura : seleccionar factura impagada
+Factura --> Superadministrador : mostrar detalle de la factura
+
+Superadministrador -> Factura : solicitar condonación de deuda
+Factura --> Superadministrador : solicitar justificación y confirmación
+
+Superadministrador -> Factura : aceptar/rechazar
+
+Factura --> Superadministrador : [rechazar] operación cancelada, se mantiene el impago
+
+Superadministrador -> Factura : [aceptar] condonarDeuda(justificacion)
+
+note right of Factura
+    [condonación realizada]
+    estado = CONDONADA
+    Se detiene el envío de recordatorios
+end note
+
+Factura -> AuditoriaManager : [condonación realizada] registrarAccion(accion, usuario, resultado, detalles)
+
+create RegistroAccion
+AuditoriaManager -> RegistroAccion : [condonación realizada] <<create>>
+AuditoriaManager --> Factura : [condonación realizada] RegistroAccion
+
+Factura --> Superadministrador : [condonación realizada] confirmación de condonación
+@enduml

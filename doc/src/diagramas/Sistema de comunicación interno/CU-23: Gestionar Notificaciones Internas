@@ -1,0 +1,16 @@
+@startuml 
+title Gestionar notificaciones internas
+left to right direction
+
+:Usuario responsable: as RESP
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Gestionar notificaciones\ninternas) as UC22
+ UC22 ..>(Mostrar bandeja de\nnotificaciones):Include
+ UC22 ..>(Marcar notificación\ncomo resuelta):Include
+ UC22 ..>(Eliminar notificación de\nla lista de pendientes):Include
+}
+
+RESP -- UC22
+
+@enduml

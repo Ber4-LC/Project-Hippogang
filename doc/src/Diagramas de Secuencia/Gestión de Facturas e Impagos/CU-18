@@ -1,0 +1,21 @@
+@startuml
+title CU-18 Configurar plantilla de email de facturación
+hide footbox
+
+actor "Usuario responsable" as Responsable
+participant EmpresaCliente << (C,#ADD1B2) >>
+participant Plantilla << (C,#ADD1B2) >>
+
+Responsable -> EmpresaCliente : seleccionar plantillaFacturacion
+EmpresaCliente --> Responsable : Plantilla
+
+Responsable -> Plantilla : editar(asunto, contenido, idioma)
+
+note right of Plantilla
+    Se actualizan el asunto,
+    el contenido y el idioma
+    (español o inglés)
+end note
+
+Plantilla --> Responsable : confirmación de modificación
+@enduml

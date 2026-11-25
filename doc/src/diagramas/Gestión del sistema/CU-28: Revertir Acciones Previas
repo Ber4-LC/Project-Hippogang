@@ -1,0 +1,16 @@
+@startuml 
+title Revertir acciones previas
+left to right direction
+
+:Superadmin: as SADM
+
+rectangle "Sistema Turbine" as SistemaTurbine {
+ (Revertir acciones\nprevias) as UC27
+ UC27 ..>(Mostrar historial\nde cambios):Include
+ UC27 ..>(Validar que la acción\nes legalmente reversible):Include
+ UC27 ..>(Restaurar el estado anterior\nde los datos):Include
+}
+
+SADM -- UC27
+
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+title CU-23 Gestionar notificaciones internas
+hide footbox
+actor Responsable
+participant NotificacionManager << (C,#ADD1B2) >>
+participant Notificacion << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+
+Responsable -> NotificacionManager : filtrarNotificaciones(leida, resuelta)
+NotificacionManager --> Responsable : bandeja de notificaciones según el filtro
+Responsable -> Notificacion : [selecciona una notificación] marcarResuelta()
+Notificacion -> AuditoriaManager : registrarAccion(accion, usuario, resultado, detalles)
+Notificacion --> Responsable : notificación resuelta y eliminada de la lista de pendientes
+
+@enduml

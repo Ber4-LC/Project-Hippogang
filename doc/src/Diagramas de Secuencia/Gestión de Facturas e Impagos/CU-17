@@ -1,0 +1,45 @@
+@startuml
+title CU-17 Cerrar periodo económico
+hide footbox
+
+actor Superadmin
+participant PeriodoEconomicoManager << (C,#ADD1B2) >>
+participant PeriodoEconomico << (C,#ADD1B2) >>
+participant PaqueteGestoria << (C,#ADD1B2) >>
+
+Superadmin -> PeriodoEconomicoManager : obtenerPeriodo(fechaInicio, tipo)
+PeriodoEconomicoManager --> Superadmin : PeriodoEconomico
+
+Superadmin -> PeriodoEconomicoManager : validarCierre(periodo)
+
+note right of PeriodoEconomicoManager
+    Se verifica que no existen datos
+    sensibles ni facturas sin resolver
+end note
+
+PeriodoEconomicoManager --> Superadmin : [cierre no válido] notificar incidencias pendientes
+PeriodoEconomicoManager --> Superadmin : [cierre válido] solicitar formato del archivo
+
+Superadmin -> PeriodoEconomicoManager : [cierre válido] cerrarPeriodo(periodo, formato)
+
+PeriodoEconomicoManager -> PeriodoEconomico : [cierre válido] calcularTotales()
+PeriodoEconomicoManager -> PeriodoEconomico : [cierre válido] cerrar()
+
+note right of PeriodoEconomico
+    [cierre realizado]
+    estado = CERRADO
+    Se establece fechaCierre
+    Se bloquean las modificaciones
+    económicas ordinarias del periodo
+end note
+
+create PaqueteGestoria
+PeriodoEconomicoManager -> PaqueteGestoria : [cierre realizado] <<create>>
+
+note right of PaqueteGestoria
+    Se genera el paquete del periodo
+    en el formato seleccionado
+end note
+
+PeriodoEconomicoManager --> Superadmin : [cierre realizado] PaqueteGestoria
+@enduml

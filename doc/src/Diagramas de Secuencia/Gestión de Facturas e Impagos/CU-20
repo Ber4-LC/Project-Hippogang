@@ -1,0 +1,25 @@
+@startuml
+title CU-20 Sincronizar estado de pagos y confirmar cobro
+hide footbox
+actor "Sistema de pagos" as SistemaPagos
+participant PagoManager << (C,#ADD1B2) >>
+participant ServicioPagos << (C,#ADD1B2) >>
+participant Pago << (C,#ADD1B2) >>
+participant Factura << (C,#ADD1B2) >>
+participant MensajeManager << (C,#ADD1B2) >>
+participant Mensaje << (C,#ADD1B2) >>
+participant NotificacionManager << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+
+SistemaPagos -> PagoManager : sincronizarPagos()
+PagoManager -> ServicioPagos : obtenerPagos()
+PagoManager -> Pago : registrarPago(importe, referencia, origen)
+PagoManager -> PagoManager : validarPago(pago)
+PagoManager -> Factura : [pago válido] actualizar estado a PAGADA
+PagoManager -> MensajeManager : [pago válido] crearMensaje(empresa, CONFIRMACION_PAGO, plantilla, factura)
+MensajeManager -> Mensaje : [pago válido] enviarMensaje()
+PagoManager -> AuditoriaManager : [pago válido] registrarProcesoAutomatico(accion, resultado, detalles)
+PagoManager -> NotificacionManager : [requiere conciliación] crearNotificacion(destinatario, mensaje)
+PagoManager -> AuditoriaManager : [requiere conciliación] registrarProcesoAutomatico(accion, resultado, detalles)
+
+@enduml
