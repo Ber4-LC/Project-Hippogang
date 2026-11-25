@@ -1,0 +1,16 @@
+@startuml
+title CU-19 Configurar objetivos de recaudación
+hide footbox
+actor Administrador
+participant PeriodoEconomicoManager << (C,#ADD1B2) >>
+participant PeriodoEconomico << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+
+Administrador -> PeriodoEconomicoManager : obtenerPeriodo(fechaInicio, tipo)
+PeriodoEconomicoManager --> Administrador : periodo económico
+Administrador -> PeriodoEconomico : configurarObjetivo(importe)
+PeriodoEconomico -> AuditoriaManager : registrarAccion(accion, usuario, resultado, detalles)
+PeriodoEconomico -> PeriodoEconomico : calcularTotales()
+PeriodoEconomico -> PeriodoEconomico : calcularProgresoObjetivo()
+PeriodoEconomico --> Administrador : panel de control actualizado con el progreso del nuevo objetivo
+@enduml
