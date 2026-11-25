@@ -1,0 +1,20 @@
+@startuml
+title CU-22 Crear incidencias y comentarios
+hide footbox
+actor Responsable
+participant EmpresaCliente << (C,#ADD1B2) >>
+participant Incidencia << (C,#ADD1B2) >>
+participant Comentario << (C,#ADD1B2) >>
+participant NotificacionManager << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+
+Responsable -> EmpresaCliente : [abre una incidencia] agregarIncidencia(autor, responsable, contenido, prioridad)
+EmpresaCliente -> Incidencia : [abre una incidencia] crear incidencia en estado ABIERTA
+EmpresaCliente -> NotificacionManager : [abre una incidencia] crearNotificacion(responsable, mensaje)
+Responsable -> EmpresaCliente : [añade un comentario] agregarComentario(usuario, contenido)
+EmpresaCliente -> Comentario : [añade un comentario] crear comentario
+Comentario -> Comentario : [añade un comentario] obtenerMencionados()
+Comentario -> NotificacionManager : [hay mencionados] crearNotificacion(destinatario, mensaje)
+EmpresaCliente -> AuditoriaManager : registrarAccion(accion, usuario, resultado, detalles)
+EmpresaCliente --> Responsable : incidencia o comentario registrado
+@enduml
