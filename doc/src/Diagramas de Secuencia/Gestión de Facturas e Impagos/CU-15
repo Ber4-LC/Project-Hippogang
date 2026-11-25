@@ -1,0 +1,31 @@
+@startuml
+title CU-15 Pausar recordatorios de factura impagada
+hide footbox
+
+actor "Usuario responsable" as Responsable
+participant Factura << (C,#ADD1B2) >>
+
+Responsable -> Factura : seleccionar factura impagada
+Factura --> Responsable : mostrar detalle de la factura
+
+Responsable -> Factura : [recordatorios activos] pausarRecordatorios()
+
+note right of Factura
+    recordatoriosPausados = true
+    Se detiene el envío de recordatorios
+    de impago de esta factura
+end note
+
+Factura --> Responsable : [recordatorios pausados] confirmación de pausa
+
+Responsable -> Factura : [recordatorios pausados] reanudarRecordatorios()
+
+note right of Factura
+    recordatoriosPausados = false
+    Se reanuda el envío de recordatorios
+    de impago de esta factura
+end note
+
+Factura --> Responsable : [recordatorios reanudados] confirmación de reanudación
+
+@enduml
