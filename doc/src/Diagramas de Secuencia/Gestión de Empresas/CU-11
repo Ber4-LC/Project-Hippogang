@@ -1,0 +1,27 @@
+@startuml
+title CU-11 Gestión de empresas clientes
+hide footbox
+
+actor Responsable
+participant EmpresaCliente << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+participant RegistroAccion << (C,#ADD1B2) >>
+
+Responsable -> EmpresaCliente : acceder a la configuración
+EmpresaCliente --> Responsable : mostrar datos de la empresa
+
+Responsable -> EmpresaCliente : [modificar datos fiscales] editarDatosFiscales()
+
+note right of EmpresaCliente
+    Se validan y actualizan
+    los datos fiscales
+end note
+
+EmpresaCliente -> AuditoriaManager : [cambios realizados] registrarAccion(accion, usuario, resultado, detalles)
+
+create RegistroAccion
+AuditoriaManager -> RegistroAccion : [cambios realizados] <<create>>
+AuditoriaManager --> EmpresaCliente : [cambios realizados] RegistroAccion
+
+EmpresaCliente --> Responsable : [cambios realizados] confirmación de modificación
+@enduml
