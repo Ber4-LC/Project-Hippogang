@@ -1,0 +1,58 @@
+@startuml
+title CU-12 Crear factura adicional
+hide footbox
+
+actor "Usuario responsable" as Responsable
+participant FacturaManager << (C,#ADD1B2) >>
+participant Factura << (C,#ADD1B2) >>
+participant ConceptoFactura << (C,#ADD1B2) >>
+participant ArchivoAdjunto << (C,#ADD1B2) >>
+participant MensajeManager << (C,#ADD1B2) >>
+participant Mensaje << (C,#ADD1B2) >>
+
+Responsable -> FacturaManager : introducir conceptos, importes y archivos
+FacturaManager --> Responsable : mostrar datos de la factura
+Responsable -> FacturaManager : crearFacturaAdicional(empresa, importe, programarProximoMes)
+
+create Factura
+FacturaManager -> Factura : <<create>>
+
+note right of Factura
+    tipo = ADICIONAL
+    estado = BORRADOR
+end note
+
+create ConceptoFactura
+Factura -> ConceptoFactura : <<create>>
+
+create ArchivoAdjunto
+Factura -> ArchivoAdjunto : [archivos adjuntados] <<create>>
+
+FacturaManager -> FacturaManager : validarFactura(factura)
+
+FacturaManager --> Responsable : [factura no válida] solicitar corrección
+
+note right of Factura
+    [factura válida y programarProximoMes = true]
+    programadaProximoMes = true
+    Se conserva para el próximo mes
+end note
+
+FacturaManager --> Responsable : [factura válida y programada] confirmación de guardado
+
+FacturaManager -> MensajeManager : [factura válida y no programada] crearMensaje(empresa, FACTURA_ADICIONAL, plantilla, factura)
+
+create Mensaje
+MensajeManager -> Mensaje : [factura válida y no programada] <<create>>
+MensajeManager -> Mensaje : [factura válida y no programada] enviarMensaje()
+MensajeManager --> FacturaManager : [factura válida y no programada] Mensaje
+
+note right of Factura
+    [factura emitida]
+    estado = EMITIDA
+    Pendiente de pago
+end note
+
+FacturaManager --> Responsable : [factura emitida] confirmación de envío
+
+@enduml
