@@ -1,0 +1,19 @@
+@startuml
+title CU-06 Editar personas de contacto
+hide footbox
+actor Responsable
+participant EmpresaCliente << (C,#ADD1B2) >>
+participant Contacto << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+participant RegistroAccion << (C,#ADD1B2) >>
+
+Responsable -> EmpresaCliente : [añade un contacto] añadirPersonaDeContacto(nombre, email, telefono, idioma, comunicacionAdmin)
+EmpresaCliente -> Contacto : [añade un contacto] crear el contacto
+Responsable -> EmpresaCliente : [edita un contacto] editarPersonaDeContacto(idAntiguo, nombre, email, telefono, idioma, comunicacionAdmin)
+EmpresaCliente -> Contacto : [edita un contacto] actualizar sus datos
+Responsable -> EmpresaCliente : [elimina un contacto] eliminarPersonaDeContacto(idAntiguo)
+EmpresaCliente --> Responsable : [se queda sin contactos] Error: la empresa necesita al menos un contacto
+EmpresaCliente -> Contacto : [quedan contactos] eliminar el contacto
+EmpresaCliente -> AuditoriaManager : [operación válida] registrarAccion(accion, usuario, resultado, detalles)
+AuditoriaManager -> RegistroAccion : [operación válida] crear el registro
+@enduml
