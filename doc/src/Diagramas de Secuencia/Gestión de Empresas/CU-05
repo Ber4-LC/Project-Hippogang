@@ -1,0 +1,21 @@
+@startuml
+title CU-05 Importar clientes mediante CSV
+hide footbox
+actor Administrador
+participant ImportadorCSV << (C,#ADD1B2) >>
+participant EmpresaCliente << (C,#ADD1B2) >>
+participant EmpresaManager << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+participant RegistroAccion << (C,#ADD1B2) >>
+
+Administrador -> ImportadorCSV : validarArchivo(archivo)
+ImportadorCSV --> Administrador : [no es un CSV] Error: el archivo no tiene formato CSV
+Administrador -> ImportadorCSV : [es un CSV] generarVistaPrevia(archivo)
+ImportadorCSV --> Administrador : [hay filas con errores] Señala la fila donde está el error
+Administrador -> ImportadorCSV : [es un CSV] importarEmpresas(archivo)
+ImportadorCSV -> EmpresaCliente : [por cada fila válida] crear la empresa
+ImportadorCSV -> EmpresaManager : [por cada fila válida] registrarEmpresa(empresa)
+ImportadorCSV -> AuditoriaManager : [es un CSV] registrarAccion(accion, usuario, resultado, detalles)
+AuditoriaManager -> RegistroAccion : [es un CSV] crear el registro
+ImportadorCSV --> Administrador : [es un CSV] Empresas importadas correctamente
+@enduml
