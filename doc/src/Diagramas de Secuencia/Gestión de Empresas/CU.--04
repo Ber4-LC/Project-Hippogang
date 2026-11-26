@@ -1,0 +1,28 @@
+@startuml
+title CU-04 Registrar empresa cliente
+hide footbox
+actor Administrador
+participant EmpresaManager << (C,#ADD1B2) >>
+participant EmpresaCliente << (C,#ADD1B2) >>
+participant Contacto << (C,#ADD1B2) >>
+participant Suscripcion << (C,#ADD1B2) >>
+participant FacturaManager << (C,#ADD1B2) >>
+participant Factura << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+participant RegistroAccion << (C,#ADD1B2) >>
+
+Administrador -> EmpresaCliente : crear la empresa con los datos introducidos
+EmpresaCliente -> Contacto : crear los contactos de la empresa
+Administrador -> EmpresaManager : registrarEmpresa(empresa)
+EmpresaManager -> EmpresaCliente : datosFiscalesCompletos()
+EmpresaManager -> EmpresaManager : buscarDuplicados(empresa)
+EmpresaManager --> Administrador : [datos incompletos o empresa ya activa] Error: no se puede registrar la empresa
+EmpresaManager -> EmpresaManager : [existía y estaba de baja] reactivarEmpresa(empresa)
+EmpresaManager -> EmpresaCliente : [existía y estaba de baja] reactivar()
+EmpresaManager -> Suscripcion : [empresa nueva] crear la suscripción
+EmpresaManager -> AuditoriaManager : [empresa nueva o reactivada] registrarAccion(accion, usuario, resultado, detalles)
+AuditoriaManager -> RegistroAccion : [empresa nueva o reactivada] crear el registro
+EmpresaManager -> FacturaManager : [empresa nueva] crearFacturaInicialProrrateada(empresa, suscripcion, fechaAlta)
+FacturaManager -> Factura : [empresa nueva] crear la primera factura
+EmpresaManager --> Administrador : [empresa nueva o reactivada] Empresa registrada correctamente
+@enduml
