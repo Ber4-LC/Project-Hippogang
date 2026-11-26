@@ -1,0 +1,32 @@
+@startuml
+title CU-07 y CU-09 Editar parámetros de facturación y validar cambios de gran tamaño
+hide footbox
+actor Administrador
+actor Superadministrador
+participant EmpresaCliente << (C,#ADD1B2) >>
+participant AprobacionManager << (C,#ADD1B2) >>
+participant SolicitudAprobacion << (C,#ADD1B2) >>
+participant Suscripcion << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+participant RegistroAccion << (C,#ADD1B2) >>
+
+Administrador -> EmpresaCliente : datosFiscalesCompletos()
+EmpresaCliente --> Administrador : [datos insuficientes] No se puede continuar: faltan datos fiscales
+Administrador -> EmpresaCliente : [datos completos, cambia los recordatorios] editarFrecuenciaRecordatorios()
+Administrador -> AprobacionManager : [datos completos, cambia el importe] requiereAprobacion(nuevoImporte)
+
+Administrador -> Suscripcion : [no necesita aprobación] modificarImporte(nuevoImporte)
+Suscripcion --> Administrador : [importe o formato no válido] Error: importe no válido
+Administrador -> AuditoriaManager : [cambio aplicado] registrarAccion(accion, usuario, resultado, detalles)
+AuditoriaManager -> RegistroAccion : [cambio aplicado] crear el registro
+
+Administrador -> AprobacionManager : [necesita aprobación] crearSolicitud(solicitante, empresa, importe, descripcion)
+AprobacionManager -> SolicitudAprobacion : [necesita aprobación] crear la solicitud (pendiente)
+
+Superadministrador -> AprobacionManager :  obtenerPendientes()
+Superadministrador -> SolicitudAprobacion : [aprueba el cambio] aprobar(aprobador, comentario)
+Superadministrador -> Suscripcion : [aprueba el cambio] modificarImporte(importe)
+Superadministrador -> SolicitudAprobacion : [rechaza el cambio] rechazar(aprobador, comentario)
+Superadministrador -> AuditoriaManager : [aprueba o rechaza] registrarAccion(accion, usuario, resultado, detalles)
+AuditoriaManager -> RegistroAccion : [aprueba o rechaza] crear el registro
+@enduml
