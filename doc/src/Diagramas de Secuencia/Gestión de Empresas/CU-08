@@ -1,0 +1,14 @@
+@startuml
+title CU-08 Aplicar descuentos o pruebas gratuitas
+hide footbox
+actor Responsable
+participant Suscripcion << (C,#ADD1B2) >>
+participant AuditoriaManager << (C,#ADD1B2) >>
+participant RegistroAccion << (C,#ADD1B2) >>
+
+Responsable -> Suscripcion : aplicarDescuento(descuento, diasPeriodo)
+Suscripcion --> Responsable : [porcentaje o fecha incorrectos] Error: descuento o fecha no válidos
+Suscripcion --> Responsable : [datos correctos] Descuento aplicado
+Responsable -> AuditoriaManager : [datos correctos] registrarAccion(accion, usuario, resultado, detalles)
+AuditoriaManager -> RegistroAccion : [datos correctos] crear el registro
+@enduml
