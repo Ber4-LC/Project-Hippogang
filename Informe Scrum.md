@@ -81,7 +81,7 @@
   - Redactar los informes Scrum de seguimiento.
 
 **Reuniones realizadas:**
-  #### Reunión 28/11/26
+  #### Reunión 28/10/26
   - **Reunión Scrum (Repartición de tareas):**
     - **Emilio, Juan, Ricardo y Mario**: Encargados de corregir todos los errores y elementos faltantes de la primera entrega
     - **Benjamín:**: Empezar a diseñar las clases del sistema.
