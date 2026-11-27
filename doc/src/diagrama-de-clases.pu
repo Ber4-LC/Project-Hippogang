@@ -404,6 +404,7 @@ class SolicitudAprobacion {
     - importe : Decimal
     - estado : EstadoAprobacion
     - aprobadoPor: Usuario
+    - solicitante: Usuario
     - empresa : EmpresaCliente
     - comentarioResolucion : String
     
@@ -575,7 +576,7 @@ class RangoPrecio {
 ' =========================================================
 
 EmpresaCliente "1" -- "1" Suscripcion : suscripcion
-EmpresaCliente "1" -- "0..*" Contacto : personasDeContacto
+EmpresaCliente "1..*" -- "0..*" Contacto : personasDeContacto
 EmpresaCliente "1" --> "1" ConfiguracionRecordatorios : recordatorios
 EmpresaCliente "0..*" --> "0..1" Plantilla : plantillaFacturacion
 
@@ -679,6 +680,7 @@ TablaPrecios "1" --> "1..*" RangoPrecio : rangos
 
 SolicitudAprobacion --> EstadoAprobacion : estado
 SolicitudAprobacion "0..*" --> "0..1" Usuario : aprobador
+SolicitudAprobacion "0..*" --> "0..1" Usuario : solicitante
 SolicitudAprobacion "0..*" --> "1" EmpresaCliente : empresa
 
 AprobacionManager ..> SolicitudAprobacion : gestiona
