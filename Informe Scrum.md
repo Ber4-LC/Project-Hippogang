@@ -1,4 +1,4 @@
-# Informe Scrum: Entrega 1 
+# Informe Scrum
  
 ## 1. Identificación del equipo 
 
