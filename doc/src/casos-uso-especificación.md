@@ -308,7 +308,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 ### CU-16: Cancelar deuda de factura.
 - Nombre del caso de uso: Cancelar deuda de factura.  
 - Identificador: CU-16.  
-- Objetivo: Dar por saldada manualmente una deuda cambiando el estado de una factura de "impagada" a "pagada".  
+- Objetivo: Dar por saldada manualmente una deuda cambiando el estado de una factura de "impagada" a "condonada".  
 - Actor o actores participantes:  
   1. Superadministrador.  
 - Precondiciones:  
@@ -352,7 +352,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 
 ### CU-18: Configurar plantilla de email de facturación.
 - Nombre del caso de uso: Configurar plantilla de email de facturación.  
-- Identificador: CU-17.  
+- Identificador: CU-18.  
 - Objetivo: Definir y personalizar la plantilla de correo electrónico (incluyendo idioma español o inglés) que se utilizará al enviar facturas a los clientes.  
 - Actor o actores participantes:  
   1. Responsable.  
@@ -370,7 +370,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   
 ### CU-19: Configurar objetivos de recaudación.
 - Nombre del caso de uso: Configurar cobros y objetivos de recaudación.  
-- Identificador: CU-18.  
+- Identificador: CU-19.  
 - Objetivo: Establecer metas de cobro y visualizar su progreso en el panel de control.  
 - Actor o actores participantes:  
   1. Administrador.  
@@ -388,7 +388,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 
 ### CU-20: Sincronizar estado de pagos con el Sistema de Pagos y confirmar cobro.
 - Nombre del caso de uso: Sincronizar estado de pagos con Stripe y confirmar cobro.  
-- Identificador: CU-19.  
+- Identificador: CU-20.  
 - Objetivo: Mantener actualizado el estado de las facturas a partir de la información de pagos proporcionada por el sistema de pagos.  
 - Actor o actores participantes:  
   1. El Sistema de pagos.  
@@ -412,7 +412,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 
 ### CU-21: Consultar panel de control.
 - Nombre del caso de uso: Consultar panel de control.  
-- Identificador: CU-20.  
+- Identificador: CU-21.  
 - Objetivo: Mostrar en un panel las incidencias pendientes de atender.  
 - Actor o actores participantes:  
   1. Responsable.  
@@ -431,7 +431,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   
 ### CU-22: Crear incidencias y comentarios.
 - Nombre del caso de uso: Crear las incidencias y comentarios.  
-- Identificador: CU-21.  
+- Identificador: CU-22.  
 - Objetivo: Avisar de posibles errores o incidencias para su posterior resolución.  
 - Actor o actores participantes:  
   1. Responsable.  
@@ -448,7 +448,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   
 ### CU-23: Gestionar notificaciones internas.
 - Nombre del caso de uso: Gestionar notificaciones internas.  
-- Identificador: CU-22.  
+- Identificador: CU-23.  
 - Objetivo: Consultar los avisos que puedan surgir y resolverlos.  
 - Actor o actores participantes:  
   1. Responsable.  
@@ -469,7 +469,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 
 ### CU-24: Consultar y filtrar informes financieros.
 - Nombre del caso de uso: Consultar y filtrar informes financieros.  
-- Identificador: CU-23.  
+- Identificador: CU-24.  
 - Objetivo: Obtener y filtrar reportes del estado financiero de Turbineh.  
 - Actor o actores participantes:  
   1. Administrador.  
@@ -488,7 +488,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   
 ### CU-25: Revisión de historiales y copias de seguridad.
 - Nombre del caso de uso: Revisión de historiales y copias de seguridad.  
-- Identificador: CU-24.  
+- Identificador: CU-25.  
 - Objetivo: Supervisar los cambios manuales y el estado de las copias de seguridad.  
 - Actor o actores participantes:  
   1. Superadministrador.  
@@ -508,7 +508,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 
 ### CU-26: Edición de la tabla de precios recurrentes.
 - Nombre del caso de uso: Edición de la tabla de precios recurrentes.  
-- Identificador: CU-25.  
+- Identificador: CU-26.  
 - Objetivo: Actualizar las tarifas preestablecidas y reajustar precios.  
 - Actor o actores participantes:  
   1. Superadministrador.  
@@ -528,7 +528,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
 
 ### CU-27: Consultar estado del sistema.
 - Nombre del caso de uso: Consultar estado del sistema.  
-- Identificador: CU-26.  
+- Identificador: CU-27.  
 - Objetivo: Visualizar el estado técnico del sistema y garantizar su estabilidad.  
 - Actor o actores participantes:  
   1. Superadministrador.  
@@ -546,7 +546,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   
 ### CU-28: Revertir acciones previas.
 - Nombre del caso de uso: Revertir acciones previas.  
-- Identificador: CU-27.  
+- Identificador: CU-28.  
 - Objetivo: Deshacer una modificación o acción reciente en el sistema.  
 - Actor o actores participantes:  
   1. Superadministrador.  
