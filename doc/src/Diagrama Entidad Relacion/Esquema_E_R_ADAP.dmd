@@ -1,8 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="Esquema_E_R_ADAP" id="945886E9-FDA8-1AB3-4287-7DCBB14C4423" version="3.5">
-<createdBy>2006m</createdBy>
-<createdTime>2026-11-26 22:54:56 UTC</createdTime>
-<ownerDesignName>Esquema_E_R_ADAP</ownerDesignName>
-<capitalNames>false</capitalNames>
-<designId>945886E9-FDA8-1AB3-4287-7DCBB14C4423</designId>
-</OSDM_Design>
