@@ -322,7 +322,7 @@ Importante: Se entiende que si en actor se pone un usuario, todos los que están
   3. Operación cancelada por el superadministrador por lo que la factura mantiene su estado de impago.  
 - Flujos de excepción (no hay).  
 - Postcondiciones:  
-  1. La deuda pasa a estar condonada y la factura a impagada.
+  1. La deuda pasa a estar condonada y la factura a condonada.
 
 
 ### CU-17: Cerrar periodo económico
