@@ -13,9 +13,11 @@ En la carpeta /doc se encuentran como novedad:
 - pdf y svg del diagrama de clases
 - pdf con una explicación del diagrama de clases para poder seguirlo y entenderlo
 - pdf con el diagrama de arquitectura y su justifiación
-- pdf con los diagramas Lógico y Relacional E/R. Hay 2 diagramas Lógicos porque uno esta hecho en Data Modeler.
+- pdf con el diagrama fisico relacional E/R, llamado "Relational.pdf"
 En la carpeta /doc/src se encuentran como novedad:
 - diagrama de arquitectura
 - archivo .md de la justificación de la arquitectura
 - archivo .pu del diagrama de clases
 - carpeta con archivos de los diagramas de secuencia y su versión .pdf
+
+Los archivos en la carpeta /src son los editables, pero los artefactos de entrega son los de la carpeta /doc
